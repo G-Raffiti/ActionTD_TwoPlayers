@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bue3cpi71unag"]
+
+[ext_resource type="Script" path="res://Scripts/TD/Grid/ray_picker_camera.gd" id="1_ebh20"]
+
+[node name="RayPickerCamera" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.389, 7.656)
+projection = 1
+size = 19.195
+near = 0.001
+far = 3999.9
+script = ExtResource("1_ebh20")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]

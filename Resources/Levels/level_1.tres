@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="LevelRes" load_steps=13 format=3 uid="uid://bct8hopxe6c6j"]
+
+[ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_level.gd" id="1_6li3q"]
+[ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_wave.gd" id="2_k1ugj"]
+[ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_mob_group.gd" id="3_rx7j1"]
+[ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_troop.gd" id="4_7ahps"]
+
+[sub_resource type="Resource" id="Resource_mf3to"]
+script = ExtResource("3_rx7j1")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_sp4dv"]
+script = ExtResource("4_7ahps")
+groups = Array[ExtResource("3_rx7j1")]([SubResource("Resource_mf3to")])
+
+[sub_resource type="Resource" id="Resource_k77i6"]
+script = ExtResource("3_rx7j1")
+amount = 1
+
+[sub_resource type="Resource" id="Resource_vmy8d"]
+script = ExtResource("4_7ahps")
+groups = Array[ExtResource("3_rx7j1")]([SubResource("Resource_k77i6")])
+
+[sub_resource type="Resource" id="Resource_lxusw"]
+script = ExtResource("2_k1ugj")
+troops = Array[ExtResource("4_7ahps")]([SubResource("Resource_sp4dv"), SubResource("Resource_vmy8d")])
+
+[sub_resource type="Resource" id="Resource_5rmcr"]
+script = ExtResource("4_7ahps")
+groups = Array[ExtResource("3_rx7j1")]([])
+
+[sub_resource type="Resource" id="Resource_u6dir"]
+script = ExtResource("4_7ahps")
+groups = Array[ExtResource("3_rx7j1")]([])
+
+[sub_resource type="Resource" id="Resource_spln3"]
+script = ExtResource("2_k1ugj")
+troops = Array[ExtResource("4_7ahps")]([SubResource("Resource_5rmcr"), SubResource("Resource_u6dir")])
+
+[resource]
+script = ExtResource("1_6li3q")
+waves = Array[ExtResource("2_k1ugj")]([SubResource("Resource_lxusw"), SubResource("Resource_spln3")])
+total_duration = 0.0

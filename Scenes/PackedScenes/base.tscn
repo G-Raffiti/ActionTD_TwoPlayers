@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cycobtcw7dh0w"]
+
+[ext_resource type="Script" path="res://Scripts/TD/Objects/base.gd" id="1_p1qkq"]
+[ext_resource type="ArrayMesh" uid="uid://cjbnxbi3knyll" path="res://_ Assets/_ 3D/Models/OBJ format/towerRound_crystals.obj" id="2_lbupl"]
+
+[node name="Base" type="Node3D"]
+script = ExtResource("1_p1qkq")
+
+[node name="TowerRoundCrystals" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00825584, 0, -0.0130771)
+mesh = ExtResource("2_lbupl")
+
+[node name="UI_HPValue" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986938, 0)
+billboard = 1
+text = "dsvsdv"
+font_size = 92

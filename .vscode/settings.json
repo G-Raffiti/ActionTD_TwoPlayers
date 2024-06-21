@@ -1,0 +1,40 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/_ Assets/**": true,
+        ".godot":true,
+        ".vscode":true,
+        "Resources":true,
+        "Scenes":true,
+        "UserInterface":true,
+        ".gitignore":true,
+        ".gitattributes":true,
+        "**.tres":true,
+        "**.tscn":true,
+        "**.svg":true,
+        "**.png":true,
+        "**.import":true,
+    },
+    "explorerExclude.backup": {
+
+    },
+    "folder-color.pathColors": [
+        {
+            "folderPath": "3D_02_Barbarian_Blaster\\Scripts\\UI\\Menus\\main_menu.gd\\",
+            "badge": "🖥️"
+        },
+        {
+            "folderPath": "3D_02_Barbarian_Blaster\\Scripts\\UI\\Menus\\",
+            "badge": "🖥️"
+        },
+        {
+            "folderPath": "3D_02_Barbarian_Blaster\\Scripts\\Globals\\",
+            "color": "foldercolorizer.LightMaroon"
+        }
+    ]
+}

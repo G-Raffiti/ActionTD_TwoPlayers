@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cbhfq7hooayat"
+path="res://.godot/imported/snow_woodStructure_high.obj-151cf43d773edbeb2166fb2a9bc58c3b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow_woodStructure_high.obj-151cf43d773edbeb2166fb2a9bc58c3b.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/snow_woodStructure_high.obj"
+dest_files=["res://.godot/imported/snow_woodStructure_high.obj-151cf43d773edbeb2166fb2a9bc58c3b.mesh", "res://.godot/imported/snow_woodStructure_high.obj-151cf43d773edbeb2166fb2a9bc58c3b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

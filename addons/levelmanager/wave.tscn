@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://rivcdxc7oguk"]
+
+[ext_resource type="Texture2D" uid="uid://bi08wmj5cqa5w" path="res://addons/levelmanager/icons/ActionCopy.svg" id="1_7xunm"]
+[ext_resource type="Script" path="res://addons/levelmanager/level_manager_wave.gd" id="1_joa5i"]
+[ext_resource type="Texture2D" uid="uid://dqunjdfbobvw8" path="res://addons/levelmanager/icons/ActionPaste.svg" id="2_eef1c"]
+[ext_resource type="Texture2D" uid="uid://bkv1parhj4kbj" path="res://addons/levelmanager/icons/Add.svg" id="8_odbei"]
+
+[node name="Wave" type="HBoxContainer" node_paths=PackedStringArray("label", "troop_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -518.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_joa5i")
+label = NodePath("VBoxContainer/Label")
+troop_container = NodePath("ScrollContainer/HBoxContainer/Troops")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Wave 1"
+
+[node name="CopyGroup" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Copy Wave"
+icon = ExtResource("1_7xunm")
+icon_alignment = 1
+
+[node name="PastGroup" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Paste And Replace Wave"
+icon = ExtResource("2_eef1c")
+icon_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Troops" type="HBoxContainer" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AddTroop" type="Button" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Add New Wave"
+icon = ExtResource("8_odbei")
+icon_alignment = 1
+
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/AddTroop" to="." method="_add_troop"]

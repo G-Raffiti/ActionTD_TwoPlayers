@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ddgkvesw82xha"
+path="res://.godot/imported/snow_tile_split.obj-9d0567ee8545491a952b09744da8b55f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow_tile_split.obj-9d0567ee8545491a952b09744da8b55f.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/snow_tile_split.obj"
+dest_files=["res://.godot/imported/snow_tile_split.obj-9d0567ee8545491a952b09744da8b55f.mesh", "res://.godot/imported/snow_tile_split.obj-9d0567ee8545491a952b09744da8b55f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

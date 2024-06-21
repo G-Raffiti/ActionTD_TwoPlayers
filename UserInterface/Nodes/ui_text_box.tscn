@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://p11rsad2ye30"]
+
+[ext_resource type="Theme" uid="uid://d3vguowvlcql0" path="res://Resources/UI/theme.tres" id="1_iiwi8"]
+[ext_resource type="Script" path="res://Scripts/UI/CustomNodes/ui_text_bloc.gd" id="2_gbu0f"]
+[ext_resource type="Script" path="res://Scripts/UI/CustomNodes/ui_scale_box.gd" id="63_d5p6u"]
+
+[node name="TextBloc" type="Control"]
+custom_minimum_size = Vector2(105.47, 27.295)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 105.47
+offset_bottom = 27.295
+theme = ExtResource("1_iiwi8")
+script = ExtResource("2_gbu0f")
+text = "Text Bloc"
+font_size = 75
+box_margin = Vector2(35, 0)
+scale_minimum = 0.265
+size_to_content = true
+
+[node name="ScaleBox" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 398.0
+offset_bottom = 103.0
+scale = Vector2(0.265, 0.265)
+script = ExtResource("63_d5p6u")
+min_size = Vector2(145, 75)
+base_scale = Vector2(0.265, 0.265)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ScaleBox"]
+layout_mode = 2
+patch_margin_left = 35
+patch_margin_right = 35
+
+[node name="Margin" type="MarginContainer" parent="ScaleBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="RichTextLabel" parent="ScaleBox/Margin"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "Text Bloc"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false

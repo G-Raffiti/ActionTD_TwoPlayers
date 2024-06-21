@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dn6s11tjt0t24"
+path="res://.godot/imported/towerRound_sampleA.obj-16b2310edeb28ba07fb03708fa9dd921.mesh"
+
+[deps]
+
+files=["res://.godot/imported/towerRound_sampleA.obj-16b2310edeb28ba07fb03708fa9dd921.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/towerRound_sampleA.obj"
+dest_files=["res://.godot/imported/towerRound_sampleA.obj-16b2310edeb28ba07fb03708fa9dd921.mesh", "res://.godot/imported/towerRound_sampleA.obj-16b2310edeb28ba07fb03708fa9dd921.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

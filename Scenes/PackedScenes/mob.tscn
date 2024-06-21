@@ -1,0 +1,149 @@
+[gd_scene load_steps=10 format=3 uid="uid://750cm2b1mvpo"]
+
+[ext_resource type="Script" path="res://Scripts/TD/Objects/enemy.gd" id="1_2rbnc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a01db"]
+size = Vector3(0.761536, 1.3577, 0.736862)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwkop"]
+albedo_color = Color(1, 0.384314, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o2dea"]
+material = SubResource("StandardMaterial3D_dwkop")
+radius = 0.3
+height = 1.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3dr6i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqiwx"]
+resource_local_to_scene = true
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_acugf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0279273, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.49012e-08, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D/MeshInstance3D3:surface_material_override/0:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_se2ib"]
+resource_name = "hit"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.109968, 0.299458),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.0279273, 0), Vector3(0, 0.0279273, 0.220936), Vector3(0, 0.0279273, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.109968, 0.298129),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.49012e-08, 0), Vector3(0.261799, -1.54269e-08, -3.99276e-09), Vector3(0, -1.49012e-08, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D/MeshInstance3D3:surface_material_override/0:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.154048, 0.300122),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lx67a"]
+_data = {
+"RESET": SubResource("Animation_acugf"),
+"hit": SubResource("Animation_se2ib")
+}
+
+[node name="EnemyBody" type="CharacterBody3D" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.706684, 0)
+collision_mask = 0
+script = ExtResource("1_2rbnc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-08, 0, 1, 0.00656128, 0.0666097, 0.00621795)
+shape = SubResource("BoxShape3D_a01db")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0.0279273, 0)
+mesh = SubResource("CapsuleMesh_o2dea")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.494, 0, 0, 0, -8.65485e-09, -0.493, -7.36119e-09, 0.198, -2.15497e-08, 0, 0.411999, -0.152843)
+mesh = SubResource("CapsuleMesh_3dr6i")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_o2dea")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_uqiwx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lx67a")
+}
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_max_distance = 3.01
+path_postprocessing = 1
+height = 1.5
+radius = 0.1
+neighbor_distance = 2.0
+max_neighbors = 3
+max_speed = 0.6
+debug_enabled = true

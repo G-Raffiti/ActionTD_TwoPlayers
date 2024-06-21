@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://5w6poeipm1vk"]
+
+[ext_resource type="Texture2D" uid="uid://bi08wmj5cqa5w" path="res://addons/levelmanager/icons/ActionCopy.svg" id="1_8fg0j"]
+[ext_resource type="Script" path="res://addons/levelmanager/level_manager_troop.gd" id="1_jiwby"]
+[ext_resource type="Texture2D" uid="uid://dqunjdfbobvw8" path="res://addons/levelmanager/icons/ActionPaste.svg" id="2_ogrmg"]
+[ext_resource type="PackedScene" uid="uid://ce0awmxm4bi7t" path="res://addons/levelmanager/group.tscn" id="3_67nwx"]
+[ext_resource type="Texture2D" uid="uid://bkv1parhj4kbj" path="res://addons/levelmanager/icons/Add.svg" id="8_xd1pr"]
+
+[node name="Troop" type="VBoxContainer" node_paths=PackedStringArray("label", "group_container")]
+script = ExtResource("1_jiwby")
+label = NodePath("HBoxContainer/Label")
+group_container = NodePath("Groups")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Group 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CopyGroup" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Add New Wave"
+icon = ExtResource("1_8fg0j")
+icon_alignment = 1
+
+[node name="PastGroup" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Add New Wave"
+icon = ExtResource("2_ogrmg")
+icon_alignment = 1
+
+[node name="Groups" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Group" parent="Groups" instance=ExtResource("3_67nwx")]
+layout_mode = 2
+
+[node name="AddGroup" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "Add New Wave"
+icon = ExtResource("8_xd1pr")
+icon_alignment = 1
+
+[connection signal="pressed" from="AddGroup" to="." method="_add_group"]

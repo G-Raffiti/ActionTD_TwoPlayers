@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://bebxclus3je58"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CustomNodes/ui_btn_nine_patch.gd" id="1_5eyoy"]
+[ext_resource type="Theme" uid="uid://d3vguowvlcql0" path="res://Resources/UI/theme.tres" id="1_w70jg"]
+[ext_resource type="Script" path="res://Scripts/UI/CustomNodes/ui_scale_box.gd" id="2_v7q6c"]
+[ext_resource type="Script" path="res://Scripts/UI/CustomNodes/ui_btn_click_sound.gd" id="5_crqxd"]
+
+[node name="Button" type="Control"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(97.8, 51)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 101.1
+offset_bottom = 54.9
+mouse_filter = 2
+theme = ExtResource("1_w70jg")
+script = ExtResource("1_5eyoy")
+text = "Button"
+font_size = 75
+icon_alignment = 0
+scale_minimum = 0.3
+size_to_content = true
+
+[node name="ScaleBox" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 337.0
+offset_bottom = 183.0
+scale = Vector2(0.3, 0.3)
+script = ExtResource("2_v7q6c")
+min_size = Vector2(170, 170)
+base_scale = Vector2(0.3, 0.3)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ScaleBox"]
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+region_rect = Rect2(3, 5, 185, 180)
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_right = 40
+patch_margin_bottom = 40
+
+[node name="Button" type="Button" parent="ScaleBox"]
+layout_mode = 2
+flat = true
+script = ExtResource("5_crqxd")
+
+[node name="Margin" type="MarginContainer" parent="ScaleBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 42
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 40
+
+[node name="Content" type="HBoxContainer" parent="ScaleBox/Margin"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="IconLeft" type="TextureRect" parent="ScaleBox/Margin/Content"]
+visible = false
+custom_minimum_size = Vector2(95, 95)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ScaleBox/Margin/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 75
+text = "Button"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IconRight" type="TextureRect" parent="ScaleBox/Margin/Content"]
+visible = false
+custom_minimum_size = Vector2(95, 95)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1

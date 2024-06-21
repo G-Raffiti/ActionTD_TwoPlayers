@@ -1,0 +1,322 @@
+[gd_scene load_steps=10 format=3 uid="uid://cobfuj6grvl1g"]
+
+[ext_resource type="Theme" uid="uid://d3vguowvlcql0" path="res://Resources/UI/theme.tres" id="1_f6bfn"]
+[ext_resource type="Script" path="res://Scripts/UI/Menus/settings_menu.gd" id="2_w5iy5"]
+[ext_resource type="Script" path="res://Scripts/UI/CustomNodes/ui_scale_box.gd" id="3_7p4bk"]
+[ext_resource type="PackedScene" uid="uid://p11rsad2ye30" path="res://UserInterface/Nodes/ui_text_box.tscn" id="5_y3t2e"]
+[ext_resource type="Script" path="res://Scripts/UI/CustomNodes/ui_btn_click_sound.gd" id="7_fxfwd"]
+[ext_resource type="PackedScene" uid="uid://bebxclus3je58" path="res://UserInterface/Nodes/button.tscn" id="11_f8hp1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eaxg2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_csfbo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cftsc"]
+
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("close_btn", "back_btn", "master_volume", "music_volume", "sfx_volume", "ui_volume", "master_mute", "music_mute", "sfx_mute", "ui_mute", "full_screen", "vsync_checkbox", "resolution_option", "screen_selector", "reset_save_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_f6bfn")
+script = ExtResource("2_w5iy5")
+close_btn = NodePath("Close")
+back_btn = NodePath("CenterContainer/VBoxContainer/BackBtn")
+master_volume = NodePath("CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer2/MasterVolumeSlider")
+music_volume = NodePath("CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer2/MusicVolumeSlider")
+sfx_volume = NodePath("CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer2/SFXVolumeSlider")
+ui_volume = NodePath("CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer2/UIVolumeSlider")
+master_mute = NodePath("CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer3/MasterMuteBtn")
+music_mute = NodePath("CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer3/MusicMuteBtn")
+sfx_mute = NodePath("CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer3/SFXMuteBtn")
+ui_mute = NodePath("CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer3/UIMuteBtn")
+full_screen = NodePath("CenterContainer/VBoxContainer/Graphics/VBoxContainer/FullScreen/PanelContainer/FullScreen")
+vsync_checkbox = NodePath("CenterContainer/VBoxContainer/Graphics/VBoxContainer/VSync/PanelContainer/VSyncButton")
+resolution_option = NodePath("CenterContainer/VBoxContainer/Graphics/VBoxContainer/Resolution/OptionButton")
+screen_selector = NodePath("CenterContainer/VBoxContainer/Graphics/VBoxContainer/ScreenChoice/OptionButton")
+reset_save_btn = NodePath("CenterContainer/VBoxContainer/PlayerProgression/VBoxContainer/EraseSaveBtn")
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="ScaleBox" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -222.0
+offset_right = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_7p4bk")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ScaleBox"]
+layout_mode = 2
+region_rect = Rect2(24, 24, 552, 492)
+patch_margin_left = 62
+patch_margin_top = 128
+patch_margin_right = 58
+patch_margin_bottom = 128
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Sound" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextBloc2" parent="CenterContainer/VBoxContainer/Sound" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(103.7, 49.715)
+layout_mode = 2
+text = "Sound"
+box_margin = Vector2(55, 30)
+scale_minimum = 0.305
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Sound"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="TextBloc" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(108.385, 36.305)
+layout_mode = 2
+text = "Master"
+font_size = 100
+horizontal_align = 1
+
+[node name="TextBloc2" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(93.28, 36.305)
+layout_mode = 2
+text = "Music"
+font_size = 100
+horizontal_align = 1
+
+[node name="TextBloc3" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(63.6, 36.305)
+layout_mode = 2
+text = "SFX"
+font_size = 100
+horizontal_align = 1
+
+[node name="TextBloc4" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(46.375, 36.305)
+layout_mode = 2
+text = "UI"
+font_size = 100
+horizontal_align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+
+[node name="SFXVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+
+[node name="UIVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2"]
+custom_minimum_size = Vector2(37, 0)
+layout_mode = 2
+
+[node name="MasterMuteBtn" type="Button" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_eaxg2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_csfbo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cftsc")
+toggle_mode = true
+script = ExtResource("7_fxfwd")
+
+[node name="MusicMuteBtn" type="Button" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_eaxg2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_csfbo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cftsc")
+toggle_mode = true
+script = ExtResource("7_fxfwd")
+
+[node name="SFXMuteBtn" type="Button" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_eaxg2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_csfbo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cftsc")
+toggle_mode = true
+script = ExtResource("7_fxfwd")
+
+[node name="UIMuteBtn" type="Button" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer2/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_eaxg2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_csfbo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cftsc")
+toggle_mode = true
+script = ExtResource("7_fxfwd")
+
+[node name="Graphics" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextBloc2" parent="CenterContainer/VBoxContainer/Graphics" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(131.15, 49.715)
+layout_mode = 2
+text = "Graphics"
+box_margin = Vector2(55, 30)
+scale_minimum = 0.305
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Graphics"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="FullScreen" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextBloc" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/FullScreen" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(150.9, 30.9)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Full Screen: "
+horizontal_align = 0
+scale_minimum = 0.3
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/FullScreen"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="FullScreen" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/FullScreen/PanelContainer" instance=ExtResource("11_f8hp1")]
+custom_minimum_size = Vector2(45.2, 36.6)
+layout_mode = 2
+toggle_mode = true
+text = "OFF"
+scale_minimum = 0.2
+
+[node name="VSync" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextBloc" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/VSync" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(96.9, 30.9)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[hint=Enable if you experience tearing]VSync[/hint]: "
+horizontal_align = 0
+scale_minimum = 0.3
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/VSync"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="VSyncButton" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/VSync/PanelContainer" instance=ExtResource("11_f8hp1")]
+custom_minimum_size = Vector2(45.2, 36.6)
+layout_mode = 2
+toggle_mode = true
+text = "OFF"
+scale_minimum = 0.2
+
+[node name="Resolution" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextBloc" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/Resolution" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(149.1, 30.9)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resolution: "
+horizontal_align = 0
+scale_minimum = 0.3
+
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/Resolution"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_constants/arrow_margin = 15
+theme_override_constants/outline_size = 3
+theme_override_constants/modulate_arrow = 0
+theme_override_font_sizes/font_size = 18
+
+[node name="ScreenChoice" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextBloc" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/ScreenChoice" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(106.2, 30.9)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Screen: "
+horizontal_align = 0
+scale_minimum = 0.3
+
+[node name="OptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer/Graphics/VBoxContainer/ScreenChoice"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_constants/arrow_margin = 15
+theme_override_constants/outline_size = 3
+theme_override_constants/modulate_arrow = 0
+theme_override_font_sizes/font_size = 18
+
+[node name="PlayerProgression" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextBloc" parent="CenterContainer/VBoxContainer/PlayerProgression" instance=ExtResource("5_y3t2e")]
+custom_minimum_size = Vector2(239.425, 49.715)
+layout_mode = 2
+text = "Player Progression"
+box_margin = Vector2(55, 30)
+scale_minimum = 0.305
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PlayerProgression"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="EraseSaveBtn" parent="CenterContainer/VBoxContainer/PlayerProgression/VBoxContainer" instance=ExtResource("11_f8hp1")]
+custom_minimum_size = Vector2(201, 54.9)
+layout_mode = 2
+text = "Erase Save"
+icon_alignment = 3
+
+[node name="BackBtn" parent="CenterContainer/VBoxContainer" instance=ExtResource("11_f8hp1")]
+custom_minimum_size = Vector2(108, 54.9)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Back"
+icon_alignment = 1

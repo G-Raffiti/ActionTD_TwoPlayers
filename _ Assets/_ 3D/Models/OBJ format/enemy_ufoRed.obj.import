@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://otgx3ljbieur"
+path="res://.godot/imported/enemy_ufoRed.obj-7a7537a5af41f8b02f4075b876ed55b5.mesh"
+
+[deps]
+
+files=["res://.godot/imported/enemy_ufoRed.obj-7a7537a5af41f8b02f4075b876ed55b5.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/enemy_ufoRed.obj"
+dest_files=["res://.godot/imported/enemy_ufoRed.obj-7a7537a5af41f8b02f4075b876ed55b5.mesh", "res://.godot/imported/enemy_ufoRed.obj-7a7537a5af41f8b02f4075b876ed55b5.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

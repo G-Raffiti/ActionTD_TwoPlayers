@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://oxw8s3xwqh1i"
+path="res://.godot/imported/snow_detail_treeLarge.obj-60d53e2509a48f661a751f7283d7d30d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow_detail_treeLarge.obj-60d53e2509a48f661a751f7283d7d30d.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/snow_detail_treeLarge.obj"
+dest_files=["res://.godot/imported/snow_detail_treeLarge.obj-60d53e2509a48f661a751f7283d7d30d.mesh", "res://.godot/imported/snow_detail_treeLarge.obj-60d53e2509a48f661a751f7283d7d30d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

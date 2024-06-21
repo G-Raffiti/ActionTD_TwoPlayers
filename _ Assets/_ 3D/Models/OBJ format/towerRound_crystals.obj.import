@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cjbnxbi3knyll"
+path="res://.godot/imported/towerRound_crystals.obj-2c3f13f3d693ab37ae709872cf787d8b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/towerRound_crystals.obj-2c3f13f3d693ab37ae709872cf787d8b.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/towerRound_crystals.obj"
+dest_files=["res://.godot/imported/towerRound_crystals.obj-2c3f13f3d693ab37ae709872cf787d8b.mesh", "res://.godot/imported/towerRound_crystals.obj-2c3f13f3d693ab37ae709872cf787d8b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

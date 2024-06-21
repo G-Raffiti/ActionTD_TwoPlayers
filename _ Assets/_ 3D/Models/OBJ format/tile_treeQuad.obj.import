@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dnrq4gsjdf1e4"
+path="res://.godot/imported/tile_treeQuad.obj-91bd6847b6d43819c3d5d5317c8453b8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile_treeQuad.obj-91bd6847b6d43819c3d5d5317c8453b8.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/tile_treeQuad.obj"
+dest_files=["res://.godot/imported/tile_treeQuad.obj-91bd6847b6d43819c3d5d5317c8453b8.mesh", "res://.godot/imported/tile_treeQuad.obj-91bd6847b6d43819c3d5d5317c8453b8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

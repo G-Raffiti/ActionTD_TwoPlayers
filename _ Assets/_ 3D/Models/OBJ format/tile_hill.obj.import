@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dspgibdakkax0"
+path="res://.godot/imported/tile_hill.obj-30233c0fbb9f031e4f1c970a7111237e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile_hill.obj-30233c0fbb9f031e4f1c970a7111237e.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/tile_hill.obj"
+dest_files=["res://.godot/imported/tile_hill.obj-30233c0fbb9f031e4f1c970a7111237e.mesh", "res://.godot/imported/tile_hill.obj-30233c0fbb9f031e4f1c970a7111237e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MobRes" load_steps=6 format=3 uid="uid://bqdxx01mqrid1"]
+
+[ext_resource type="Texture2D" uid="uid://cqrf55pb4c4wg" path="res://addons/levelmanager/icons/CurveInOut.svg" id="1_483xe"]
+[ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy.gd" id="1_as26w"]
+[ext_resource type="PackedScene" uid="uid://750cm2b1mvpo" path="res://Scenes/PackedScenes/mob.tscn" id="2_u82hf"]
+[ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy_stats.gd" id="4_x3lee"]
+
+[sub_resource type="Resource" id="Resource_r4nnj"]
+script = ExtResource("4_x3lee")
+max_hp = 3
+damage = 1
+speed = 0.6
+acceleration = 5.0
+
+[resource]
+script = ExtResource("1_as26w")
+name = "normal"
+icon = ExtResource("1_483xe")
+mob_ps = ExtResource("2_u82hf")
+stats = SubResource("Resource_r4nnj")

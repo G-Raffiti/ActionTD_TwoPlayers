@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://u2xbtlcg7an0"
+path="res://.godot/imported/tile_wideCorner.obj-132cbaa3c26e368c3b7b8c93c2d98480.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile_wideCorner.obj-132cbaa3c26e368c3b7b8c93c2d98480.mesh"]
+
+source_file="res://_ Assets/_ 3D/Models/OBJ format/tile_wideCorner.obj"
+dest_files=["res://.godot/imported/tile_wideCorner.obj-132cbaa3c26e368c3b7b8c93c2d98480.mesh", "res://.godot/imported/tile_wideCorner.obj-132cbaa3c26e368c3b7b8c93c2d98480.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

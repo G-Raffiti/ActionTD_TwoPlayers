@@ -1,0 +1,75 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ActionTD"
+run/main_scene="res://UserInterface/Menus/main_menu.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Data="*res://Scripts/Globals/data.gd"
+PlayerData="*res://Scripts/Globals/player_data.gd"
+Settings="*res://Scripts/Globals/settings.gd"
+SignalBus="*res://Scripts/Globals/signal_bus.gd"
+G="*res://Scripts/Globals/structs.gd"
+I="*res://Scripts/Globals/interfaces.gd"
+ClickSound="*res://Scripts/Globals/click_sound.gd"
+SceneManager="*res://Scripts/Globals/scene_manager.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[dotnet]
+
+project/assembly_name="3D_02_Barbarian_Blaster"
+
+[file_customization]
+
+folder_colors={
+"res://Resources/": "yellow",
+"res://Scenes/": "orange",
+"res://Scenes/PackedScenes/": "orange",
+"res://Scripts/": "blue",
+"res://Scripts/Globals/": "purple",
+"res://UserInterface/": "green",
+"res://_ Assets/_ 2D/": "purple",
+"res://_ Assets/_ 3D/": "red",
+"res://_ Assets/_ Sound/": "gray",
+"res://_ Assets/_ UI/": "green",
+"res://addons/": "gray"
+}
+
+[input]
+
+click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(129, 28),"global_position":Vector2(133, 69),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+right_click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(109, 34),"global_position":Vector2(113, 75),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+multi_select={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+box_select={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}

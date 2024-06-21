@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://cecjr0b2ply0a"]
+
+[ext_resource type="Script" path="res://addons/levelmanager/level_manager.gd" id="1_cu66a"]
+[ext_resource type="Texture2D" uid="uid://wt1x3id0bxx1" path="res://addons/levelmanager/icons/Load.svg" id="1_lx3is"]
+[ext_resource type="Resource" uid="uid://bqdxx01mqrid1" path="res://Resources/MOBs/mob_type_1.tres" id="2_25vdb"]
+[ext_resource type="Texture2D" uid="uid://dm875ghh5qb0p" path="res://addons/levelmanager/icons/New.svg" id="2_p83ma"]
+[ext_resource type="Texture2D" uid="uid://csg62blcyv2b0" path="res://addons/levelmanager/icons/Save.svg" id="3_yfkem"]
+[ext_resource type="PackedScene" uid="uid://rivcdxc7oguk" path="res://addons/levelmanager/wave.tscn" id="4_w3l77"]
+[ext_resource type="Texture2D" uid="uid://bkv1parhj4kbj" path="res://addons/levelmanager/icons/Add.svg" id="4_xqvac"]
+
+[node name="LevelManager" type="Control" node_paths=PackedStringArray("wave_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cu66a")
+wave_container = NodePath("VBoxContainer/ScrollContainer/Waves")
+types = Array[Resource("res://Scripts/TD/Objects/res_enemy.gd")]([ExtResource("2_25vdb")])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Load" type="Button" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+icon = ExtResource("1_lx3is")
+flat = true
+
+[node name="New" type="Button" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+icon = ExtResource("2_p83ma")
+flat = true
+
+[node name="Save" type="Button" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+icon = ExtResource("3_yfkem")
+flat = true
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "sdasd"
+placeholder_text = "Level Name"
+scroll_fit_content_height = true
+
+[node name="Label" type="Label" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+text = "(Open as New)"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Waves" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Wave" parent="VBoxContainer/ScrollContainer/Waves" instance=ExtResource("4_w3l77")]
+layout_mode = 2
+
+[node name="AddWave" type="Button" parent="VBoxContainer/ScrollContainer/Waves"]
+layout_mode = 2
+tooltip_text = "Add New Wave"
+icon = ExtResource("4_xqvac")
+icon_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Path to the Folder"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "res://Resources/Levels/"
+scroll_fit_content_height = true
+
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/Waves/AddWave" to="." method="_add_wave"]

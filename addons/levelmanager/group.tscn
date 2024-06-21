@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce0awmxm4bi7t"]
+
+[ext_resource type="Texture2D" uid="uid://cqrf55pb4c4wg" path="res://addons/levelmanager/icons/CurveInOut.svg" id="1_aleqt"]
+[ext_resource type="Script" path="res://addons/levelmanager/level_manager_group.gd" id="1_vl74g"]
+[ext_resource type="Texture2D" uid="uid://blm8lioxym5ix" path="res://addons/levelmanager/icons/CurveIn.svg" id="2_qpbfj"]
+[ext_resource type="Texture2D" uid="uid://qoik5y5npxec" path="res://addons/levelmanager/icons/CurveOutIn.svg" id="3_ap6bv"]
+[ext_resource type="Texture2D" uid="uid://dq3v5sc6dqahd" path="res://addons/levelmanager/icons/CurveLinear.svg" id="4_t2b2c"]
+[ext_resource type="Texture2D" uid="uid://csy1aie4yib62" path="res://addons/levelmanager/icons/CurveOut.svg" id="5_g30e5"]
+
+[node name="Group" type="HBoxContainer" node_paths=PackedStringArray("amount_input", "type_input")]
+script = ExtResource("1_vl74g")
+amount_input = NodePath("SpinBox")
+type_input = NodePath("OptionButton")
+
+[node name="SpinBox" type="SpinBox" parent="."]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = "Normal"
+popup/item_0/icon = ExtResource("1_aleqt")
+popup/item_0/id = 0
+popup/item_1/text = "Group"
+popup/item_1/icon = ExtResource("2_qpbfj")
+popup/item_1/id = 3
+popup/item_2/text = "Fast"
+popup/item_2/icon = ExtResource("3_ap6bv")
+popup/item_2/id = 2
+popup/item_3/text = "Flying"
+popup/item_3/icon = ExtResource("4_t2b2c")
+popup/item_3/id = 1
+popup/item_4/text = "Boss"
+popup/item_4/icon = ExtResource("5_g30e5")
+popup/item_4/id = 4
