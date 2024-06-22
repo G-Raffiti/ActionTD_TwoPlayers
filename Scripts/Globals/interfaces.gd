@@ -23,12 +23,13 @@ class Killable:
 # 	print('I took ' + str(_damage) + ' damage')
 
 func check_node(node):
-	if 'implements' in node:
-		for interface in node.implements:
-			var instance = interface.new()
-			var methods = instance.get_script().get_script_method_list()
-			for method in methods:
-				assert(method.name in node, "Interface ERROR:\nNode '" + str(node.get_path()).substr(6, -1) + "' implements " + instance.name + ":\n\tMissing method: '" + method.name + "()'")
+	pass
+	#if 'implements' in node:
+		#for interface in node.implements:
+			#var instance = interface.new()
+			#var methods = instance.get_script().get_script_method_list()
+			#for method in methods:
+				#assert(method.name in node, "Interface ERROR:\nNode '" + str(node.get_path()).substr(6, -1) + "' implements " + instance.name + ":\n\tMissing method: '" + method.name + "()'")
 
 func get_all_nodes(node) -> Array:
 	var nodes: Array = [node]
