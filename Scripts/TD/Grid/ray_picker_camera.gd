@@ -10,17 +10,19 @@ var click_down: bool = false
 		player_id = id
 		%InputSync.set_multiplayer_authority(id)
 
-
-@onready var ray: RayCast3D = $RayCast3D
-
 @export var EMPTY_TILES: Array[int] = [0]
 @export var PATH_TILES: Array[int] = []
 
-func _ready() -> void:
+@onready var ray: RayCast3D = $RayCast3D
+
+func _ready():
+	if multiplayer.is_server():
+		make_current()
 	grid = get_tree().get_current_scene().get_node("Navigation/GridMapEnvironment")
 	print("I am " + str(multiplayer.get_unique_id()), grid)
 
 func _process(_delta: float) -> void:
+	if not multiplayer.is_server(): return
 	var mouse_position_2d: Vector2 = get_viewport().get_mouse_position()
 	var mouse_position_3d: Vector3 = project_position(mouse_position_2d, 0)
 	ray.global_position = mouse_position_3d

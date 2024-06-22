@@ -4,7 +4,7 @@ const SERVER_PORT = 8080
 const SERVER_IP = "127.0.0.1"
 
 var player_rts_ps = preload("res://Scenes/PackedScenes/ray_picker_camera.tscn")
-var player_action_ps = preload("res://Scenes/PackedScenes/ray_picker_camera.tscn")
+var player_action_ps = preload("res://Scenes/PackedScenes/player.tscn")
 
 var _players_spawn_node
 var host_mode_enabled = false
@@ -50,9 +50,9 @@ func _add_player_to_game(id: int):
 	print("Player %s joined the game!" % id)
 	var player_to_add
 	if (id == 1):
-		player_to_add = player_action_ps.instantiate()
-	else:
 		player_to_add = player_rts_ps.instantiate()
+	else:
+		player_to_add = player_action_ps.instantiate()
 		
 	player_to_add.player_id = id
 	player_to_add.name = str(id)
