@@ -11,6 +11,10 @@ max_hp = 3
 damage = 1
 speed = 0.6
 acceleration = 5.0
+detection_radius = 5.0
+attack_radius = 1.0
+attack_damage = 1.0
+attack_speed = 1.0
 
 [resource]
 script = ExtResource("1_as26w")

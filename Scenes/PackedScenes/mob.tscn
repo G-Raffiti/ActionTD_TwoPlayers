@@ -147,3 +147,6 @@ neighbor_distance = 2.0
 max_neighbors = 3
 max_speed = 0.6
 debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

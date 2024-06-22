@@ -5,6 +5,7 @@ extends Node
 @export_category('dependencies')
 @export var path: Path3D
 @export var level: LevelRes
+@export var action_player: Player
 
 var interval: float = 1.0
 var time = 0.0
@@ -51,7 +52,8 @@ func spawn_next_mob_group() -> void:
 		group.type, 
 		group.amount, 
 		group_stat_multi,
-		group_gold_value)
+		group_gold_value,
+		action_player)
 	mob_spawned += group.amount
 
 func increase_indexes() -> void:

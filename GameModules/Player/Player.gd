@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
+var implements = [I.Killable]
+
 signal pressed_primary_fire
 signal pressed_jump(jump_state : JumpState)
 signal changed_stance(stance : Stance)
@@ -10,7 +12,14 @@ signal changed_movement_direction(_movement_direction: Vector3)
 @export var max_air_jump : int = 1
 @export var jump_states : Dictionary
 @export var stances : Dictionary
+@export var health_text : TextBox
+
+@export_category("Player settings")
+@export var max_health : int = 10
 @export var attack : float = 1
+
+var health : int = 0
+var is_dying: bool = false
 
 var air_jump_counter : int = 0
 var movement_direction : Vector3
@@ -23,14 +32,18 @@ var is_attacking : bool = false
 
 
 func _ready():
+	health = max_health;
 	stance_antispam_timer = get_tree().create_timer(0.25)
 	
 	changed_movement_direction.emit(Vector3.BACK)
 	set_stance(current_stance_name)
 	set_movement_state("stand")
+	display_health()
 
 
 func _input(event):
+	if is_dying: 
+		return
 	if event.is_action_pressed("primary_fire"):
 		pressed_primary_fire.emit()
 		set_stance("upright")
@@ -76,6 +89,8 @@ func _input(event):
 
 
 func _physics_process(delta):
+	if is_dying:
+		return
 	if is_movement_ongoing():
 		changed_movement_direction.emit(movement_direction)
 		
@@ -125,6 +140,24 @@ func set_stance(_stance_name : String):
 func is_stance_blocked(_stance_name : String) -> bool:
 	var stance = get_node(stances[_stance_name])
 	return stance.is_blocked()
+	
+func die() -> void:
+	is_dying = true
+	movement_direction = Vector3.ZERO
+	set_stance("prone")
+
+func take_damage(in_damage: float) -> void:
+	if is_dying:
+		return
+	#animation_player.play("hit")
+	health -= in_damage
+	display_health()
+	if health <= 0:
+		die()
+
+
+func display_health() -> void:
+	health_text.text = 'Action Life: ' + str(health) + "/" + str(max_health)
 
 func _on_hit_entered(body):
 	if 'implements' in body and body.implements.has(I.Killable):
