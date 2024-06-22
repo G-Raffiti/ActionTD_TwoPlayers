@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://da7u8n160oilo"]
+
+[ext_resource type="Script" path="res://Scripts/Multiplayer/MultiplayerManager.gd" id="1_11fpy"]
+
+[node name="MultiplayerManager" type="Node"]
+script = ExtResource("1_11fpy")

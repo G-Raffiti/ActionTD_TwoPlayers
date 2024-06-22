@@ -42,3 +42,7 @@ func clear(in_signal):
 	for i in in_signal.get_connections().size() - 1:
 		in_signal.disconnect(in_signal.get_connections()[i]['callable'])
 
+@rpc("call_local")
+func call_on_server(in_signal, in_params):
+	if multiplayer.is_server():
+		in_signal.emit(in_params)

@@ -125,7 +125,7 @@ func build_on_tile(index: Vector3i, tile_type: int) -> void:
 	if tower_to_build == null:
 		mode = State.SELECTION
 		return
-	building_grid.buid_tower(tower_to_build, index)
+	building_grid.buid_tower.rpc(tower_to_build, index)
 	if select_mode != Select.MULTI:
 		SignalBus.on_tower_to_build_selected.emit(null)
 	else:

@@ -1,6 +1,5 @@
 [gd_scene load_steps=38 format=3 uid="uid://bgr674mp3kaql"]
 
-[ext_resource type="PackedScene" uid="uid://bue3cpi71unag" path="res://Scenes/PackedScenes/ray_picker_camera.tscn" id="1_bosfg"]
 [ext_resource type="MeshLibrary" uid="uid://7ta7tlnmxwvb" path="res://Resources/MeshLibraries/BlockoutLibrary.tres" id="1_txan8"]
 [ext_resource type="PackedScene" uid="uid://cycobtcw7dh0w" path="res://Scenes/PackedScenes/base.tscn" id="3_o8rbg"]
 [ext_resource type="MeshLibrary" uid="uid://bd6ak3ywf46yi" path="res://Resources/MeshLibraries/interactions__mesh_library.tres" id="3_xy8gy"]
@@ -18,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://bqdxx01mqrid1" path="res://Resources/MOBs/mob_type_1.tres" id="12_rxvy3"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_troop.gd" id="13_8qb4s"]
 [ext_resource type="Texture2D" uid="uid://cr586dnmunb5p" path="res://_ Assets/_ 3D/Side/towerRound_sampleF.png" id="13_llx16"]
+[ext_resource type="PackedScene" uid="uid://da7u8n160oilo" path="res://Scenes/PackedScenes/multiplayer_manager.tscn" id="15_ulj32"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_owfmx"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -126,14 +126,6 @@ enemy_stats_curve = SubResource("Curve_olp16")
 
 [node name="BaseLevel" type="Node3D"]
 
-[node name="RayPickerCamera" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("1_bosfg")]
-transform = Transform3D(0.707107, -0.454519, 0.541675, 0, 0.766045, 0.642787, -0.707107, -0.454519, 0.541675, 1.01994, 10, 8.50892)
-current = true
-size = 13.235
-near = 0.54
-grid = NodePath("../Navigation/GridMapEnvironment")
-PATH_TILES = Array[int]([1, 2, 3, 4, 5, 6, 7, 8, 9])
-
 [node name="Light" type="Node" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Light"]
@@ -196,6 +188,9 @@ level = SubResource("Resource_hc07m")
 [node name="ResourceManager" type="Node" parent="Service"]
 script = ExtResource("10_ly1rj")
 
+[node name="MultiplayerManager" parent="Service" node_paths=PackedStringArray("grid") instance=ExtResource("15_ulj32")]
+grid = NodePath("../../Navigation/GridMapEnvironment")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
@@ -252,4 +247,53 @@ text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
 icon_alignment = 2
 
+[node name="Lobby" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.5
+offset_top = -33.5
+offset_right = 123.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Lobby"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="UI/Lobby/VBoxContainer"]
+layout_mode = 2
+text = "HOST"
+
+[node name="Button2" type="Button" parent="UI/Lobby/VBoxContainer"]
+layout_mode = 2
+text = "JOIN"
+
+[node name="Players" type="Node" parent="."]
+
+[node name="MultiplayerSpawners" type="Node" parent="."]
+
+[node name="PlayersMultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerSpawners"]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/ray_picker_camera.tscn")
+spawn_path = NodePath("../../Players")
+spawn_limit = 2
+
+[node name="TowerMultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerSpawners"]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/towers/tower_arrow.tscn")
+spawn_path = NodePath("../../Navigation/GridMapBuilding")
+
 [connection signal="pressed" from="UI/PanelContainer/VBox/VBoxContainer/ArrowTowerBtn" to="Service/ResourceManager" method="_on_arrow_tower_pressed"]
+[connection signal="pressed" from="UI/Lobby/VBoxContainer/Button" to="Service/MultiplayerManager" method="become_host"]
+[connection signal="pressed" from="UI/Lobby/VBoxContainer/Button" to="UI/Lobby" method="hide"]
+[connection signal="pressed" from="UI/Lobby/VBoxContainer/Button2" to="Service/MultiplayerManager" method="join_as_player_2"]
+[connection signal="pressed" from="UI/Lobby/VBoxContainer/Button2" to="UI/Lobby" method="hide"]

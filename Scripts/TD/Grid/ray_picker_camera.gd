@@ -4,11 +4,16 @@ extends Camera3D
 
 var hovered_index: Vector3i = Vector3i(0, 0, 0)
 var click_down: bool = false
+var player_id = 0
 
 @onready var ray: RayCast3D = $RayCast3D
 
 @export var EMPTY_TILES: Array[int] = [0]
 @export var PATH_TILES: Array[int] = []
+
+func _ready() -> void:
+	grid = get_tree().get_current_scene().get_node("Navigation/GridMapEnvironment")
+	print("I am " + str(multiplayer.get_unique_id()), grid)
 
 func _process(_delta: float) -> void:
 	var mouse_position_2d: Vector2 = get_viewport().get_mouse_position()

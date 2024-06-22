@@ -17,10 +17,14 @@ func clear_preview():
 		set_cell_item(i, Data.NONE)
 	prev_index.clear()
 
+@rpc("call_local")
 func buid_tower(tower: TowerRes, in_position: Vector3i) -> void:
+	print(str(multiplayer.get_unique_id()), "Building tower at: ", in_position)
+	# if not multiplayer.is_server(): return
 	if towers.has(in_position):
 		return
 	var tower_instance: Tower = tower.packed_scene.instantiate()
+	tower_instance.name = "Tower" + str(randi()) #Guid.get_id()
 	tower_instance.position = map_to_local(in_position)
 	set_cell_item(in_position, Data.NONE)
 	add_child(tower_instance)
