@@ -50,7 +50,6 @@ func attack(player : Player) :
 	player.take_damage(stats.attack_damage)	
 	timer.wait_time = stats.attack_speed
 	timer.start()
-	timer.timeout.connect(timer.stop)
 
 func die() -> void:
 	is_diying = true
