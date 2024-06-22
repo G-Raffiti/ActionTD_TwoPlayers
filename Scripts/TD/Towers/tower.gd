@@ -21,6 +21,7 @@ var target_type: targeting = targeting.FIRST
 var loaded: bool = false
 
 func build_tower(in_tower_res: TowerRes):
+	print(str(multiplayer.get_unique_id(), 'Tower ready'))
 	data = in_tower_res
 	stats = data.tower_stats.duplicate(true)
 	attack_range.get_node('CollisionShape3D').shape.radius = stats.attack_range * Data.TILE_SIZE

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b01re1bn5la41"]
+[gd_scene load_steps=21 format=3 uid="uid://b01re1bn5la41"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Towers/tower.gd" id="1_kfuq4"]
 [ext_resource type="ArrayMesh" uid="uid://b51pekfyupiv4" path="res://_ Assets/_ 3D/Models/OBJ format/towerRound_sampleC.obj" id="2_vliqp"]
@@ -272,6 +272,14 @@ radius = 3.0
 height = 6.0
 radial_segments = 32
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5ou6q"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Mesh:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="TowerArrow" type="Node3D" node_paths=PackedStringArray("fire_point", "rotating_part")]
 script = ExtResource("1_kfuq4")
 fire_point = NodePath("Mesh/RotationPart/FirePoint")
@@ -323,3 +331,6 @@ shape = SubResource("SphereShape3D_kj1fv")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("SphereMesh_m6xwb")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5ou6q")

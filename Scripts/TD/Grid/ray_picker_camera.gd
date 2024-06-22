@@ -2,9 +2,14 @@ extends Camera3D
 
 @export var grid: GridMap = null
 
-var hovered_index: Vector3i = Vector3i(0, 0, 0)
+@export var hovered_index: Vector3i = Vector3i(0, 0, 0)
 var click_down: bool = false
-var player_id = 0
+
+@export var player_id := 1:
+	set(id):
+		player_id = id
+		%InputSync.set_multiplayer_authority(id)
+
 
 @onready var ray: RayCast3D = $RayCast3D
 
@@ -32,6 +37,8 @@ func _process(_delta: float) -> void:
 		var tile = get_tile_type(index)
 		SignalBus.on_tile_hovered.emit(index, tile)
 		hovered_index = index
+		if multiplayer.is_server():
+			print(str(multiplayer.get_unique_id()), "Hovered tile: " + str(index))
 		if Input.is_action_pressed('click'):
 			SignalBus.on_tile_selected.emit(index, tile)
 

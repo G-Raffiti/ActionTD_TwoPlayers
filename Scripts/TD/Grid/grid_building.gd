@@ -20,7 +20,7 @@ func clear_preview():
 @rpc("call_local")
 func buid_tower(tower: TowerRes, in_position: Vector3i) -> void:
 	print(str(multiplayer.get_unique_id()), "Building tower at: ", in_position)
-	# if not multiplayer.is_server(): return
+	if not multiplayer.is_server(): return
 	if towers.has(in_position):
 		return
 	var tower_instance: Tower = tower.packed_scene.instantiate()

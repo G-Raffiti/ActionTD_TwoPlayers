@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bue3cpi71unag"]
+[gd_scene load_steps=4 format=3 uid="uid://bue3cpi71unag"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Grid/ray_picker_camera.gd" id="1_ebh20"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_15pk4"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gqmp7"]
+properties/0/path = NodePath(".:hovered_index")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="RayPickerCamera" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.389, 7.656)
@@ -11,3 +21,10 @@ far = 3999.9
 script = ExtResource("1_ebh20")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_15pk4")
+
+[node name="InputSync" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_gqmp7")
