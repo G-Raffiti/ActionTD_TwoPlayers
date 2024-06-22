@@ -25,6 +25,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if player.is_dying:
+		return
 	velocity.x = speed * direction.normalized().x
 	velocity.z = speed * direction.normalized().z
 	

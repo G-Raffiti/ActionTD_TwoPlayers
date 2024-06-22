@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 		return
 	progress += delta * speed
 
-func spawn_mobs_group(mob_res: MobRes, group_size: int, stats_modifier: float, gold_value: int) -> Array[Mob]:
+func spawn_mobs_group(mob_res: MobRes, group_size: int, stats_modifier: float, gold_value: int, action_player : Player) -> Array[Mob]:
 	for i in range(group_size):
 		var mob: Mob = mob_res.mob_ps.instantiate()
 		add_child(mob)
@@ -20,6 +20,7 @@ func spawn_mobs_group(mob_res: MobRes, group_size: int, stats_modifier: float, g
 		mob.gold_value = gold_value
 		mob.target = self
 		mob.top_level = true
+		mob.action_player = action_player
 		mob.position = global_position + Vector3(-2 * i, 0, 0)
 		mobs.append(mob)
 	return mobs

@@ -11,6 +11,9 @@ var tween : Tween
 var current_stance_name = "upright"
 
 func _physics_process(delta):
+	if player.is_dying:
+		tween.kill()
+		return
 	on_floor_blend_target = 1 if player.is_on_floor() else 0
 	on_floor_blend = lerp(on_floor_blend, on_floor_blend_target, 10 * delta)
 	animation_tree["parameters/on_floor_blend/blend_amount"] = on_floor_blend
