@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bgr674mp3kaql"]
+[gd_scene load_steps=47 format=3 uid="uid://bgr674mp3kaql"]
 
 [ext_resource type="MeshLibrary" uid="uid://7ta7tlnmxwvb" path="res://Resources/MeshLibraries/BlockoutLibrary.tres" id="1_txan8"]
 [ext_resource type="PackedScene" uid="uid://cycobtcw7dh0w" path="res://Scenes/PackedScenes/base.tscn" id="3_o8rbg"]
@@ -133,14 +133,29 @@ amount = 5
 script = ExtResource("13_8qb4s")
 groups = Array[ExtResource("11_35c8t")]([SubResource("Resource_2yg1o"), SubResource("Resource_kr4ak"), SubResource("Resource_803cl")])
 
-[sub_resource type="Resource" id="Resource_1njja"]
+[sub_resource type="Resource" id="Resource_8jo5t"]
+script = ExtResource("10_w6khm")
+path_index = 1
+troops = Array[ExtResource("13_8qb4s")]([SubResource("Resource_j4kvn"), SubResource("Resource_81xkp"), SubResource("Resource_ip6jm")])
+
+[sub_resource type="Resource" id="Resource_l8m07"]
+script = ExtResource("10_w6khm")
+path_index = 2
+troops = Array[ExtResource("13_8qb4s")]([SubResource("Resource_j4kvn"), SubResource("Resource_81xkp"), SubResource("Resource_ip6jm")])
+
+[sub_resource type="Resource" id="Resource_70x0l"]
+script = ExtResource("10_w6khm")
+path_index = 3
+troops = Array[ExtResource("13_8qb4s")]([SubResource("Resource_j4kvn"), SubResource("Resource_81xkp"), SubResource("Resource_ip6jm")])
+
+[sub_resource type="Resource" id="Resource_e0uok"]
 script = ExtResource("10_w6khm")
 path_index = 0
 troops = Array[ExtResource("13_8qb4s")]([SubResource("Resource_j4kvn"), SubResource("Resource_81xkp"), SubResource("Resource_ip6jm")])
 
 [sub_resource type="Resource" id="Resource_hc07m"]
 script = ExtResource("9_3xb32")
-waves = Array[ExtResource("10_w6khm")]([SubResource("Resource_1njja"), SubResource("Resource_1njja"), SubResource("Resource_1njja"), SubResource("Resource_1njja")])
+waves = Array[ExtResource("10_w6khm")]([SubResource("Resource_8jo5t"), SubResource("Resource_l8m07"), SubResource("Resource_70x0l"), SubResource("Resource_e0uok")])
 total_duration = 120.0
 spawn_interval = SubResource("Curve_ccfu5")
 gold_curve = SubResource("Curve_dkyrt")
