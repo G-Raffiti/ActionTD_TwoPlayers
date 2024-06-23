@@ -83,9 +83,12 @@ properties/1/replication_mode = 1
 [node name="Projectile" type="Area3D"]
 top_level = true
 collision_layer = 0
+collision_mask = 3
 script = ExtResource("1_q88ht")
 
 [node name="ExplosionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="ExplosionCollisionShape" type="CollisionShape3D" parent="ExplosionArea"]
 shape = SubResource("SphereShape3D_a20l0")
