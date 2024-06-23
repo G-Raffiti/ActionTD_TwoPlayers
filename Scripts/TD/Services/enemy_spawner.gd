@@ -32,7 +32,7 @@ func _ready() -> void:
 	SignalBus.on_projectile_search_target.connect(_find_nearest_mob_for)
 
 func _process(delta: float) -> void:
-	if not multiplayer.is_server():
+	if multiplayer.has_multiplayer_peer() and not multiplayer.is_server():
 		return
 	if not game_started: return
 	if level_done: return

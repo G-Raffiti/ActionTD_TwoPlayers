@@ -8,17 +8,17 @@ func on_enter():
 
 
 # Called every frame when this state is active.
-func on_process(delta):
+func on_process(_delta):
 	pass
 
 
 # Called every physics frame when this state is active.
-func on_physics_process(delta):
+func on_physics_process(_delta):
 	pass
 
 
 # Called when there is an input event while this state is active.
-func on_input(event: InputEvent):
+func on_input(_event: InputEvent):
 	pass
 
 

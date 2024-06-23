@@ -8,10 +8,6 @@ func on_enter():
 	parent.nav_agent.target_position = parent.target.global_position
 
 
-# Called every frame when this state is active.
-func on_process(delta):
-	pass
-
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
@@ -34,7 +30,7 @@ func on_physics_process(delta):
 
 
 # Called when there is an input event while this state is active.
-func on_input(event: InputEvent):
+func on_input(_event: InputEvent):
 	pass
 
 
