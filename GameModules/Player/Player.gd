@@ -21,9 +21,7 @@ signal changed_movement_direction(_movement_direction: Vector3)
 @export var player_id := 1:
 	set(id):
 		player_id = id
-
-func _enter_tree() -> void:
-		$MultiplayerSynchronizer.set_multiplayer_authority(player_id)
+		%ClientToServer_InputSynchronizer.set_multiplayer_authority(player_id)
 		
 var health : int = 0
 var is_dying: bool = false
@@ -39,20 +37,25 @@ var is_attacking : bool = false
 
 func _ready():
 	if not multiplayer.is_server():
-		$CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D.make_current()
-	
+		%Camera3D.make_current()
+		set_process(false)
+		set_physics_process(false)
+		return
+
 	health = max_health;
 	stance_antispam_timer = get_tree().create_timer(0.25)
-	
+
 	changed_movement_direction.emit(Vector3.BACK)
 	set_stance(current_stance_name)
 	set_movement_state("stand")
 	display_health()
 
+func _apply_input(event):
+	if event == null:
+		return
+	if not multiplayer.is_server():
+		return
 
-func _input(event):
-	if multiplayer.is_server(): return
-	
 	if is_dying: 
 		return
 	if event.is_action_pressed("primary_fire"):
@@ -99,7 +102,8 @@ func _input(event):
 				set_stance(stance)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
+	_apply_input(%ClientToServer_InputSynchronizer.sync_event)
 	if is_dying:
 		return
 	if is_movement_ongoing():
@@ -161,7 +165,7 @@ func take_damage(in_damage: float) -> void:
 	if is_dying:
 		return
 	#animation_player.play("hit")
-	health -= in_damage
+	health -= int(in_damage)
 	display_health()
 	if health <= 0:
 		die()
