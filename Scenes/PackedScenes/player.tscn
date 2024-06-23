@@ -628,7 +628,7 @@ bones/51/rotation = Quaternion(-0.717037, 0.0314407, -0.0829, 0.691374)
 bones/51/scale = Vector3(1, 1, 1)
 
 [node name="sword" type="BoneAttachment3D" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="9"]
-transform = Transform3D(-0.704347, -0.554157, 0.443628, 0.414054, -0.828354, -0.377343, 0.576589, -0.0820939, 0.8129, -29.2285, 75.2526, -14.7084)
+transform = Transform3D(-0.704347, -0.554157, 0.443628, 0.414055, -0.828354, -0.377343, 0.576588, -0.0820934, 0.8129, -29.2286, 75.2526, -14.7084)
 bone_name = "hand_r"
 bone_idx = 27
 
