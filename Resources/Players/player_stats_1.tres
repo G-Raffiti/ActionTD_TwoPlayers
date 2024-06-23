@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=6 format=3 uid="uid://doo8nla3oc4wn"]
+
+[ext_resource type="Script" path="res://Scripts/ActionPlayer/res_player_data.gd" id="1_81obb"]
+[ext_resource type="Script" path="res://Scripts/ActionPlayer/res_player_level_data.gd" id="1_q2vbd"]
+
+[sub_resource type="Resource" id="Resource_cjjjt"]
+script = ExtResource("1_q2vbd")
+needed_experience = 10
+
+[sub_resource type="Resource" id="Resource_j0002"]
+script = ExtResource("1_q2vbd")
+needed_experience = 30
+
+[sub_resource type="Resource" id="Resource_05vb6"]
+script = ExtResource("1_q2vbd")
+needed_experience = 50
+
+[resource]
+script = ExtResource("1_81obb")
+max_health = 20
+attack = 1.0
+max_air_jump = 1
+levels_data = Array[ExtResource("1_q2vbd")]([SubResource("Resource_cjjjt"), SubResource("Resource_j0002"), SubResource("Resource_05vb6")])

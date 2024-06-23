@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://GameModules/Player/Player.gd" id="1_ig2tv"]
 [ext_resource type="Resource" uid="uid://f2c3g2k5oidj" path="res://GameModules/Player/JumpStates/air_jump.tres" id="2_6nbiy"]
+[ext_resource type="Resource" uid="uid://doo8nla3oc4wn" path="res://Resources/Players/player_stats_1.tres" id="2_y1skx"]
 [ext_resource type="Resource" uid="uid://b1mynjpc0mwvp" path="res://GameModules/Player/JumpStates/ground_jump.tres" id="3_na6vd"]
 [ext_resource type="Script" path="res://GameModules/Player/ActiveSkill/active_skill_controller.gd" id="4_tt4ht"]
 [ext_resource type="Script" path="res://Scripts/ActionPlayer/input_synchronizer.gd" id="4_uydbh"]

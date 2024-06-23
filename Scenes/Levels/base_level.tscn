@@ -162,6 +162,12 @@ properties/3/replication_mode = 1
 properties/4/path = NodePath("../PanelContainerTD/VBoxTD/Resources/Life:text")
 properties/4/spawn = true
 properties/4/replication_mode = 1
+properties/5/path = NodePath("VBoxAction/Levels/Level:text")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("VBoxAction/Levels/Experience:text")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [node name="BaseLevel" type="Node3D"]
 
@@ -257,6 +263,7 @@ offset_top = -30.0
 offset_right = 278.0
 grow_vertical = 0
 script = ExtResource("16_jxghe")
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxAction" type="VBoxContainer" parent="UI/PanelContainerAction"]
 layout_mode = 2
@@ -275,6 +282,23 @@ scale_minimum = 0.3
 custom_minimum_size = Vector2(165.6, 30.9)
 layout_mode = 2
 text = "Health: 10/10"
+scale_minimum = 0.3
+
+[node name="Levels" type="HBoxContainer" parent="UI/PanelContainerAction/VBoxAction"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level" parent="UI/PanelContainerAction/VBoxAction/Levels" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(102.3, 30.9)
+layout_mode = 2
+text = "Level: 1
+"
+scale_minimum = 0.3
+
+[node name="Experience" parent="UI/PanelContainerAction/VBoxAction/Levels" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(199.5, 30.9)
+layout_mode = 2
+text = "Experience: 0/10"
 scale_minimum = 0.3
 
 [node name="PanelContainerTD" type="PanelContainer" parent="UI"]

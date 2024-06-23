@@ -9,6 +9,8 @@ class_name MobStats
 @export var attack_radius: float
 @export var attack_damage: float
 @export var attack_speed: float
+@export var gold_value: int = 0
+@export var experience_value: int = 0
 
 var hp: float
 

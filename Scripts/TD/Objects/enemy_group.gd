@@ -25,7 +25,7 @@ func spawn_mobs_group(mob_res: MobRes, group_size: int, stats_modifier: float, g
 		mob.tree_exiting.connect(func(): _child_died(mob))
 		mob.stats = mob_res.stats.duplicate(true)
 		mob.stats.init_stats(stats_modifier)
-		mob.gold_value = gold_value
+		mob.stats.gold_value = gold_value
 		mob.target = self
 		mob.top_level = true
 		mob.action_player = action_player
