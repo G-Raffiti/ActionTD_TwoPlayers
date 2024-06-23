@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://duwji2cab24v0"]
+[gd_scene load_steps=79 format=3 uid="uid://duwji2cab24v0"]
 
 [ext_resource type="Script" path="res://GameModules/Player/Player.gd" id="1_ig2tv"]
 [ext_resource type="Resource" uid="uid://f2c3g2k5oidj" path="res://GameModules/Player/JumpStates/air_jump.tres" id="2_6nbiy"]
@@ -520,19 +520,19 @@ higher_stances = [NodePath("../upright"), NodePath("../stealth"), NodePath("../c
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="MeshRoot/godot_chan_4/Godot_Chan" index="0"]
-bones/0/position = Vector3(-2.05399e-08, -4.7039, -7.8698)
+bones/0/position = Vector3(1.25699e-08, -4.41822, -7.8698)
 bones/1/rotation = Quaternion(0.652857, 0.271621, 0.652857, -0.271621)
-bones/2/rotation = Quaternion(0.604383, -1.37871e-10, 1.9818e-08, 0.796694)
+bones/2/rotation = Quaternion(0.602369, 1.40405e-10, 1.9529e-08, 0.798218)
 bones/3/position = Vector3(3.48513e-14, 5.69654, -0.000103159)
-bones/3/rotation = Quaternion(-0.112039, -5.91368e-10, 1.65568e-09, 0.993704)
-bones/4/rotation = Quaternion(-0.0358155, 2.42516e-09, -2.66615e-09, 0.999358)
+bones/3/rotation = Quaternion(-0.112899, -5.25555e-10, 1.50415e-09, 0.993606)
+bones/4/rotation = Quaternion(-0.0379142, 2.63446e-09, -2.94917e-09, 0.999281)
 bones/5/rotation = Quaternion(0.0034532, 0.00659531, -0.689901, 0.723865)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/position = Vector3(0.000198333, 10.6318, -7.99242e-05)
-bones/6/rotation = Quaternion(-0.0129033, 0.0730746, -0.585582, 0.80721)
+bones/6/rotation = Quaternion(-0.0160897, 0.0824457, -0.591332, 0.802041)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(-0.000309722, 19.8107, 9.89807e-05)
-bones/7/rotation = Quaternion(0.271467, -0.658248, -0.144995, 0.687016)
+bones/7/rotation = Quaternion(0.274876, -0.658826, -0.147244, 0.684624)
 bones/8/position = Vector3(6.08109e-05, 18.4529, -2.20622e-05)
 bones/8/rotation = Quaternion(0.111513, 0.878494, -0.125152, 0.447382)
 bones/9/position = Vector3(-1.22997, 8.21134, 0.541571)
@@ -573,9 +573,9 @@ bones/23/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(0.00345325, -0.00659526, 0.689901, 0.723865)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/position = Vector3(-0.000198306, 10.6318, -7.98023e-05)
-bones/25/rotation = Quaternion(-0.445231, 0.100114, 0.379448, 0.804839)
+bones/25/rotation = Quaternion(-0.448957, 0.0910537, 0.374525, 0.80615)
 bones/26/position = Vector3(0.000312236, 19.8107, 9.91098e-05)
-bones/26/rotation = Quaternion(0.141937, 0.435146, 0.25047, 0.853093)
+bones/26/rotation = Quaternion(0.144541, 0.440064, 0.265128, 0.84567)
 bones/27/position = Vector3(-6.41432e-05, 18.4529, -2.19748e-05)
 bones/27/rotation = Quaternion(0.101894, -0.868841, 0.0345362, 0.48326)
 bones/27/scale = Vector3(1, 1, 1)
@@ -614,21 +614,21 @@ bones/41/scale = Vector3(1, 1, 1)
 bones/42/position = Vector3(-0.000187486, 2.81332, 0.000131497)
 bones/42/rotation = Quaternion(0.107196, -0.156159, -0.103579, 0.976419)
 bones/42/scale = Vector3(1, 1, 1)
-bones/43/rotation = Quaternion(0.118812, -1.38107e-09, 2.59334e-09, 0.992917)
+bones/43/rotation = Quaternion(0.124802, -1.85439e-09, 3.43895e-09, 0.992182)
 bones/44/position = Vector3(-4.26326e-14, 9.35612, 0.000141649)
 bones/44/rotation = Quaternion(-0.21385, -5.23804e-10, 1.16017e-09, 0.976867)
-bones/45/rotation = Quaternion(0.940778, 0.198945, -0.271685, -0.0393023)
-bones/46/rotation = Quaternion(0.239576, 0.248104, -0.0491862, 0.937352)
-bones/47/rotation = Quaternion(-0.438798, 0.08045, 0.143134, 0.883457)
+bones/45/rotation = Quaternion(0.940278, 0.201981, -0.269436, -0.0498545)
+bones/46/rotation = Quaternion(0.222518, 0.243128, -0.0413314, 0.943221)
+bones/47/rotation = Quaternion(-0.430574, 0.0821703, 0.142987, 0.887361)
 bones/47/scale = Vector3(1, 1, 1)
-bones/49/rotation = Quaternion(0.850059, -0.3039, 0.282318, -0.324564)
-bones/50/rotation = Quaternion(0.240443, -0.402217, 0.0732065, 0.880369)
+bones/49/rotation = Quaternion(0.848981, -0.304832, 0.281311, -0.327373)
+bones/50/rotation = Quaternion(0.233445, -0.40069, 0.06971, 0.883228)
 bones/50/scale = Vector3(1, 1, 1)
-bones/51/rotation = Quaternion(-0.725089, 0.0334353, -0.0818898, 0.68295)
+bones/51/rotation = Quaternion(-0.717037, 0.0314407, -0.0829, 0.691374)
 bones/51/scale = Vector3(1, 1, 1)
 
 [node name="sword" type="BoneAttachment3D" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="9"]
-transform = Transform3D(-0.704347, -0.554157, 0.443629, 0.400337, -0.826187, -0.396414, 0.586196, -0.101612, 0.803772, -29.2285, 74.8071, -14.671)
+transform = Transform3D(-0.704347, -0.554157, 0.443628, 0.414054, -0.828354, -0.377343, 0.576589, -0.0820939, 0.8129, -29.2285, 75.2526, -14.7084)
 bone_name = "hand_r"
 bone_idx = 27
 
