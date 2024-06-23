@@ -1,10 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cycobtcw7dh0w"]
+[gd_scene load_steps=4 format=3 uid="uid://cycobtcw7dh0w"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Objects/base.gd" id="1_p1qkq"]
 [ext_resource type="ArrayMesh" uid="uid://cjbnxbi3knyll" path="res://_ Assets/_ 3D/Models/OBJ format/towerRound_crystals.obj" id="2_lbupl"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m57ko"]
+properties/0/path = NodePath("UI_HPValue:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("UI_HPValue:modulate")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("UI_HPValue:outline_modulate")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
 [node name="Base" type="Node3D"]
 script = ExtResource("1_p1qkq")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m57ko")
 
 [node name="TowerRoundCrystals" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00825584, 0, -0.0130771)
