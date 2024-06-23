@@ -230,17 +230,33 @@ gizmo_extents = 0.46
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 curve = SubResource("Curve3D_7sahx")
 
+[node name="EnemiesMultiplayerSpawner" type="MultiplayerSpawner" parent="Navigation/Paths/Path3D"]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
+spawn_path = NodePath("..")
+
 [node name="Path3D2" type="Path3D" parent="Navigation/Paths"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 curve = SubResource("Curve3D_6x2jr")
+
+[node name="EnemiesMultiplayerSpawner2" type="MultiplayerSpawner" parent="Navigation/Paths/Path3D2"]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
+spawn_path = NodePath("..")
 
 [node name="Path3D3" type="Path3D" parent="Navigation/Paths"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 curve = SubResource("Curve3D_43455")
 
+[node name="EnemiesMultiplayerSpawner3" type="MultiplayerSpawner" parent="Navigation/Paths/Path3D3"]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
+spawn_path = NodePath("..")
+
 [node name="Path3D4" type="Path3D" parent="Navigation/Paths"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 curve = SubResource("Curve3D_iad2c")
+
+[node name="EnemiesMultiplayerSpawner4" type="MultiplayerSpawner" parent="Navigation/Paths/Path3D4"]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
+spawn_path = NodePath("..")
 
 [node name="Base" parent="." instance=ExtResource("3_o8rbg")]
 transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 1.56, -0.418002, 0.17, -0.371557)
@@ -409,10 +425,6 @@ spawn_limit = 2
 [node name="TowerMultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerSpawners"]
 _spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/towers/tower_arrow.tscn")
 spawn_path = NodePath("../../Navigation/GridMapBuilding")
-
-[node name="EnemiesMultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerSpawners"]
-_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
-spawn_path = NodePath("../../Navigation/Paths/Path3D")
 
 [connection signal="pressed" from="UI/PanelContainerTD/VBoxTD/VBoxContainer/ArrowTowerBtn" to="Service/ResourceManager" method="_on_arrow_tower_pressed"]
 [connection signal="pressed" from="UI/Lobby/VBoxContainer/Button" to="Service/MultiplayerManager" method="become_host"]
