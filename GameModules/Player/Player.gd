@@ -25,6 +25,7 @@ signal changed_movement_direction(_movement_direction: Vector3)
 		
 var health : int = 0
 var is_dying: bool = false
+var experience: int = 0
 
 var air_jump_counter : int = 0
 var movement_direction : Vector3
@@ -146,12 +147,12 @@ func is_stance_blocked(_stance_name : PlayerInputs.STANCE) -> bool:
 	var stance = get_node(stances[_stance_name])
 	return stance.is_blocked()
 	
-func die() -> void:
+func die(_damage_dealer_id = -1) -> void:
 	is_dying = true
 	movement_direction = Vector3.ZERO
 	set_stance(PlayerInputs.STANCE.PRONE)
 
-func take_damage(in_damage: float) -> void:
+func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
 	if is_dying:
 		return
 	#animation_player.play("hit")
@@ -162,7 +163,7 @@ func take_damage(in_damage: float) -> void:
 
 func _on_hit_entered(body):
 	if 'implements' in body and body.implements.has(I.Killable):
-		body.take_damage(attack)
+		body.take_damage(attack, player_id)
 
 @rpc("any_peer", "call_local")
 func on_spawned():

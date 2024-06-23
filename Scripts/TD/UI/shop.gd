@@ -4,7 +4,7 @@ extends PanelContainer
 @onready var building: TextBox = $VBoxTD/Resources/Building
 
 func _ready() -> void:
-	SignalBus.on_gold_changed.connect(_display_gold)
+	SignalBus.on_gold_td_changed.connect(_display_gold)
 	SignalBus.on_building_changed.connect(_display_building)
 
 func _display_gold(gold_amount: int) -> void:

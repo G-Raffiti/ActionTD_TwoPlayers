@@ -9,7 +9,8 @@ signal on_close_settings()
 signal on_start_game()
 
 # Resources
-signal on_gold_changed(new_gold: int)
+signal on_gold_action_changed(new_gold: int)
+signal on_gold_td_changed(new_gold: int)
 signal on_building_changed(new_building: int, max_building: int)
 
 #Health
@@ -20,7 +21,7 @@ signal on_game_over_loose()
 signal on_game_over_win()
 
 signal on_mob_reached_end(damage: float)
-signal on_mob_killed(gold: int)
+signal on_mob_killed(gold: int, killer_id: int)
 
 # Grid
 signal on_tile_hovered(index: Vector3i, tile_type: int)

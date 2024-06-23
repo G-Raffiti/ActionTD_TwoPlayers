@@ -16,7 +16,7 @@ func _ready() -> void:
 	hp_3d_label.text = str(hp) + '/' + str(hp_max)
 	hp_3d_label.modulate = full_hp_color
 
-func take_damage(damage : float) -> void:
+func take_damage(damage : float, _damage_dealer_id = -1) -> void:
 	if is_diying:
 		return
 	hp -= damage
@@ -25,7 +25,7 @@ func take_damage(damage : float) -> void:
 	if hp <= 0:
 		die()
 
-func die() -> void:
+func die(_damage_dealer_id = -1) -> void:
 	is_diying = true
 	SignalBus.on_game_over_loose.emit()
 
