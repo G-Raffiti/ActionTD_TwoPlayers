@@ -1,11 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bumx5a523hkpf"]
+[gd_scene load_steps=3 format=3 uid="uid://bumx5a523hkpf"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Objects/enemy_group.gd" id="1_pro18"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_drydi"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xs3rh"]
 top_radius = 0.0
@@ -17,9 +12,6 @@ rotation_mode = 4
 loop = false
 tilt_enabled = false
 script = ExtResource("1_pro18")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_drydi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05011, 0)

@@ -59,7 +59,7 @@ func spawn_next_mob_group() -> void:
 		group.amount, 
 		group_stat_multi,
 		group_gold_value,
-		action_player)
+		PlayerData.action_player)
 	mob_spawned += group.amount
 
 func increase_indexes() -> void:
@@ -100,7 +100,3 @@ func _find_nearest_mob_for(projectile_name: StringName, old_targets: Array[Strin
 			target = mob
 	SignalBus.on_nearest_target_found.emit(projectile_name, target)
 
-
-func _on_players_multiplayer_spawner_spawned(node):
-	if node is Player:
-		action_player = node

@@ -56,6 +56,8 @@ func _ready():
 	set_stance(current_stance_name)
 	set_movement_state(PlayerInputs.MOVE.STAND)
 	SignalBus.on_health_action_changed.emit(health, max_health)
+	
+	on_spawned.rpc()
 
 func _apply_input(_delta: float) -> void:
 	if is_dying: 
@@ -161,3 +163,7 @@ func take_damage(in_damage: float) -> void:
 func _on_hit_entered(body):
 	if 'implements' in body and body.implements.has(I.Killable):
 		body.take_damage(attack)
+
+@rpc("any_peer", "call_local")
+func on_spawned():
+	PlayerData.action_player = self
