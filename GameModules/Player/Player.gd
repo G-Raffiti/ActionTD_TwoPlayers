@@ -38,7 +38,6 @@ var stance_antispam_timer : SceneTreeTimer
 var is_attacking : bool = false
 
 func _ready():
-	if multiplayer.is_server(): return
 	if not multiplayer.is_server():
 		$CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D.make_current()
 	
@@ -101,7 +100,6 @@ func _input(event):
 
 
 func _physics_process(delta):
-	if multiplayer.is_server(): return
 	if is_dying:
 		return
 	if is_movement_ongoing():
@@ -118,7 +116,6 @@ func is_movement_ongoing() -> bool:
 
 
 func set_movement_state(state : String):
-	if multiplayer.is_server(): return
 	var stance = get_node(stances[current_stance_name])
 	current_movement_state = stance.get_movement_state(state)
 	current_movement_state_name = state
@@ -126,7 +123,6 @@ func set_movement_state(state : String):
 
 
 func set_stance(_stance_name : String):
-	if multiplayer.is_server(): return
 	if stance_antispam_timer.time_left > 0:
 		return
 	stance_antispam_timer = get_tree().create_timer(0.25)
@@ -157,13 +153,11 @@ func is_stance_blocked(_stance_name : String) -> bool:
 	return stance.is_blocked()
 	
 func die() -> void:
-	if multiplayer.is_server(): return
 	is_dying = true
 	movement_direction = Vector3.ZERO
 	set_stance("prone")
 
 func take_damage(in_damage: float) -> void:
-	if multiplayer.is_server(): return
 	if is_dying:
 		return
 	#animation_player.play("hit")
@@ -174,11 +168,9 @@ func take_damage(in_damage: float) -> void:
 
 
 func display_health() -> void:
-	if multiplayer.is_server(): return
 	# health_text.text = 'Action Life: ' + str(health) + "/" + str(max_health)
 	pass
 
 func _on_hit_entered(body):
-	if multiplayer.is_server(): return
 	if 'implements' in body and body.implements.has(I.Killable):
 		body.take_damage(attack)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbig5ab5l4v3m"]
+[gd_scene load_steps=9 format=3 uid="uid://bbig5ab5l4v3m"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Towers/projectile.gd" id="1_q88ht"]
 
@@ -72,6 +72,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3uyy1")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b1xe8"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Projectile" type="Area3D"]
 top_level = true
 collision_layer = 0
@@ -89,3 +97,6 @@ shape = SubResource("BoxShape3D_wsgnw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("ArrayMesh_b5wsu")
 skeleton = NodePath("")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_b1xe8")

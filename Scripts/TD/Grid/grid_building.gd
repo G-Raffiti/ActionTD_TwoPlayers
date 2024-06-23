@@ -17,7 +17,7 @@ func clear_preview():
 		set_cell_item(i, Data.NONE)
 	prev_index.clear()
 
-@rpc("call_local")
+#@rpc("call_local")
 func buid_tower(tower: TowerRes, in_position: Vector3i) -> void:
 	print(str(multiplayer.get_unique_id()), "Building tower at: ", in_position)
 	if not multiplayer.is_server(): return

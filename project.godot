@@ -25,6 +25,7 @@ G="*res://Scripts/Globals/structs.gd"
 I="*res://Scripts/Globals/interfaces.gd"
 ClickSound="*res://Scripts/Globals/click_sound.gd"
 SceneManager="*res://Scripts/Globals/scene_manager.gd"
+Guid="*res://Scripts/Globals/Guid.gd"
 
 [display]
 
