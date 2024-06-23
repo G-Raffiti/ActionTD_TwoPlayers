@@ -92,13 +92,7 @@ func set_action_player(player : Player):
 	action_player = player
 
 func start_move() -> void:
-	var direction: Vector3
-	nav_agent.target_position = target.global_position
-
-	direction = global_position.direction_to(nav_agent.get_next_path_position())
-	var new_velocity = direction * stats.speed
-
-	nav_agent.set_velocity_forced(new_velocity)
+	pass
 
 func _on_velocity_computed(in_velocity: Vector3) -> void:
 	velocity = in_velocity

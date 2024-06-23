@@ -16,7 +16,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a01db"]
-size = Vector3(0.761536, 1.3577, 0.736862)
+size = Vector3(0.761536, 2.07581, 0.736862)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwkop"]
 albedo_color = Color(1, 0.384314, 0, 1)
@@ -123,7 +123,7 @@ script = ExtResource("1_ppov5")
 replication_config = SubResource("SceneReplicationConfig_6vhoc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-08, 0, 1, 0.00656128, 0.0666097, 0.00621795)
+transform = Transform3D(0.5, 0, -7.4506e-09, 0, 0.5, 0, 7.4506e-09, 0, 0.5, 0, -0.111932, 0)
 shape = SubResource("BoxShape3D_a01db")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
