@@ -6,7 +6,9 @@ var implements = [I.Killable]
 var stats: MobStats = null
 var target: PathFollow3D = null
 var is_diying: bool = false
+var gold_value: int = 0
 var action_player : Player
+var last_nav_position :Vector3 = Vector3.ZERO
 
 @onready var timer: Timer = $Timer
 
@@ -28,16 +30,18 @@ func _physics_process(delta: float) -> void:
 	if action_player != null and !action_player.is_dying:
 		distance_to_player = global_position.distance_to(action_player.global_position)
 	
+	var distance_to_last_nav = 10000
+	distance_to_last_nav = global_position.distance_to(last_nav_position)
+	
 	if state_follow_path.is_current_state():
-		if distance_to_player < stats.detection_radius:
+		if distance_to_player < 5 and distance_to_last_nav < 5:
 			state_machine.set_current_state(state_follow_target)
 	
 	if state_follow_target.is_current_state():
-		if distance_to_player > stats.detection_radius:
+		if distance_to_last_nav > 3 and distance_to_player < 2:
 			state_machine.set_current_state(state_follow_path)
 		
 	if distance_to_player < stats.detection_radius:
-		nav_agent.target_position = action_player.global_position
 		if distance_to_player < stats.attack_radius and timer.time_left <= 0:
 			attack(action_player)
 
@@ -45,28 +49,23 @@ func _physics_process(delta: float) -> void:
 		SignalBus.on_mob_reached_end.emit(stats.damage)
 		queue_free()
 		
-func attack(player : Player):
-	player.take_damage(stats.attack_damage)
+func attack(player : Player) :
+	player.take_damage(stats.attack_damage)	
 	timer.wait_time = stats.attack_speed
 	timer.start()
 
 func die(_damage_dealer_id = -1) -> void:
 	is_diying = true
-	SignalBus.on_mob_killed.emit(stats.gold_value, stats.experience_value, _damage_dealer_id)
+	SignalBus.on_mob_killed.emit(gold_value, _damage_dealer_id)
 	queue_free()
 
 func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
 	if is_diying:
 		return
-	take_hit.rpc()
+	animation_player.play("hit")
 	stats.hp -= in_damage
 	if stats.hp <= 0:
 		die(_damage_dealer_id)
-
-@rpc("call_local")
-func take_hit():
-	animation_player.play("hit")
-	
 
 func get_path_travelled() -> float:
 	return target.progress_ratio
@@ -97,6 +96,10 @@ func start_move() -> void:
 	var new_velocity = direction * stats.speed
 
 	nav_agent.set_velocity_forced(new_velocity)
+	
+	timer.wait_time = stats.attack_speed
+	timer.start()
+	timer.timeout.connect(timer.stop)
 
 func _on_velocity_computed(in_velocity: Vector3) -> void:
 	velocity = in_velocity

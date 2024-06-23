@@ -4,7 +4,8 @@ extends StateMachineState
 
 # Called when the state machine enters this state.
 func on_enter():
-	pass
+	print("enter follow path")
+	parent.nav_agent.target_position = parent.target.global_position
 
 
 # Called every frame when this state is active.
@@ -26,7 +27,9 @@ func on_physics_process(delta):
 		parent.nav_agent.set_velocity_forced(new_velocity)
 	else:
 		parent.velocity = new_velocity
-
+	
+	parent.last_nav_position = parent.global_position
+	
 	parent.move_and_slide()
 
 
