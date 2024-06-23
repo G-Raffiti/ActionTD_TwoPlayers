@@ -152,7 +152,7 @@ func _set_clip_overlaps(value):
 
 @onready var _old_pos : Vector3 = global_position
 @onready var _billboard_transform : Transform3D = global_transform
-func _process(delta):
+func _process(_delta):
 	if(snap_to_transform):
 		draw_pass_1.material.set_shader_parameter("emmission_transform", global_transform)
 	

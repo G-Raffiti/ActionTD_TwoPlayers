@@ -37,8 +37,6 @@ vertices = PackedVector3Array(-18.8, 1.5, 6.2, -18.8, 1.5, 6.8, -18.2, 1.5, 6.8,
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(22, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26), PackedInt32Array(30, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(34, 33, 31), PackedInt32Array(31, 33, 32), PackedInt32Array(38, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(42, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(46, 45, 43), PackedInt32Array(43, 45, 44), PackedInt32Array(50, 49, 47), PackedInt32Array(47, 49, 48), PackedInt32Array(54, 53, 51), PackedInt32Array(51, 53, 52), PackedInt32Array(56, 55, 57), PackedInt32Array(57, 55, 58), PackedInt32Array(62, 61, 59), PackedInt32Array(59, 61, 60), PackedInt32Array(66, 65, 67), PackedInt32Array(67, 65, 63), PackedInt32Array(63, 65, 64), PackedInt32Array(71, 70, 68), PackedInt32Array(68, 70, 69), PackedInt32Array(75, 74, 72), PackedInt32Array(72, 74, 73), PackedInt32Array(78, 77, 76), PackedInt32Array(82, 81, 79), PackedInt32Array(79, 81, 80), PackedInt32Array(86, 85, 83), PackedInt32Array(83, 85, 84), PackedInt32Array(92, 91, 87), PackedInt32Array(87, 91, 90), PackedInt32Array(87, 90, 89), PackedInt32Array(87, 89, 88), PackedInt32Array(98, 97, 93), PackedInt32Array(93, 97, 96), PackedInt32Array(93, 96, 95), PackedInt32Array(93, 95, 94), PackedInt32Array(101, 100, 102), PackedInt32Array(102, 100, 99), PackedInt32Array(102, 99, 103), PackedInt32Array(106, 105, 107), PackedInt32Array(107, 105, 104), PackedInt32Array(109, 108, 110), PackedInt32Array(110, 108, 111), PackedInt32Array(111, 108, 113), PackedInt32Array(111, 113, 112), PackedInt32Array(119, 118, 114), PackedInt32Array(114, 118, 117), PackedInt32Array(114, 117, 116), PackedInt32Array(114, 116, 115), PackedInt32Array(123, 122, 120), PackedInt32Array(120, 122, 121), PackedInt32Array(127, 126, 124), PackedInt32Array(124, 126, 125), PackedInt32Array(129, 128, 130), PackedInt32Array(130, 128, 132), PackedInt32Array(130, 132, 131), PackedInt32Array(136, 135, 133), PackedInt32Array(133, 135, 134), PackedInt32Array(140, 139, 137), PackedInt32Array(137, 139, 138), PackedInt32Array(143, 142, 141), PackedInt32Array(147, 146, 144), PackedInt32Array(144, 146, 145), PackedInt32Array(151, 150, 148), PackedInt32Array(148, 150, 149), PackedInt32Array(154, 153, 152), PackedInt32Array(158, 157, 155), PackedInt32Array(155, 157, 156), PackedInt32Array(161, 160, 159), PackedInt32Array(163, 162, 164), PackedInt32Array(164, 162, 165), PackedInt32Array(167, 166, 168), PackedInt32Array(168, 166, 169), PackedInt32Array(172, 171, 170), PackedInt32Array(176, 175, 173), PackedInt32Array(173, 175, 174), PackedInt32Array(180, 179, 177), PackedInt32Array(177, 179, 178), PackedInt32Array(183, 182, 181), PackedInt32Array(186, 185, 184), PackedInt32Array(190, 189, 187), PackedInt32Array(187, 189, 188), PackedInt32Array(194, 193, 191), PackedInt32Array(191, 193, 192), PackedInt32Array(198, 197, 195), PackedInt32Array(195, 197, 196), PackedInt32Array(202, 201, 199), PackedInt32Array(199, 201, 200), PackedInt32Array(204, 203, 205), PackedInt32Array(205, 203, 206), PackedInt32Array(210, 209, 207), PackedInt32Array(207, 209, 208), PackedInt32Array(214, 213, 211), PackedInt32Array(211, 213, 212), PackedInt32Array(218, 217, 215), PackedInt32Array(215, 217, 216), PackedInt32Array(221, 220, 219), PackedInt32Array(225, 224, 222), PackedInt32Array(222, 224, 223), PackedInt32Array(229, 228, 226), PackedInt32Array(226, 228, 227), PackedInt32Array(233, 232, 230), PackedInt32Array(230, 232, 231), PackedInt32Array(237, 236, 234), PackedInt32Array(234, 236, 235)]
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 1
-cell_size = 0.2
-cell_height = 0.75
 agent_radius = 0.2
 agent_max_climb = 0.05
 edge_max_length = 1.0
@@ -212,16 +210,19 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Gold" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(109.2, 30.9)
 layout_mode = 2
 text = "Gold: 10"
 scale_minimum = 0.3
 
 [node name="Building" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(168, 30.9)
 layout_mode = 2
 text = "Buildings: 0/5"
 scale_minimum = 0.3
 
 [node name="Life" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(132.9, 30.9)
 layout_mode = 2
 text = "Life: 10/10"
 scale_minimum = 0.3
@@ -231,12 +232,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="ArrowTowerBtn" parent="UI/PanelContainer/VBox/VBoxContainer" instance=ExtResource("12_mwrmj")]
+custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
 icon_alignment = 2
 
 [node name="Button2" parent="UI/PanelContainer/VBox/VBoxContainer" instance=ExtResource("12_mwrmj")]
+custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
