@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bgr674mp3kaql"]
+[gd_scene load_steps=44 format=3 uid="uid://bgr674mp3kaql"]
 
 [ext_resource type="MeshLibrary" uid="uid://7ta7tlnmxwvb" path="res://Resources/MeshLibraries/BlockoutLibrary.tres" id="1_txan8"]
 [ext_resource type="PackedScene" uid="uid://cycobtcw7dh0w" path="res://Scenes/PackedScenes/base.tscn" id="3_o8rbg"]
@@ -163,8 +163,6 @@ properties/4/path = NodePath("../PanelContainerTD/VBoxTD/Resources/Life:text")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 
-[sub_resource type="Curve3D" id="Curve3D_lxy1a"]
-
 [node name="BaseLevel" type="Node3D"]
 
 [node name="Light" type="Node" parent="."]
@@ -235,8 +233,9 @@ grid = NodePath("../../Navigation/GridMapInteraction")
 environment_grid = NodePath("../../Navigation/GridMapEnvironment")
 building_grid = NodePath("../../Navigation/GridMapBuilding")
 
-[node name="EnemySpawner" type="Node" parent="Service"]
+[node name="EnemySpawner" type="Node" parent="Service" node_paths=PackedStringArray("path")]
 script = ExtResource("9_7d2ws")
+path = [NodePath("../../Navigation/Paths/Path3D"), NodePath("../../Navigation/Paths/Path3D2"), NodePath("../../Navigation/Paths/Path3D3"), NodePath("../../Navigation/Paths/Path3D4")]
 level = SubResource("Resource_hc07m")
 
 [node name="ResourceManager" type="Node" parent="Service"]
@@ -267,13 +266,11 @@ layout_mode = 2
 alignment = 1
 
 [node name="Gold" parent="UI/PanelContainerAction/VBoxAction/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(96.3, 30.9)
 layout_mode = 2
 text = "Gold: 0"
 scale_minimum = 0.3
 
 [node name="Life" parent="UI/PanelContainerAction/VBoxAction/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(165.6, 30.9)
 layout_mode = 2
 text = "Health: 10/10"
 scale_minimum = 0.3
@@ -297,19 +294,16 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Gold" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(109.2, 30.9)
 layout_mode = 2
 text = "Gold: 10"
 scale_minimum = 0.3
 
 [node name="Building" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(168, 30.9)
 layout_mode = 2
 text = "Buildings: 0/5"
 scale_minimum = 0.3
 
 [node name="Life" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(132.9, 30.9)
 layout_mode = 2
 text = "Life: 10/10"
 scale_minimum = 0.3
@@ -319,14 +313,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="ArrowTowerBtn" parent="UI/PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("12_mwrmj")]
-custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
 icon_alignment = 2
 
 [node name="Button2" parent="UI/PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("12_mwrmj")]
-custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
@@ -384,9 +376,6 @@ spawn_path = NodePath("../../Navigation/GridMapBuilding")
 [node name="EnemiesMultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerSpawners"]
 _spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
 spawn_path = NodePath("../../Navigation/Paths/Path3D")
-
-[node name="Path3D" type="Path3D" parent="."]
-curve = SubResource("Curve3D_lxy1a")
 
 [connection signal="pressed" from="UI/PanelContainerTD/VBoxTD/VBoxContainer/ArrowTowerBtn" to="Service/ResourceManager" method="_on_arrow_tower_pressed"]
 [connection signal="pressed" from="UI/Lobby/VBoxContainer/Button" to="Service/MultiplayerManager" method="become_host"]
