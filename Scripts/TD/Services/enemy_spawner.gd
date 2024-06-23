@@ -23,9 +23,16 @@ var level_done: bool = false
 var enemies: Array[Node3D] = []
 
 func _ready() -> void:
+	if not multiplayer.is_server():
+		set_process(false)
+		return
+	
 	SignalBus.on_projectile_search_target.connect(_find_nearest_mob_for)
 
 func _process(delta: float) -> void:
+	if not multiplayer.is_server():
+		return
+		
 	if level_done: return
 
 	time += delta
@@ -43,7 +50,7 @@ func spawn_next_mob_group() -> void:
 	if mob_group == null:
 		mob_group = mob_group_ps.instantiate()
 		mob_group.name = 'MobGroup' + str(mob_spawned)
-		path.add_child(mob_group)
+		path.add_child(mob_group, true)
 		group_stat_multi = level.get_enemy_stat_multiplier(time)
 		group_gold_value = level.get_gold_value(time)
 

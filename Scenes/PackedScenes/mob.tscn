@@ -1,6 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://750cm2b1mvpo"]
+[gd_scene load_steps=11 format=3 uid="uid://750cm2b1mvpo"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Objects/enemy.gd" id="1_2rbnc"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6vhoc"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a01db"]
 size = Vector3(0.761536, 1.3577, 0.736862)
@@ -112,6 +120,9 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.706684, 0)
 collision_mask = 0
 script = ExtResource("1_2rbnc")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6vhoc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-08, 0, 1, 0.00656128, 0.0666097, 0.00621795)

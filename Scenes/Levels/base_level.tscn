@@ -212,16 +212,19 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Gold" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(109.2, 30.9)
 layout_mode = 2
 text = "Gold: 10"
 scale_minimum = 0.3
 
 [node name="Building" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(168, 30.9)
 layout_mode = 2
 text = "Buildings: 0/5"
 scale_minimum = 0.3
 
 [node name="Life" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(132.9, 30.9)
 layout_mode = 2
 text = "Life: 10/10"
 scale_minimum = 0.3
@@ -231,12 +234,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="ArrowTowerBtn" parent="UI/PanelContainer/VBox/VBoxContainer" instance=ExtResource("12_mwrmj")]
+custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
 icon_alignment = 2
 
 [node name="Button2" parent="UI/PanelContainer/VBox/VBoxContainer" instance=ExtResource("12_mwrmj")]
+custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
@@ -286,6 +291,10 @@ spawn_limit = 2
 [node name="TowerMultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerSpawners"]
 _spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/towers/tower_arrow.tscn")
 spawn_path = NodePath("../../Navigation/GridMapBuilding")
+
+[node name="EnemiesMultiplayerSpawner" type="MultiplayerSpawner" parent="MultiplayerSpawners"]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
+spawn_path = NodePath("../../Navigation/Path3D")
 
 [connection signal="pressed" from="UI/PanelContainer/VBox/VBoxContainer/ArrowTowerBtn" to="Service/ResourceManager" method="_on_arrow_tower_pressed"]
 [connection signal="pressed" from="UI/Lobby/VBoxContainer/Button" to="Service/MultiplayerManager" method="become_host"]

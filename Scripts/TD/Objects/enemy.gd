@@ -71,6 +71,10 @@ func get_health() -> float:
 	return stats.hp
 
 func _ready() -> void:
+	if not multiplayer.is_server():
+		set_process(false)
+		set_physics_process(false)
+		return
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
 
 func start_move() -> void:

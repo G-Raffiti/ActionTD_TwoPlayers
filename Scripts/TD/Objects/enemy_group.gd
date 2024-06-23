@@ -1,9 +1,17 @@
 extends PathFollow3D
 class_name MobGroup
 
+@onready var enemies_node : Node = $Enemies
+
 var started: bool = false
 var mobs: Array[Mob] = []
 var speed: float = 1.0
+
+func _ready():
+	if not multiplayer.is_server():
+		set_process(false)
+		set_physics_process(false)
+		return
 
 func _physics_process(delta: float) -> void:
 	if not started:
@@ -13,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func spawn_mobs_group(mob_res: MobRes, group_size: int, stats_modifier: float, gold_value: int, action_player : Player) -> Array[Mob]:
 	for i in range(group_size):
 		var mob: Mob = mob_res.mob_ps.instantiate()
-		add_child(mob)
+		enemies_node.add_child(mob, true)
 		mob.tree_exiting.connect(func(): _child_died(mob))
 		mob.stats = mob_res.stats.duplicate(true)
 		mob.stats.init_stats(stats_modifier)
