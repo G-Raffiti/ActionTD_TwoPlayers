@@ -3,7 +3,7 @@ extends Node
 @onready var mob_group_ps: PackedScene = Data.mob_group_ps
 
 @export_category('dependencies')
-@export var path: Path3D
+@export var path: Array[Path3D]
 @export var level: LevelRes
 @export var action_player: Player
 
@@ -49,7 +49,7 @@ func spawn_next_mob_group() -> void:
 	if mob_group == null:
 		mob_group = mob_group_ps.instantiate()
 		mob_group.name = 'MobGroup' + str(mob_spawned)
-		path.add_child(mob_group, true)
+		path[level.waves[wave_index].path_index].add_child(mob_group, true)
 		group_stat_multi = level.get_enemy_stat_multiplier(time)
 		group_gold_value = level.get_gold_value(time)
 
