@@ -6,7 +6,6 @@ var implements = [I.Killable]
 var stats: MobStats = null
 var target: PathFollow3D = null
 var is_diying: bool = false
-var gold_value: int = 0
 var action_player : Player
 var last_nav_position :Vector3 = Vector3.ZERO
 
@@ -56,7 +55,7 @@ func attack(player : Player) :
 
 func die(_damage_dealer_id = -1) -> void:
 	is_diying = true
-	SignalBus.on_mob_killed.emit(gold_value, _damage_dealer_id)
+	SignalBus.on_mob_killed.emit(stats.gold_value, stats.experience_value, _damage_dealer_id)
 	queue_free()
 
 func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
