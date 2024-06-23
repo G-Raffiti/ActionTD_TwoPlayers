@@ -4,9 +4,9 @@ extends Node
 #
 class Killable:
 	var name = 'I.Killable'
-	func die():
+	func die(_damage_dealer_id = -1):
 		pass
-	func take_damage(_damage):
+	func take_damage(_damage, _damage_dealer_id = -1):
 		pass
 #
 # Script Exemple that implements interfaces:

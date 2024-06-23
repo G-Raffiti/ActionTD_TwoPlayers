@@ -42,18 +42,18 @@ func attack(player : Player) :
 	timer.wait_time = stats.attack_speed
 	timer.start()
 
-func die() -> void:
+func die(_damage_dealer_id = -1) -> void:
 	is_diying = true
-	SignalBus.on_mob_killed.emit(gold_value)
+	SignalBus.on_mob_killed.emit(gold_value, _damage_dealer_id)
 	queue_free()
 
-func take_damage(in_damage: float) -> void:
+func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
 	if is_diying:
 		return
 	animation_player.play("hit")
 	stats.hp -= in_damage
 	if stats.hp <= 0:
-		die()
+		die(_damage_dealer_id)
 
 func get_path_travelled() -> float:
 	return target.progress_ratio

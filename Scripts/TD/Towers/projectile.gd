@@ -58,7 +58,7 @@ func _body_entered(body: Node3D):
 	if not multiplayer.is_server(): return
 	if 'implements' in body and body.implements.has(I.Killable):
 		if stats.explosion_radius <= 0:
-			body.take_damage(stats.damage)
+			body.take_damage(stats.damage, 1)
 		explode()
 
 func _lifetime_expire():
@@ -71,7 +71,7 @@ func explode():
 	if stats.explosion_radius > 0:
 		for node in explosion_area.get_overlapping_bodies():
 			if 'implements' in node and node.implements.has(I.Killable):
-				node.take_damage(stats.damage)
+				node.take_damage(stats.damage, 1)
 	if stats.should_end():
 		queue_free()
 	if stats.pierce > 0:
