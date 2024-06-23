@@ -21,14 +21,14 @@ func _physics_process(delta: float) -> void:
 func spawn_mobs_group(mob_res: MobRes, group_size: int, stats_modifier: float, gold_value: int, action_player : Player) -> Array[Mob]:
 	for i in range(group_size):
 		var mob: Mob = mob_res.mob_ps.instantiate()
-		enemies_node.add_child(mob, true)
-		mob.tree_exiting.connect(func(): _child_died(mob))
 		mob.stats = mob_res.stats.duplicate(true)
 		mob.stats.init_stats(stats_modifier)
 		mob.stats.gold_value = gold_value
 		mob.target = self
 		mob.top_level = true
 		mob.action_player = action_player
+		enemies_node.add_child(mob, true)
+		mob.tree_exiting.connect(func(): _child_died(mob))
 		mob.position = global_position + Vector3(-2 * i, 0, 0)
 		mobs.append(mob)
 	return mobs
