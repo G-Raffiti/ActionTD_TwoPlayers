@@ -1,0 +1,174 @@
+[gd_scene load_steps=8 format=3 uid="uid://8rdjqnuijab6"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="1_rb40c"]
+[ext_resource type="Script" path="res://Scripts/TD/UI/UI_action.gd" id="2_tt3os"]
+[ext_resource type="PackedScene" uid="uid://p11rsad2ye30" path="res://UserInterface/Nodes/ui_text_box.tscn" id="3_lql1k"]
+[ext_resource type="Script" path="res://Scripts/TD/UI/shop.gd" id="4_fehnd"]
+[ext_resource type="PackedScene" uid="uid://bebxclus3je58" path="res://UserInterface/Nodes/button.tscn" id="5_pi2q8"]
+[ext_resource type="Texture2D" uid="uid://cr586dnmunb5p" path="res://_ Assets/_ 3D/Side/towerRound_sampleF.png" id="6_pwajp"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r5b0c"]
+properties/0/path = NodePath("VBoxAction/Resources/Life:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("VBoxAction/Resources/Gold:text")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("../PanelContainerTD/VBoxTD/Resources/Gold:text")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("../PanelContainerTD/VBoxTD/Resources/Building:text")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("../PanelContainerTD/VBoxTD/Resources/Life:text")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("VBoxAction/Levels/Level:text")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("VBoxAction/Levels/Experience:text")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("action_UI", "TD_UI")]
+script = ExtResource("1_rb40c")
+action_UI = NodePath("PanelContainerAction")
+TD_UI = NodePath("PanelContainerTD")
+
+[node name="PanelContainerAction" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_right = 278.0
+grow_vertical = 0
+script = ExtResource("2_tt3os")
+
+[node name="VBoxAction" type="VBoxContainer" parent="PanelContainerAction"]
+layout_mode = 2
+
+[node name="Resources" type="HBoxContainer" parent="PanelContainerAction/VBoxAction"]
+layout_mode = 2
+alignment = 1
+
+[node name="Gold" parent="PanelContainerAction/VBoxAction/Resources" instance=ExtResource("3_lql1k")]
+custom_minimum_size = Vector2(96.3, 30.9)
+layout_mode = 2
+text = "Gold: 0"
+scale_minimum = 0.3
+
+[node name="Life" parent="PanelContainerAction/VBoxAction/Resources" instance=ExtResource("3_lql1k")]
+custom_minimum_size = Vector2(165.6, 30.9)
+layout_mode = 2
+text = "Health: 10/10"
+scale_minimum = 0.3
+
+[node name="Levels" type="HBoxContainer" parent="PanelContainerAction/VBoxAction"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level" parent="PanelContainerAction/VBoxAction/Levels" instance=ExtResource("3_lql1k")]
+custom_minimum_size = Vector2(102.3, 30.9)
+layout_mode = 2
+text = "Level: 1
+"
+scale_minimum = 0.3
+
+[node name="Experience" parent="PanelContainerAction/VBoxAction/Levels" instance=ExtResource("3_lql1k")]
+custom_minimum_size = Vector2(199.5, 30.9)
+layout_mode = 2
+text = "Experience: 0/10"
+scale_minimum = 0.3
+
+[node name="PanelContainerTD" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -302.0
+offset_top = -137.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_fehnd")
+
+[node name="VBoxTD" type="VBoxContainer" parent="PanelContainerTD"]
+layout_mode = 2
+
+[node name="Resources" type="HBoxContainer" parent="PanelContainerTD/VBoxTD"]
+layout_mode = 2
+
+[node name="Gold" parent="PanelContainerTD/VBoxTD/Resources" instance=ExtResource("3_lql1k")]
+custom_minimum_size = Vector2(109.2, 30.9)
+layout_mode = 2
+text = "Gold: 10"
+scale_minimum = 0.3
+
+[node name="Building" parent="PanelContainerTD/VBoxTD/Resources" instance=ExtResource("3_lql1k")]
+custom_minimum_size = Vector2(168, 30.9)
+layout_mode = 2
+text = "Buildings: 0/5"
+scale_minimum = 0.3
+
+[node name="Life" parent="PanelContainerTD/VBoxTD/Resources" instance=ExtResource("3_lql1k")]
+custom_minimum_size = Vector2(132.9, 30.9)
+layout_mode = 2
+text = "Life: 10/10"
+scale_minimum = 0.3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainerTD/VBoxTD"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ArrowTowerBtn" parent="PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("5_pi2q8")]
+custom_minimum_size = Vector2(286.2, 54.9)
+layout_mode = 2
+text = "Arrow Tower (5 gold) "
+icon = ExtResource("6_pwajp")
+icon_alignment = 2
+
+[node name="Button2" parent="PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("5_pi2q8")]
+custom_minimum_size = Vector2(286.2, 54.9)
+layout_mode = 2
+text = "Arrow Tower (5 gold) "
+icon = ExtResource("6_pwajp")
+icon_alignment = 2
+
+[node name="Lobby" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.5
+offset_top = -33.5
+offset_right = 123.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lobby"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Lobby/VBoxContainer"]
+layout_mode = 2
+text = "HOST"
+
+[node name="Button2" type="Button" parent="Lobby/VBoxContainer"]
+layout_mode = 2
+text = "JOIN"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../PanelContainerAction")
+replication_config = SubResource("SceneReplicationConfig_r5b0c")
+
+[connection signal="pressed" from="Lobby/VBoxContainer/Button" to="Lobby" method="hide"]
+[connection signal="pressed" from="Lobby/VBoxContainer/Button2" to="Lobby" method="hide"]

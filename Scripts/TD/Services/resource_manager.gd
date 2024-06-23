@@ -8,7 +8,7 @@ var resources : Dictionary
 func _ready() -> void:
 	SignalBus.on_tower_built.connect(_on_tower_built)
 	SignalBus.on_try_to_select_tower_to_build.connect(_select_tower_to_build)
-	SignalBus.on_mob_killed.connect(_gain_gold_rpc)
+	SignalBus.on_mob_killed.connect(_mob_killed_rpc)
 	
 	resources["gold_td"] = 10
 	resources["gold_action"] = 0
@@ -28,11 +28,12 @@ func _on_tower_built(tower: TowerRes) -> void:
 	SignalBus.on_building_changed.emit(buildings, buildings_max)
 
 @rpc("call_local")
-func _gain_gold_rpc(gold_amount: int, _killer_id: int) -> void:
+func _mob_killed_rpc(gold_amount: int, experience_amount: int, _killer_id: int) -> void:
 	if not multiplayer.is_server():
 		return
 	_gain_gold(gold_amount, _killer_id)
-
+	_gain_experience(experience_amount, _killer_id)
+	
 func _gain_gold(gold_amount: int, _killer_id: int) -> void:
 	if _killer_id == 1:
 		resources["gold_td"] += gold_amount
@@ -40,6 +41,10 @@ func _gain_gold(gold_amount: int, _killer_id: int) -> void:
 	else :
 		resources["gold_action"] += gold_amount
 		SignalBus.on_gold_action_changed.emit(resources["gold_action"])
-
+		
+func _gain_experience(experience_amount: int, _killer_id: int) -> void:
+	if _killer_id != 1:
+		PlayerData.action_player.gain_experience_rpc(experience_amount)
+		
 func _on_arrow_tower_pressed() -> void:
 	SignalBus.on_try_to_select_tower_to_build.emit(Data.ARROW_TOWER)

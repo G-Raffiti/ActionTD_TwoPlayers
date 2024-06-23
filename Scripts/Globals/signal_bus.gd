@@ -13,15 +13,16 @@ signal on_gold_action_changed(new_gold: int)
 signal on_gold_td_changed(new_gold: int)
 signal on_building_changed(new_building: int, max_building: int)
 
-#Health
+#Stats
 signal on_health_action_changed(new_health : int, max_health : int)
+signal on_experience_action_changed(new_level : int, new_experience : int, max_experience : int, max_level : bool)
 
 # Game
 signal on_game_over_loose()
 signal on_game_over_win()
 
 signal on_mob_reached_end(damage: float)
-signal on_mob_killed(gold: int, killer_id: int)
+signal on_mob_killed(gold: int, experience: int , killer_id: int)
 
 # Grid
 signal on_tile_hovered(index: Vector3i, tile_type: int)

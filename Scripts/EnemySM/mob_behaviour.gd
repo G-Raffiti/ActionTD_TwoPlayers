@@ -6,7 +6,6 @@ var implements = [I.Killable]
 var stats: MobStats = null
 var target: PathFollow3D = null
 var is_diying: bool = false
-var gold_value: int = 0
 var action_player : Player
 
 @onready var timer: Timer = $Timer
@@ -27,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	
 	var distance_to_player = 10000
 	if action_player != null and !action_player.is_dying:
-		print(action_player.global_position)
 		distance_to_player = global_position.distance_to(action_player.global_position)
 	
 	if state_follow_path.is_current_state():
@@ -54,7 +52,7 @@ func attack(player : Player) :
 
 func die(_damage_dealer_id = -1) -> void:
 	is_diying = true
-	SignalBus.on_mob_killed.emit(gold_value, _damage_dealer_id)
+	SignalBus.on_mob_killed.emit(stats.gold_value, stats.experience_value, _damage_dealer_id)
 	queue_free()
 
 func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
