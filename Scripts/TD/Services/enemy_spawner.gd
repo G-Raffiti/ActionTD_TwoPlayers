@@ -100,3 +100,8 @@ func _find_nearest_mob_for(projectile_name: StringName, old_targets: Array[Strin
 			dist = new_dist
 			target = mob
 	SignalBus.on_nearest_target_found.emit(projectile_name, target)
+
+
+func _on_players_multiplayer_spawner_spawned(node):
+	if node is Player:
+		action_player = node

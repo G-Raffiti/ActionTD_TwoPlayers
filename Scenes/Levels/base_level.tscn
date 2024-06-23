@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bgr674mp3kaql"]
+[gd_scene load_steps=40 format=3 uid="uid://bgr674mp3kaql"]
 
 [ext_resource type="MeshLibrary" uid="uid://7ta7tlnmxwvb" path="res://Resources/MeshLibraries/BlockoutLibrary.tres" id="1_txan8"]
 [ext_resource type="PackedScene" uid="uid://cycobtcw7dh0w" path="res://Scenes/PackedScenes/base.tscn" id="3_o8rbg"]
@@ -17,7 +17,9 @@
 [ext_resource type="Resource" uid="uid://bqdxx01mqrid1" path="res://Resources/MOBs/mob_type_1.tres" id="12_rxvy3"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_troop.gd" id="13_8qb4s"]
 [ext_resource type="Texture2D" uid="uid://cr586dnmunb5p" path="res://_ Assets/_ 3D/Side/towerRound_sampleF.png" id="13_llx16"]
+[ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="15_ippra"]
 [ext_resource type="PackedScene" uid="uid://da7u8n160oilo" path="res://Scenes/PackedScenes/multiplayer_manager.tscn" id="15_ulj32"]
+[ext_resource type="Script" path="res://Scripts/TD/UI/UI_action.gd" id="16_jxghe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_owfmx"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -189,9 +191,43 @@ script = ExtResource("10_ly1rj")
 [node name="MultiplayerManager" parent="Service" node_paths=PackedStringArray("grid") instance=ExtResource("15_ulj32")]
 grid = NodePath("../../Navigation/GridMapEnvironment")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("action_UI", "TD_UI")]
+script = ExtResource("15_ippra")
+action_UI = NodePath("PanelContainerAction")
+TD_UI = NodePath("PanelContainerTD")
 
-[node name="PanelContainer" type="PanelContainer" parent="UI"]
+[node name="PanelContainerAction" type="PanelContainer" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -278.0
+offset_top = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("16_jxghe")
+
+[node name="VBoxAction" type="VBoxContainer" parent="UI/PanelContainerAction"]
+layout_mode = 2
+
+[node name="Resources" type="HBoxContainer" parent="UI/PanelContainerAction/VBoxAction"]
+layout_mode = 2
+alignment = 1
+
+[node name="Gold" parent="UI/PanelContainerAction/VBoxAction/Resources" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(109.2, 30.9)
+layout_mode = 2
+text = "Gold: 10"
+scale_minimum = 0.3
+
+[node name="Life" parent="UI/PanelContainerAction/VBoxAction/Resources" instance=ExtResource("11_iesvg")]
+custom_minimum_size = Vector2(165.6, 30.9)
+layout_mode = 2
+text = "Health: 10/10"
+scale_minimum = 0.3
+
+[node name="PanelContainerTD" type="PanelContainer" parent="UI"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -203,42 +239,42 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("11_u4hqt")
 
-[node name="VBox" type="VBoxContainer" parent="UI/PanelContainer"]
+[node name="VBoxTD" type="VBoxContainer" parent="UI/PanelContainerTD"]
 layout_mode = 2
 
-[node name="Resources" type="HBoxContainer" parent="UI/PanelContainer/VBox"]
+[node name="Resources" type="HBoxContainer" parent="UI/PanelContainerTD/VBoxTD"]
 layout_mode = 2
 
-[node name="Gold" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+[node name="Gold" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
 custom_minimum_size = Vector2(109.2, 30.9)
 layout_mode = 2
 text = "Gold: 10"
 scale_minimum = 0.3
 
-[node name="Building" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+[node name="Building" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
 custom_minimum_size = Vector2(168, 30.9)
 layout_mode = 2
 text = "Buildings: 0/5"
 scale_minimum = 0.3
 
-[node name="Life" parent="UI/PanelContainer/VBox/Resources" instance=ExtResource("11_iesvg")]
+[node name="Life" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
 custom_minimum_size = Vector2(132.9, 30.9)
 layout_mode = 2
 text = "Life: 10/10"
 scale_minimum = 0.3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/VBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainerTD/VBoxTD"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ArrowTowerBtn" parent="UI/PanelContainer/VBox/VBoxContainer" instance=ExtResource("12_mwrmj")]
+[node name="ArrowTowerBtn" parent="UI/PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("12_mwrmj")]
 custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
 icon_alignment = 2
 
-[node name="Button2" parent="UI/PanelContainer/VBox/VBoxContainer" instance=ExtResource("12_mwrmj")]
+[node name="Button2" parent="UI/PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("12_mwrmj")]
 custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
@@ -294,8 +330,10 @@ spawn_path = NodePath("../../Navigation/GridMapBuilding")
 _spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
 spawn_path = NodePath("../../Navigation/Path3D")
 
-[connection signal="pressed" from="UI/PanelContainer/VBox/VBoxContainer/ArrowTowerBtn" to="Service/ResourceManager" method="_on_arrow_tower_pressed"]
+[connection signal="pressed" from="UI/PanelContainerTD/VBoxTD/VBoxContainer/ArrowTowerBtn" to="Service/ResourceManager" method="_on_arrow_tower_pressed"]
 [connection signal="pressed" from="UI/Lobby/VBoxContainer/Button" to="Service/MultiplayerManager" method="become_host"]
 [connection signal="pressed" from="UI/Lobby/VBoxContainer/Button" to="UI/Lobby" method="hide"]
 [connection signal="pressed" from="UI/Lobby/VBoxContainer/Button2" to="Service/MultiplayerManager" method="join_as_player_2"]
 [connection signal="pressed" from="UI/Lobby/VBoxContainer/Button2" to="UI/Lobby" method="hide"]
+[connection signal="spawned" from="MultiplayerSpawners/PlayersMultiplayerSpawner" to="Service/EnemySpawner" method="_on_players_multiplayer_spawner_spawned"]
+[connection signal="spawned" from="MultiplayerSpawners/PlayersMultiplayerSpawner" to="UI" method="_on_players_multiplayer_spawner_spawned"]
