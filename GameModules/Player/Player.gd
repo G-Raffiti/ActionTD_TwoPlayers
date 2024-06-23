@@ -21,7 +21,7 @@ signal changed_movement_direction(_movement_direction: Vector3)
 @export var player_id := 1:
 	set(id):
 		player_id = id
-		%ClientToServer_InputSynchronizer.set_multiplayer_authority(player_id)
+		%ClientToServer_InputSynchronizer.set_multiplayer_authority(id)
 		
 var health : int = 0
 var is_dying: bool = false
