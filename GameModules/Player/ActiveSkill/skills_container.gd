@@ -37,6 +37,11 @@ func _ready():
 	add_child(delivery_timer)
 	add_child(recovery_timer)
 	add_child(end_timer)
+	
+	if not multiplayer.is_server():
+		set_process(false)
+		set_physics_process(false)
+		return
 
 
 func switch_attack_buffer(attack_anim_name : StringName):
@@ -49,7 +54,7 @@ func switch_attack_buffer(attack_anim_name : StringName):
 func set_attack_buffer_timescale(value : float):
 	anim_tree["parameters/attack_buffer_" + str(attack_buffer_id) + "/TimeScale/scale"] = value
 
-
+@rpc("call_local")
 func set_attack_transition(value : String):
 	anim_tree["parameters/attack_transition/transition_request"] = value
 
@@ -80,7 +85,7 @@ func start_attack():
 func windup():
 	attack_state = ActiveSkill.State.WINDING_UP
 	attack_transition_node.xfade_time = current_active_skill.windup_duration
-	set_attack_transition("attack_buffer_" + str(attack_buffer_id))
+	set_attack_transition.rpc("attack_buffer_" + str(attack_buffer_id))
 	set_attack_buffer_timescale(0)
 	windup_timer.start(current_active_skill.windup_duration)
 	stop_vfx()
@@ -112,7 +117,7 @@ func _on_recovery_timer_timeout():
 
 
 func _on_end_timer_timeout():
-	set_attack_transition("end_attack")
+	set_attack_transition.rpc("end_attack")
 	sword.monitorable = false
 	sword.monitoring = false
 

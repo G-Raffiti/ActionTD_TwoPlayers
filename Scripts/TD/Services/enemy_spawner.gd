@@ -41,7 +41,6 @@ func _process(delta: float) -> void:
 	if interval > 0.0: return
 
 	interval = level.get_spawn_interval(time)
-	print("interval = ",  str(interval))
 	spawn_next_mob_group()
 	increase_indexes()
 	send_troop_to_battle()

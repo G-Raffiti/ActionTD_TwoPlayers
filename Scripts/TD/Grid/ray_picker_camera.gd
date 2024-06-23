@@ -39,8 +39,6 @@ func _process(_delta: float) -> void:
 		var tile = get_tile_type(index)
 		SignalBus.on_tile_hovered.emit(index, tile)
 		hovered_index = index
-		if multiplayer.is_server():
-			print(str(multiplayer.get_unique_id()), "Hovered tile: " + str(index))
 		if Input.is_action_pressed('click'):
 			SignalBus.on_tile_selected.emit(index, tile)
 

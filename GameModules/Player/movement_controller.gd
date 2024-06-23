@@ -17,7 +17,12 @@ var dash_velocity : Vector3
 var tween : Tween
 
 
-func _ready():
+func _ready() -> void:
+	if not multiplayer.is_server():
+		set_process(false)
+		set_physics_process(false)
+		return
+	
 	player_init_rotation = player.rotation.y
 	dash_timer = Timer.new()
 	dash_timer.one_shot = true

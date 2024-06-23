@@ -8,13 +8,19 @@ extends Node
 
 var last_movement_state : MovementState
 
-
-func _ready():
+func _ready() -> void:
 	skills_container.anim_tree = anim_tree
+	
+	if not multiplayer.is_server():
+		set_process(false)
+		set_physics_process(false)
+		return
+	
 	skills_container.completed_recovery.connect(_on_completed_recovery)
 
 
 func _on_pressed_primary_fire():
+	if not multiplayer.is_server(): return
 	if is_skill_active():
 		return
 		
@@ -28,6 +34,9 @@ func _on_pressed_primary_fire():
 
 	skills_container.start_attack()
 
+@rpc("call_local")
+func _on_completed_recovery_rpc():
+	_on_completed_recovery()
 
 func _on_completed_recovery():
 	player.is_attacking = false

@@ -8,7 +8,7 @@ func _ready():
 	action_UI.visible = false
 	TD_UI.visible = true
 
-func _on_players_multiplayer_spawner_spawned(node):
+func _on_players_multiplayer_spawner_spawned(_node):
 	if not multiplayer.is_server():
 		action_UI.visible = true
 		TD_UI.visible = false

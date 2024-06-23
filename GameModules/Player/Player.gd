@@ -48,7 +48,6 @@ func _ready():
 		%Camera3D.make_current()
 		set_process(false)
 		set_physics_process(false)
-		return
 
 	health = max_health;
 	stance_antispam_timer = get_tree().create_timer(0.25)

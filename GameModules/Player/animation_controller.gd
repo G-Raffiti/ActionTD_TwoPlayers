@@ -10,6 +10,12 @@ var tween : Tween
 
 var current_stance_name = "upright"
 
+func _ready() -> void:
+	if not multiplayer.is_server():
+		set_process(false)
+		set_physics_process(false)
+
+
 func _physics_process(delta):
 	if player.is_dying:
 		tween.kill()

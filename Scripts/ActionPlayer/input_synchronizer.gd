@@ -14,7 +14,7 @@ func _ready() -> void:
 		set_process(false)
 		set_physics_process(false)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player.is_dying: 
 		return
 
@@ -40,9 +40,9 @@ func _physics_process(delta: float) -> void:
 		jump.rpc()
 	
 	if player.is_on_floor():
-		for stance in player.stances.values():
-			if Input.is_action_just_pressed(get_node(stance).action_name):
-				stance = stance
+		for stance_path in player.stances.values():
+			if Input.is_action_just_pressed(get_node(stance_path).action_name):
+				stance = get_node(stance_path).type
 
 @rpc("call_local")
 func jump():
