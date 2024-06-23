@@ -12,6 +12,9 @@ signal on_start_game()
 signal on_gold_changed(new_gold: int)
 signal on_building_changed(new_building: int, max_building: int)
 
+#Health
+signal on_health_action_changed(new_health : int, max_health : int)
+
 # Game
 signal on_game_over_loose()
 signal on_game_over_win()

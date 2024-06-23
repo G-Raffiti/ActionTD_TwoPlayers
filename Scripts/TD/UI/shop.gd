@@ -1,7 +1,7 @@
 extends PanelContainer
 
-@onready var gold: TextBox = $VBox/Resources/Gold
-@onready var building: TextBox = $VBox/Resources/Building
+@onready var gold: TextBox = $VBoxTD/Resources/Gold
+@onready var building: TextBox = $VBoxTD/Resources/Building
 
 func _ready() -> void:
 	SignalBus.on_gold_changed.connect(_display_gold)

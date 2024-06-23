@@ -56,7 +56,7 @@ func _ready():
 	changed_movement_direction.emit(Vector3.BACK)
 	set_stance(current_stance_name)
 	set_movement_state(PlayerInputs.MOVE.STAND)
-	display_health()
+	SignalBus.on_health_action_changed.emit(health, max_health)
 
 func _apply_input(_delta: float) -> void:
 	if is_dying: 
@@ -155,14 +155,9 @@ func take_damage(in_damage: float) -> void:
 		return
 	#animation_player.play("hit")
 	health -= int(in_damage)
-	display_health()
+	SignalBus.on_health_action_changed.emit(health, max_health)
 	if health <= 0:
 		die()
-
-
-func display_health() -> void:
-	# health_text.text = 'Action Life: ' + str(health) + "/" + str(max_health)
-	pass
 
 func _on_hit_entered(body):
 	if 'implements' in body and body.implements.has(I.Killable):
