@@ -62,10 +62,14 @@ func die(_damage_dealer_id = -1) -> void:
 func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
 	if is_diying:
 		return
-	animation_player.play("hit")
 	stats.hp -= in_damage
+	take_hit.rpc()
 	if stats.hp <= 0:
 		die(_damage_dealer_id)
+
+@rpc("call_local")
+func take_hit():
+	animation_player.play("hit")
 
 func get_path_travelled() -> float:
 	return target.progress_ratio
@@ -96,10 +100,6 @@ func start_move() -> void:
 	var new_velocity = direction * stats.speed
 
 	nav_agent.set_velocity_forced(new_velocity)
-	
-	timer.wait_time = stats.attack_speed
-	timer.start()
-	timer.timeout.connect(timer.stop)
 
 func _on_velocity_computed(in_velocity: Vector3) -> void:
 	velocity = in_velocity
