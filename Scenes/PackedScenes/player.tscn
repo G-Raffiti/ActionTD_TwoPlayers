@@ -1,9 +1,10 @@
-[gd_scene load_steps=104 format=3 uid="uid://duwji2cab24v0"]
+[gd_scene load_steps=106 format=3 uid="uid://duwji2cab24v0"]
 
 [ext_resource type="Script" path="res://GameModules/Player/Player.gd" id="1_ig2tv"]
 [ext_resource type="Resource" uid="uid://f2c3g2k5oidj" path="res://GameModules/Player/JumpStates/air_jump.tres" id="2_6nbiy"]
 [ext_resource type="Resource" uid="uid://b1mynjpc0mwvp" path="res://GameModules/Player/JumpStates/ground_jump.tres" id="3_na6vd"]
 [ext_resource type="Script" path="res://GameModules/Player/ActiveSkill/active_skill_controller.gd" id="4_tt4ht"]
+[ext_resource type="Script" path="res://Scripts/ActionPlayer/input_synchronizer.gd" id="4_uydbh"]
 [ext_resource type="Script" path="res://GameModules/Player/movement_controller.gd" id="5_dbpw2"]
 [ext_resource type="Script" path="res://GameModules/Player/animation_controller.gd" id="6_a3tvc"]
 [ext_resource type="Script" path="res://GameModules/Player/stance.gd" id="7_wyrgk"]
@@ -29,6 +30,19 @@
 [ext_resource type="Texture2D" uid="uid://siffjee2en2r" path="res://GameModules/Player/ActiveSkill/slash_effect.png" id="28_jv0fu"]
 [ext_resource type="Script" path="res://GPUTrail-main/GPUTrail3D.gd" id="29_0w870"]
 [ext_resource type="Script" path="res://GameModules/Player/camera_controller.gd" id="30_rkftu"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ysilu"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:global_position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pbe53"]
+properties/0/path = NodePath("ClientToServer_InputSynchronizer:sync_event")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6p56"]
 resource_name = "armor_bright"
@@ -18521,44 +18535,6 @@ font_color = Color(0, 1, 0.980392, 1)
 outline_size = 22
 outline_color = Color(0, 0.380392, 1, 1)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pbe53"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/arm_armor:position")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/chest_armor:position")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/forearm_armor:position")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/godot_chan_head:position")
-properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/hair:position")
-properties/6/spawn = true
-properties/6/replication_mode = 1
-properties/7/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/shin_armor:position")
-properties/7/spawn = true
-properties/7/replication_mode = 1
-properties/8/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/shoes:position")
-properties/8/spawn = true
-properties/8/replication_mode = 1
-properties/9/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/thigh_armor:position")
-properties/9/spawn = true
-properties/9/replication_mode = 1
-properties/10/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/under_armor:position")
-properties/10/spawn = true
-properties/10/replication_mode = 1
-properties/11/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/sword:position")
-properties/11/spawn = true
-properties/11/replication_mode = 1
-
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 0
 floor_snap_length = 0.0
@@ -18573,6 +18549,14 @@ stances = {
 "stealth": NodePath("Stances/stealth"),
 "upright": NodePath("Stances/upright")
 }
+
+[node name="ServerToClient_Synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ysilu")
+
+[node name="ClientToServer_InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_pbe53")
+script = ExtResource("4_uydbh")
 
 [node name="ActiveSkillController" type="Node" parent="." node_paths=PackedStringArray("player", "anim_tree", "skills_container", "movement_controller", "camera_controller")]
 script = ExtResource("4_tt4ht")
@@ -18640,19 +18624,19 @@ higher_stances = [NodePath("../upright"), NodePath("../stealth"), NodePath("../c
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="MeshRoot/godot_chan_4/Godot_Chan" index="0"]
-bones/0/position = Vector3(3.66398e-09, -4.62197, -7.8698)
+bones/0/position = Vector3(7.19941e-09, -4.54109, -7.8698)
 bones/1/rotation = Quaternion(0.652857, 0.271621, 0.652857, -0.271621)
-bones/2/rotation = Quaternion(0.604571, 5.2079e-11, 1.96634e-08, 0.796552)
+bones/2/rotation = Quaternion(0.604117, 1.88481e-10, 1.95363e-08, 0.796896)
 bones/3/position = Vector3(3.48513e-14, 5.69654, -0.000103159)
-bones/3/rotation = Quaternion(-0.112481, -5.57499e-10, 1.5777e-09, 0.993654)
-bones/4/rotation = Quaternion(-0.0358301, 2.53855e-09, -2.81948e-09, 0.999358)
+bones/3/rotation = Quaternion(-0.112667, -5.43305e-10, 1.54502e-09, 0.993633)
+bones/4/rotation = Quaternion(-0.0362888, 2.61174e-09, -2.91844e-09, 0.999341)
 bones/5/rotation = Quaternion(0.0034532, 0.00659531, -0.689901, 0.723865)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/position = Vector3(0.000198333, 10.6318, -7.99242e-05)
-bones/6/rotation = Quaternion(-0.0151391, 0.0796506, -0.589626, 0.803597)
+bones/6/rotation = Quaternion(-0.0157416, 0.0814223, -0.590708, 0.802612)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(-0.000309722, 19.8107, 9.89807e-05)
-bones/7/rotation = Quaternion(0.273943, -0.658669, -0.146628, 0.685282)
+bones/7/rotation = Quaternion(0.27456, -0.658773, -0.147036, 0.684847)
 bones/8/position = Vector3(6.08109e-05, 18.4529, -2.20622e-05)
 bones/8/rotation = Quaternion(0.111513, 0.878494, -0.125152, 0.447382)
 bones/9/position = Vector3(-1.22997, 8.21134, 0.541571)
@@ -18693,9 +18677,9 @@ bones/23/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(0.00345325, -0.00659526, 0.689901, 0.723865)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/position = Vector3(-0.000198306, 10.6318, -7.98023e-05)
-bones/25/rotation = Quaternion(-0.448136, 0.0930613, 0.375619, 0.805868)
+bones/25/rotation = Quaternion(-0.448797, 0.0914451, 0.374738, 0.806096)
 bones/26/position = Vector3(0.000312236, 19.8107, 9.91098e-05)
-bones/26/rotation = Quaternion(0.143992, 0.439031, 0.262022, 0.847268)
+bones/26/rotation = Quaternion(0.144472, 0.439935, 0.26474, 0.845871)
 bones/27/position = Vector3(-6.41432e-05, 18.4529, -2.19748e-05)
 bones/27/rotation = Quaternion(0.101894, -0.868841, 0.0345362, 0.48326)
 bones/27/scale = Vector3(1, 1, 1)
@@ -18734,21 +18718,21 @@ bones/41/scale = Vector3(1, 1, 1)
 bones/42/position = Vector3(-0.000187486, 2.81332, 0.000131497)
 bones/42/rotation = Quaternion(0.107196, -0.156159, -0.103579, 0.976419)
 bones/42/scale = Vector3(1, 1, 1)
-bones/43/rotation = Quaternion(0.117447, -1.72132e-09, 3.2012e-09, 0.993079)
+bones/43/rotation = Quaternion(0.11965, -1.85429e-09, 3.43877e-09, 0.992816)
 bones/44/position = Vector3(-4.26326e-14, 9.35612, 0.000141649)
 bones/44/rotation = Quaternion(-0.21385, -5.23804e-10, 1.16017e-09, 0.976867)
-bones/45/rotation = Quaternion(0.94065, 0.199795, -0.271061, -0.042248)
-bones/46/rotation = Quaternion(0.235322, 0.24687, -0.0472249, 0.938855)
-bones/47/rotation = Quaternion(-0.436807, 0.0808678, 0.143099, 0.884411)
+bones/45/rotation = Quaternion(0.94051, 0.200662, -0.27042, -0.0452603)
+bones/46/rotation = Quaternion(0.230247, 0.245392, -0.0448871, 0.940614)
+bones/47/rotation = Quaternion(-0.434353, 0.0813816, 0.143056, 0.885579)
 bones/47/scale = Vector3(1, 1, 1)
-bones/49/rotation = Quaternion(0.849716, -0.304197, 0.281997, -0.325459)
-bones/50/rotation = Quaternion(0.238512, -0.401799, 0.0722414, 0.881165)
+bones/49/rotation = Quaternion(0.849444, -0.304433, 0.281743, -0.32617)
+bones/50/rotation = Quaternion(0.236483, -0.401356, 0.0712276, 0.881995)
 bones/50/scale = Vector3(1, 1, 1)
-bones/51/rotation = Quaternion(-0.722838, 0.0328754, -0.0821747, 0.685326)
+bones/51/rotation = Quaternion(-0.720567, 0.0323125, -0.0824601, 0.687706)
 bones/51/scale = Vector3(1, 1, 1)
 
 [node name="sword" type="BoneAttachment3D" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="9"]
-transform = Transform3D(-0.704347, -0.554156, 0.443629, 0.406519, -0.827216, -0.387886, 0.581926, -0.0928625, 0.807922, -29.2285, 75.0937, -14.6922)
+transform = Transform3D(-0.704347, -0.554156, 0.443629, 0.409387, -0.827665, -0.383891, 0.579911, -0.0887768, 0.809828, -29.2285, 75.1973, -14.6948)
 bone_name = "hand_r"
 bone_idx = 27
 
@@ -18879,6 +18863,7 @@ shape = SubResource("SphereShape3D_ykg3r")
 spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
+unique_name_in_owner = true
 transform = Transform3D(1, 1.77636e-15, -9.9476e-14, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
 
 [node name="UprightCollision" type="CollisionShape3D" parent="."]
@@ -18919,9 +18904,6 @@ grow_vertical = 2
 label_settings = SubResource("LabelSettings_r5ivb")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_pbe53")
 
 [connection signal="changed_movement_direction" from="." to="MovementController" method="_on_set_movement_direction"]
 [connection signal="changed_movement_state" from="." to="ActiveSkillController" method="_on_changed_movement_state"]
