@@ -9,6 +9,7 @@ extends Node
 
 var interval: float = 1.0
 var time = 0.0
+var game_started = false
 
 var wave_index: int = 0
 var troop_index: int = 0
@@ -27,12 +28,13 @@ func _ready() -> void:
 		set_process(false)
 		return
 	
+	SignalBus.on_start_spawning_enemies.connect(func(): game_started = true)
 	SignalBus.on_projectile_search_target.connect(_find_nearest_mob_for)
 
 func _process(delta: float) -> void:
 	if not multiplayer.is_server():
 		return
-		
+	if not game_started: return
 	if level_done: return
 
 	time += delta

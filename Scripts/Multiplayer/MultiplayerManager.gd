@@ -58,6 +58,8 @@ func _add_player_to_game(id: int):
 	player_to_add.name = str(id)
 	
 	_players_spawn_node.add_child(player_to_add, true)
+	if _players_spawn_node.get_child_count() == 2:
+		SignalBus.on_start_spawning_enemies.emit()
 	
 func _del_player(id: int):
 	print("Player %s left the game!" % id)

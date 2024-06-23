@@ -17,6 +17,7 @@ signal on_building_changed(new_building: int, max_building: int)
 signal on_health_action_changed(new_health : int, max_health : int)
 
 # Game
+signal on_start_spawning_enemies()
 signal on_game_over_loose()
 signal on_game_over_win()
 

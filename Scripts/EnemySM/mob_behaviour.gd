@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 	
 	var distance_to_player = 10000
 	if action_player != null and !action_player.is_dying:
-		print(action_player.global_position)
 		distance_to_player = global_position.distance_to(action_player.global_position)
 	
 	if state_follow_path.is_current_state():
@@ -47,8 +46,8 @@ func _physics_process(delta: float) -> void:
 		SignalBus.on_mob_reached_end.emit(stats.damage)
 		queue_free()
 		
-func attack(player : Player) :
-	player.take_damage(stats.attack_damage)	
+func attack(player : Player):
+	player.take_damage(stats.attack_damage)
 	timer.wait_time = stats.attack_speed
 	timer.start()
 
@@ -60,10 +59,15 @@ func die(_damage_dealer_id = -1) -> void:
 func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
 	if is_diying:
 		return
-	animation_player.play("hit")
+	take_hit.rpc()
 	stats.hp -= in_damage
 	if stats.hp <= 0:
 		die(_damage_dealer_id)
+
+@rpc("call_local")
+func take_hit():
+	animation_player.play("hit")
+	
 
 func get_path_travelled() -> float:
 	return target.progress_ratio
@@ -94,10 +98,6 @@ func start_move() -> void:
 	var new_velocity = direction * stats.speed
 
 	nav_agent.set_velocity_forced(new_velocity)
-	
-	timer.wait_time = stats.attack_speed
-	timer.start()
-	timer.timeout.connect(timer.stop)
 
 func _on_velocity_computed(in_velocity: Vector3) -> void:
 	velocity = in_velocity

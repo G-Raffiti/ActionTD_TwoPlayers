@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://duwji2cab24v0"]
+[gd_scene load_steps=85 format=3 uid="uid://duwji2cab24v0"]
 
 [ext_resource type="Script" path="res://GameModules/Player/Player.gd" id="1_ig2tv"]
 [ext_resource type="Resource" uid="uid://f2c3g2k5oidj" path="res://GameModules/Player/JumpStates/air_jump.tres" id="2_6nbiy"]
@@ -21,7 +21,9 @@
 [ext_resource type="Resource" uid="uid://damtko06ahl05" path="res://GameModules/Player/MovementStates/prone/prone_walk.tres" id="18_6wlcl"]
 [ext_resource type="Resource" uid="uid://bpn08dfev0uoe" path="res://GameModules/Player/MovementStates/prone/prone_sprint.tres" id="19_icex0"]
 [ext_resource type="PackedScene" uid="uid://dg1qvasd07hvc" path="res://GameModules/Player/godot_chan_4.tscn" id="20_3lcbp"]
+[ext_resource type="Material" uid="uid://budc1a0ek1y7a" path="res://Resources/Materials/blink.tres" id="22_6xa4v"]
 [ext_resource type="Script" path="res://GameModules/Player/ActiveSkill/skills_container.gd" id="22_jtaj4"]
+[ext_resource type="Shader" path="res://Resources/Shader/hit_player.gdshader" id="22_xqla3"]
 [ext_resource type="Script" path="res://GameModules/Player/ActiveSkill/active_skill.gd" id="23_juoon"]
 [ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail.gdshader" id="24_ponpg"]
 [ext_resource type="Shader" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="25_d8uot"]
@@ -100,6 +102,13 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("ClientToServer_InputSynchronizer:stance")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ob7f"]
+render_priority = 0
+shader = ExtResource("22_xqla3")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/y_billboard = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6p56"]
 resource_name = "armor_bright"
@@ -430,7 +439,45 @@ font_color = Color(0, 1, 0.980392, 1)
 outline_size = 22
 outline_color = Color(0, 0.380392, 1, 1)
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="Animation" id="Animation_3glr3"]
+resource_name = "hit"
+length = 0.3
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/arm_armor:material_overlay:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xrwjp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/arm_armor:material_overlay:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tcq63"]
+_data = {
+"RESET": SubResource("Animation_xrwjp"),
+"hit": SubResource("Animation_3glr3")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("i_frame_timer")]
 collision_layer = 0
 floor_snap_length = 0.0
 script = ExtResource("1_ig2tv")
@@ -438,6 +485,7 @@ jump_states = {
 "air_jump": ExtResource("2_6nbiy"),
 "ground_jump": ExtResource("3_na6vd")
 }
+i_frame_timer = NodePath("IFrameTimer")
 
 [node name="ServerToClient_Synchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ysilu")
@@ -520,19 +568,19 @@ higher_stances = [NodePath("../upright"), NodePath("../stealth"), NodePath("../c
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="MeshRoot/godot_chan_4/Godot_Chan" index="0"]
-bones/0/position = Vector3(-9.23493e-09, -4.17095, -7.8698)
+bones/0/position = Vector3(3.20418e-08, -3.97276, -7.8698)
 bones/1/rotation = Quaternion(0.652857, 0.271621, 0.652857, -0.271621)
-bones/2/rotation = Quaternion(0.596656, -3.49852e-10, 1.97852e-08, 0.802497)
+bones/2/rotation = Quaternion(0.59447, -1.26287e-10, 1.95374e-08, 0.804118)
 bones/3/position = Vector3(3.48513e-14, 5.69654, -0.000103159)
-bones/3/rotation = Quaternion(-0.11601, -6.02048e-10, 1.68027e-09, 0.993248)
-bones/4/rotation = Quaternion(-0.043877, 2.42518e-09, -2.66617e-09, 0.999037)
+bones/3/rotation = Quaternion(-0.117083, -5.72509e-10, 1.61225e-09, 0.993122)
+bones/4/rotation = Quaternion(-0.046059, 2.63443e-09, -2.94913e-09, 0.998939)
 bones/5/rotation = Quaternion(0.0034532, 0.00659531, -0.689901, 0.723865)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/position = Vector3(0.000198333, 10.6318, -7.99242e-05)
-bones/6/rotation = Quaternion(-0.00709588, 0.0559809, -0.574874, 0.816294)
+bones/6/rotation = Quaternion(-0.00632643, 0.0537147, -0.573433, 0.817465)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(-0.000309722, 19.8107, 9.89807e-05)
-bones/7/rotation = Quaternion(0.264984, -0.657112, -0.140719, 0.69151)
+bones/7/rotation = Quaternion(0.264149, -0.656962, -0.140169, 0.692083)
 bones/8/position = Vector3(6.08109e-05, 18.4529, -2.20622e-05)
 bones/8/rotation = Quaternion(0.111513, 0.878494, -0.125152, 0.447382)
 bones/9/position = Vector3(-1.22997, 8.21134, 0.541571)
@@ -573,9 +621,9 @@ bones/23/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(0.00345325, -0.00659526, 0.689901, 0.723865)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/position = Vector3(-0.000198306, 10.6318, -7.98023e-05)
-bones/25/rotation = Quaternion(-0.43697, 0.119705, 0.389957, 0.801662)
+bones/25/rotation = Quaternion(-0.435659, 0.122754, 0.391576, 0.801125)
 bones/26/position = Vector3(0.000312236, 19.8107, 9.91098e-05)
-bones/26/rotation = Quaternion(0.136084, 0.42391, 0.218088, 0.868458)
+bones/26/rotation = Quaternion(0.135154, 0.422103, 0.213011, 0.87074)
 bones/27/position = Vector3(-6.41432e-05, 18.4529, -2.19748e-05)
 bones/27/rotation = Quaternion(0.101894, -0.868841, 0.0345362, 0.48326)
 bones/27/scale = Vector3(1, 1, 1)
@@ -614,21 +662,49 @@ bones/41/scale = Vector3(1, 1, 1)
 bones/42/position = Vector3(-0.000187486, 2.81332, 0.000131497)
 bones/42/rotation = Quaternion(0.107196, -0.156159, -0.103579, 0.976419)
 bones/42/scale = Vector3(1, 1, 1)
-bones/43/rotation = Quaternion(0.141779, -1.38115e-09, 2.59348e-09, 0.989898)
+bones/43/rotation = Quaternion(0.147938, -1.78273e-09, 3.31092e-09, 0.988997)
 bones/44/position = Vector3(-4.26326e-14, 9.35612, 0.000141649)
 bones/44/rotation = Quaternion(-0.21385, -5.23804e-10, 1.16017e-09, 0.976867)
-bones/45/rotation = Quaternion(0.939742, 0.20462, -0.267437, -0.0590971)
-bones/46/rotation = Quaternion(0.20691, 0.238511, -0.0341661, 0.948227)
-bones/47/rotation = Quaternion(-0.423058, 0.0837297, 0.142842, 0.890847)
+bones/45/rotation = Quaternion(0.939257, 0.206684, -0.265845, -0.0663703)
+bones/46/rotation = Quaternion(0.19441, 0.23477, -0.0284427, 0.951987)
+bones/47/rotation = Quaternion(-0.417037, 0.0849701, 0.142719, 0.893584)
 bones/47/scale = Vector3(1, 1, 1)
-bones/49/rotation = Quaternion(0.84803, -0.305645, 0.280428, -0.329829)
-bones/50/rotation = Quaternion(0.227372, -0.399344, 0.0666791, 0.885652)
+bones/49/rotation = Quaternion(0.847296, -0.306266, 0.279749, -0.331709)
+bones/50/rotation = Quaternion(0.222616, -0.398277, 0.0643064, 0.887515)
 bones/50/scale = Vector3(1, 1, 1)
-bones/51/rotation = Quaternion(-0.709934, 0.0296982, -0.0837711, 0.698637)
+bones/51/rotation = Quaternion(-0.704273, 0.0283201, -0.0844526, 0.70432)
 bones/51/scale = Vector3(1, 1, 1)
 
+[node name="arm_armor" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="0"]
+material_overlay = ExtResource("22_6xa4v")
+surface_material_override/0 = SubResource("ShaderMaterial_5ob7f")
+
+[node name="chest_armor" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="1"]
+material_overlay = ExtResource("22_6xa4v")
+
+[node name="forearm_armor" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="2"]
+material_overlay = ExtResource("22_6xa4v")
+
+[node name="godot_chan_head" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="3"]
+material_overlay = ExtResource("22_6xa4v")
+
+[node name="hair" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="4"]
+material_overlay = ExtResource("22_6xa4v")
+
+[node name="shin_armor" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="5"]
+material_overlay = ExtResource("22_6xa4v")
+
+[node name="shoes" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="6"]
+material_overlay = ExtResource("22_6xa4v")
+
+[node name="thigh_armor" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="7"]
+material_overlay = ExtResource("22_6xa4v")
+
+[node name="under_armor" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="8"]
+material_overlay = ExtResource("22_6xa4v")
+
 [node name="sword" type="BoneAttachment3D" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="9"]
-transform = Transform3D(-0.704347, -0.554157, 0.443629, 0.409248, -0.827643, -0.384087, 0.58001, -0.0889763, 0.809735, -29.2285, 74.3323, -14.5425)
+transform = Transform3D(-0.704347, -0.554156, 0.443629, 0.413633, -0.828294, -0.377937, 0.576891, -0.0826988, 0.812624, -29.2285, 74.3264, -14.5073)
 bone_name = "hand_r"
 bone_idx = 27
 
@@ -797,6 +873,15 @@ grow_vertical = 2
 label_settings = SubResource("LabelSettings_r5ivb")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="hit_animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tcq63")
+}
+
+[node name="IFrameTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [connection signal="changed_movement_direction" from="." to="MovementController" method="_on_set_movement_direction"]
 [connection signal="changed_movement_state" from="." to="ActiveSkillController" method="_on_changed_movement_state"]

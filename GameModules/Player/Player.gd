@@ -13,9 +13,10 @@ signal changed_movement_direction(_movement_direction: Vector3)
 @export var jump_states : Dictionary
 @export var stances : Dictionary
 @export var health_text : TextBox
+@export var i_frame_timer: Timer
 
 @export_category("Player settings")
-@export var max_health : int = 10
+@export var max_health : int = 1000
 @export var attack : float = 1
 
 @export var player_id := 1:
@@ -155,11 +156,18 @@ func die(_damage_dealer_id = -1) -> void:
 func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
 	if is_dying:
 		return
-	#animation_player.play("hit")
+	if i_frame_timer.time_left > 0:
+		return
+	i_frame_timer.start()
+	blink.rpc()
 	health -= int(in_damage)
 	SignalBus.on_health_action_changed.emit(health, max_health)
 	if health <= 0:
 		die()
+
+@rpc("call_local")
+func blink():
+	$hit_animation_player.play('hit')
 
 func _on_hit_entered(body):
 	if 'implements' in body and body.implements.has(I.Killable):
