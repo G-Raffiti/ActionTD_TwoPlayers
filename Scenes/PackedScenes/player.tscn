@@ -706,7 +706,7 @@ material_overlay = ExtResource("22_6xa4v")
 material_overlay = ExtResource("22_6xa4v")
 
 [node name="sword" type="BoneAttachment3D" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="9"]
-transform = Transform3D(-0.704347, -0.554156, 0.443629, 0.410429, -0.827823, -0.382436, 0.579175, -0.0872896, 0.810516, -29.2285, 74.3154, -14.5313)
+transform = Transform3D(-0.704347, -0.554157, 0.443628, 0.410429, -0.827823, -0.382437, 0.579176, -0.0872905, 0.810516, -29.2286, 74.3154, -14.5313)
 bone_name = "hand_r"
 bone_idx = 27
 
