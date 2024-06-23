@@ -88,8 +88,8 @@ point_count = 2
 [sub_resource type="Curve" id="Curve_ccfu5"]
 min_value = 0.5
 max_value = 3.0
-_data = [Vector2(0, 1.01479), 0.0, 0.0, 0, 0, Vector2(1e-05, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 2.20832), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Resource" id="Resource_ah04i"]
 script = ExtResource("11_35c8t")
@@ -273,13 +273,11 @@ layout_mode = 2
 alignment = 1
 
 [node name="Gold" parent="UI/PanelContainerAction/VBoxAction/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(96.3, 30.9)
 layout_mode = 2
 text = "Gold: 0"
 scale_minimum = 0.3
 
 [node name="Life" parent="UI/PanelContainerAction/VBoxAction/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(165.6, 30.9)
 layout_mode = 2
 text = "Health: 10/10"
 scale_minimum = 0.3
@@ -289,14 +287,12 @@ layout_mode = 2
 alignment = 1
 
 [node name="Level" parent="UI/PanelContainerAction/VBoxAction/Levels" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(102.3, 30.9)
 layout_mode = 2
 text = "Level: 1
 "
 scale_minimum = 0.3
 
 [node name="Experience" parent="UI/PanelContainerAction/VBoxAction/Levels" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(199.5, 30.9)
 layout_mode = 2
 text = "Experience: 0/10"
 scale_minimum = 0.3
@@ -320,19 +316,16 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Gold" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(109.2, 30.9)
 layout_mode = 2
 text = "Gold: 10"
 scale_minimum = 0.3
 
 [node name="Building" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(168, 30.9)
 layout_mode = 2
 text = "Buildings: 0/5"
 scale_minimum = 0.3
 
 [node name="Life" parent="UI/PanelContainerTD/VBoxTD/Resources" instance=ExtResource("11_iesvg")]
-custom_minimum_size = Vector2(132.9, 30.9)
 layout_mode = 2
 text = "Life: 10/10"
 scale_minimum = 0.3
@@ -342,14 +335,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="ArrowTowerBtn" parent="UI/PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("12_mwrmj")]
-custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")
 icon_alignment = 2
 
 [node name="Button2" parent="UI/PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("12_mwrmj")]
-custom_minimum_size = Vector2(286.2, 54.9)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
 icon = ExtResource("13_llx16")

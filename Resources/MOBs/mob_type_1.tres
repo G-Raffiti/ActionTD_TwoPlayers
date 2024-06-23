@@ -16,7 +16,7 @@ attack_radius = 1.0
 attack_damage = 1.0
 attack_speed = 1.0
 gold_value = 1
-experience_value = 20
+experience_value = 1
 
 [resource]
 script = ExtResource("1_as26w")
