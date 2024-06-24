@@ -33,7 +33,11 @@ text = "dsvsdv"
 font_size = 92
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_xe7kd")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

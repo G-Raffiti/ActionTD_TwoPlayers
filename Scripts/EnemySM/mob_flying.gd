@@ -21,14 +21,9 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		
 func attack(player : Player) :
-	player.take_damage(stats.attack_damage)	
+	player.take_damage(stats.attack_damage)
 	timer.wait_time = stats.attack_speed
 	timer.start()
-
-func die(_damage_dealer_id = -1) -> void:
-	is_diying = true
-	SignalBus.on_mob_killed.emit(stats.gold_value, stats.experience_value, _damage_dealer_id)
-	queue_free()
 
 func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
 	if is_diying:

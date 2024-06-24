@@ -32,3 +32,10 @@ func die(_damage_dealer_id = -1) -> void:
 	#debug
 	SignalBus.on_reload_scene.emit()
 
+
+
+func _on_area_3d_body_entered(body):
+	print(body)
+	if body is Mob:
+		take_damage(body.stats.attack_damage)
+		body.die()
