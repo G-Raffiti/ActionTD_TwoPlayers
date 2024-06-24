@@ -12,7 +12,7 @@ var direction: Vector3
 
 func initialize(in_stats: ProjectileStats, attack_range: float, in_target: Node3D, in_direction: Vector3) -> void:
 	if not multiplayer.is_server(): return
-	stats = in_stats
+	stats = in_stats.duplicate(true)
 	stats.speed = stats.speed * Data.TILE_SIZE
 	stats.lifetime = attack_range / stats.speed
 	if in_target != null:
