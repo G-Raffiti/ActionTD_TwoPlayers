@@ -4,6 +4,7 @@ class_name Player
 var implements = [I.Killable]
 
 signal pressed_primary_fire
+signal pressed_secondary_fire
 signal pressed_jump(jump_state : JumpState)
 signal changed_stance(stance : Stance)
 signal changed_movement_state(_movement_state: MovementState)
@@ -13,6 +14,9 @@ signal changed_movement_direction(_movement_direction: Vector3)
 @export var jump_states : Dictionary
 @export var stances : Dictionary
 @export var i_frame_timer: Timer
+@export var fire_point: Node3D
+@export var ray: RayCast3D
+@export var camera: Camera3D
 
 @export var player_id := 1:
 	set(id):
@@ -34,6 +38,7 @@ var stance_antispam_timer : SceneTreeTimer
 var is_attacking : bool = false
 var do_jump : bool = false
 var do_primary_attack : bool = false
+var do_secondary_attack : bool = false
 
 @onready var inputs: PlayerInputs = %ClientToServer_InputSynchronizer
 
@@ -65,6 +70,11 @@ func _apply_input(_delta: float) -> void:
 		pressed_primary_fire.emit()
 		set_stance(PlayerInputs.STANCE.UPRIGHT)
 		do_primary_attack = false
+		
+	if do_secondary_attack:
+		pressed_secondary_fire.emit()
+		set_stance(PlayerInputs.STANCE.UPRIGHT)
+		do_secondary_attack = false
 	
 	movement_direction = inputs.movement_direction
 
@@ -89,6 +99,26 @@ func _apply_input(_delta: float) -> void:
 		
 	do_jump = false
 
+func _on_pressed_secondary_fire():
+	if not multiplayer.is_server(): return
+		
+	if $"Timer".time_left <= 0:
+		shoot()
+	
+func shoot():
+	if not multiplayer.is_server(): return
+	randomize()
+	
+	var projectile: Projectile = player_stats.projectile_ps.instantiate()
+	projectile.name = "Projectile" + Guid.get_id()
+	var direction = fire_point.global_position.direction_to(inputs.target)
+	add_child(projectile)
+	projectile.global_position = fire_point.global_position
+	projectile.global_rotation = fire_point.global_rotation
+	projectile.initialize(player_stats.projectile_stats, player_stats.distance_attack_range, null, direction)
+	projectile.start()
+	#animation_player.play('shoot')
+	$Timer.start(player_stats.distance_attack_cooldown)
 
 func _physics_process(delta):
 	_apply_input(delta)

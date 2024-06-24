@@ -103,6 +103,9 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("ClientToServer_InputSynchronizer:stance")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("ClientToServer_InputSynchronizer:target")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ob7f"]
 render_priority = 0
@@ -478,7 +481,7 @@ _data = {
 "hit": SubResource("Animation_3glr3")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("i_frame_timer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("i_frame_timer", "fire_point", "ray", "camera")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 collision_layer = 0
 floor_snap_length = 0.0
@@ -489,6 +492,9 @@ jump_states = {
 "ground_jump": ExtResource("3_na6vd")
 }
 i_frame_timer = NodePath("IFrameTimer")
+fire_point = NodePath("MeshRoot/godot_chan_4/Godot_Chan/FirePoint")
+ray = NodePath("CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D/RayCast3D")
+camera = NodePath("CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D")
 
 [node name="ServerToClient_Synchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ysilu")
@@ -795,6 +801,9 @@ color_ramp = ExtResource("26_8g8yc")
 curve = ExtResource("27_323ws")
 _defaults_have_been_set = true
 
+[node name="FirePoint" type="Node3D" parent="MeshRoot/godot_chan_4/Godot_Chan" index="1"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.16573e-15, 82.098, 17.7979)
+
 [node name="AnimationTree" type="AnimationTree" parent="MeshRoot"]
 root_node = NodePath("../godot_chan_4")
 tree_root = SubResource("AnimationNodeBlendTree_wcl6t")
@@ -839,6 +848,11 @@ spring_length = 5.0
 [node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 1.77636e-15, -9.9476e-14, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+
+[node name="RayCast3D" type="RayCast3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 3.55271e-14, 0, 1, 5.96046e-08, -2.84217e-14, -5.96046e-08, 1, 0, 0, 0)
+collision_mask = 3
+debug_shape_custom_color = Color(1, 1, 1, 1)
 
 [node name="UprightCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -888,6 +902,14 @@ libraries = {
 wait_time = 0.4
 one_shot = true
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/towers/projectile.tscn")
+spawn_path = NodePath("..")
+
 [connection signal="changed_movement_direction" from="." to="MovementController" method="_on_set_movement_direction"]
 [connection signal="changed_movement_state" from="." to="ActiveSkillController" method="_on_changed_movement_state"]
 [connection signal="changed_movement_state" from="." to="MovementController" method="_on_set_movement_state"]
@@ -898,6 +920,7 @@ one_shot = true
 [connection signal="pressed_jump" from="." to="MovementController" method="_jump"]
 [connection signal="pressed_jump" from="." to="AnimationController" method="_jump"]
 [connection signal="pressed_primary_fire" from="." to="ActiveSkillController" method="_on_pressed_primary_fire"]
+[connection signal="pressed_secondary_fire" from="." to="." method="_on_pressed_secondary_fire"]
 [connection signal="body_entered" from="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/sword/sword" to="." method="_on_hit_entered"]
 [connection signal="tree_entered" from="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/sword/SkillsContainer/ActiveSkill_1" to="." method="_on_active_skill_1_tree_entered"]
 [connection signal="set_cam_rotation" from="CamRoot" to="MovementController" method="_on_set_cam_rotation"]

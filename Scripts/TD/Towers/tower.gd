@@ -73,7 +73,7 @@ func shoot():
 		projectile.global_position = fire_point.global_position
 		projectile.global_rotation = fire_point.global_rotation
 		projectile.rotate(Vector3.UP, angle)
-		projectile.initialize(stats.get_projectile_stats(), target, direction)
+		projectile.initialize(stats.projectile_stats, stats.attack_range, target, direction)
 		projectile.start()
 		animation_player.play('shoot')
 		await get_tree().create_timer(stats.projectile_deleay).timeout	

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="TowerRes" load_steps=6 format=3 uid="uid://rycmmi4swjdl"]
+[gd_resource type="Resource" script_class="TowerRes" load_steps=7 format=3 uid="uid://rycmmi4swjdl"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Towers/res_tower.gd" id="2_15pt8"]
 [ext_resource type="PackedScene" uid="uid://bbig5ab5l4v3m" path="res://Scenes/PackedScenes/towers/projectile.tscn" id="2_a5574"]
 [ext_resource type="PackedScene" uid="uid://b01re1bn5la41" path="res://Scenes/PackedScenes/towers/tower_arrow.tscn" id="2_uovbb"]
 [ext_resource type="Script" path="res://Scripts/TD/Towers/res_tower_stats.gd" id="4_erfg6"]
+[ext_resource type="Resource" uid="uid://b85vjxnbinuik" path="res://Resources/Projectiles/projectile_stats_1.tres" id="4_lgkdd"]
 
 [sub_resource type="Resource" id="Resource_tyd2f"]
 script = ExtResource("4_erfg6")
@@ -13,12 +14,7 @@ projectile_count = 2
 spread_angle = 0.0
 projectile_deleay = 0.0
 sequence_total_angle = 15
-projectile_damage = 1.0
-projectile_speed = 10.0
-explosion_radius = 0.0
-pierce = 0
-bounce = 2
-homing = false
+projectile_stats = ExtResource("4_lgkdd")
 
 [resource]
 script = ExtResource("2_15pt8")

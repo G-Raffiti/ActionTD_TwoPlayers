@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ProjectileStats" load_steps=2 format=3 uid="uid://b85vjxnbinuik"]
+
+[ext_resource type="Script" path="res://Scripts/TD/Towers/res_projectile_stats.gd" id="1_rmpwk"]
+
+[resource]
+script = ExtResource("1_rmpwk")
+damage = 5.0
+speed = 2.0
+lifetime = 10.0
+explosion_radius = 0.0
+pierce = 0
+bounce = 0
+homing = false

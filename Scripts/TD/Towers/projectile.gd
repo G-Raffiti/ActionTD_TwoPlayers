@@ -3,17 +3,20 @@ class_name Projectile
 
 @onready var explosion_area: Area3D = $ExplosionArea
 
-var stats: TowerStats.ProjectileStats
+var stats: ProjectileStats
 var target: Node3D = null
 
 var old_targets: Array[StringName] = []
 
 var direction: Vector3
 
-func initialize(in_stats: TowerStats.ProjectileStats, in_target: Node3D, in_direction: Vector3) -> void:
+func initialize(in_stats: ProjectileStats, attack_range: float, in_target: Node3D, in_direction: Vector3) -> void:
 	if not multiplayer.is_server(): return
 	stats = in_stats
-	change_target(in_target)
+	stats.speed = stats.speed * Data.TILE_SIZE
+	stats.lifetime = attack_range / stats.speed
+	if in_target != null:
+		change_target(in_target)
 	$ExplosionArea/ExplosionCollisionShape.shape.radius = stats.explosion_radius
 	direction = in_direction
 
