@@ -5,6 +5,8 @@ var buildings_max: int = 5
 
 var resources : Dictionary
 
+@export var inverse_resources : bool = false
+
 func _ready() -> void:
 	SignalBus.on_tower_built.connect(_on_tower_built)
 	SignalBus.on_try_to_select_tower_to_build.connect(_select_tower_to_build)
@@ -35,7 +37,10 @@ func _mob_killed_rpc(gold_amount: int, experience_amount: int, _killer_id: int) 
 	_gain_experience(experience_amount, _killer_id)
 	
 func _gain_gold(gold_amount: int, _killer_id: int) -> void:
-	if _killer_id == 1:
+	var isServerKiller = _killer_id == 1
+	if inverse_resources:
+		isServerKiller = !isServerKiller
+	if isServerKiller:
 		resources["gold_td"] += gold_amount
 		SignalBus.on_gold_td_changed.emit(resources["gold_td"])
 	else :
