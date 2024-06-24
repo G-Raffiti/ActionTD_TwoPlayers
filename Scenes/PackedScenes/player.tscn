@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://duwji2cab24v0"]
+[gd_scene load_steps=88 format=3 uid="uid://duwji2cab24v0"]
 
 [ext_resource type="Script" path="res://GameModules/Player/Player.gd" id="1_ig2tv"]
 [ext_resource type="Resource" uid="uid://f2c3g2k5oidj" path="res://GameModules/Player/JumpStates/air_jump.tres" id="2_6nbiy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://GameModules/Player/ActiveSkill/active_skill_controller.gd" id="4_tt4ht"]
 [ext_resource type="Script" path="res://Scripts/ActionPlayer/input_synchronizer.gd" id="4_uydbh"]
 [ext_resource type="Script" path="res://GameModules/Player/movement_controller.gd" id="5_dbpw2"]
+[ext_resource type="Script" path="res://Scenes/PackedScenes/towers/hurtbox.gd" id="6_55tvg"]
 [ext_resource type="Script" path="res://GameModules/Player/animation_controller.gd" id="6_a3tvc"]
 [ext_resource type="Script" path="res://GameModules/Player/stance.gd" id="7_wyrgk"]
 [ext_resource type="Resource" uid="uid://d1r1tgmafqsly" path="res://GameModules/Player/MovementStates/upright/upright_idle.tres" id="8_ngnq8"]
@@ -106,6 +107,10 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("ClientToServer_InputSynchronizer:target")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fxtjc"]
+radius = 0.183784
+height = 1.036
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ob7f"]
 render_priority = 0
@@ -504,6 +509,18 @@ unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_pbe53")
 script = ExtResource("4_uydbh")
 
+[node name="Colliders" type="Node" parent="."]
+
+[node name="Hurtbox" type="Area3D" parent="Colliders" groups=["Player"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_55tvg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.716201, 0)
+shape = SubResource("CapsuleShape3D_fxtjc")
+
 [node name="ActiveSkillController" type="Node" parent="." node_paths=PackedStringArray("player", "anim_tree", "skills_container", "movement_controller", "camera_controller")]
 script = ExtResource("4_tt4ht")
 player = NodePath("..")
@@ -577,19 +594,19 @@ higher_stances = [NodePath("../upright"), NodePath("../stealth"), NodePath("../c
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="MeshRoot/godot_chan_4/Godot_Chan" index="0"]
-bones/0/position = Vector3(-1.6565e-08, -4.33865, -7.8698)
+bones/0/position = Vector3(-2.77548e-10, -3.96603, -7.8698)
 bones/1/rotation = Quaternion(0.652857, 0.271621, 0.652857, -0.271621)
-bones/2/rotation = Quaternion(0.598605, -2.96516e-10, 1.97936e-08, 0.801044)
+bones/2/rotation = Quaternion(0.594423, -4.10828e-10, 1.97754e-08, 0.804153)
 bones/3/position = Vector3(3.48513e-14, 5.69654, -0.000103159)
-bones/3/rotation = Quaternion(-0.114843, -6.02048e-10, 1.68027e-09, 0.993384)
-bones/4/rotation = Quaternion(-0.0417863, 2.42519e-09, -2.66618e-09, 0.999127)
+bones/3/rotation = Quaternion(-0.117259, -6.02048e-10, 1.68026e-09, 0.993101)
+bones/4/rotation = Quaternion(-0.0461257, 2.42515e-09, -2.66614e-09, 0.998936)
 bones/5/rotation = Quaternion(0.0034532, 0.00659531, -0.689901, 0.723865)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/position = Vector3(0.000198333, 10.6318, -7.99242e-05)
-bones/6/rotation = Quaternion(-0.00832844, 0.0596104, -0.577171, 0.814402)
+bones/6/rotation = Quaternion(-0.00583446, 0.0522656, -0.572509, 0.81821)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(-0.000309722, 19.8107, 9.89807e-05)
-bones/7/rotation = Quaternion(0.266356, -0.657357, -0.141624, 0.690565)
+bones/7/rotation = Quaternion(0.263626, -0.656867, -0.139824, 0.692442)
 bones/8/position = Vector3(6.08109e-05, 18.4529, -2.20622e-05)
 bones/8/rotation = Quaternion(0.111513, 0.878494, -0.125152, 0.447382)
 bones/9/position = Vector3(-1.22997, 8.21134, 0.541571)
@@ -630,9 +647,9 @@ bones/23/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(0.00345325, -0.00659526, 0.689901, 0.723865)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/position = Vector3(-0.000198306, 10.6318, -7.98023e-05)
-bones/25/rotation = Quaternion(-0.438774, 0.115482, 0.387707, 0.802386)
+bones/25/rotation = Quaternion(-0.435098, 0.124056, 0.392266, 0.800892)
 bones/26/position = Vector3(0.000312236, 19.8107, 9.91098e-05)
-bones/26/rotation = Quaternion(0.137364, 0.426387, 0.225104, 0.865247)
+bones/26/rotation = Quaternion(0.134732, 0.421282, 0.210715, 0.871761)
 bones/27/position = Vector3(-6.41432e-05, 18.4529, -2.19748e-05)
 bones/27/rotation = Quaternion(0.101894, -0.868841, 0.0345362, 0.48326)
 bones/27/scale = Vector3(1, 1, 1)
@@ -671,17 +688,17 @@ bones/41/scale = Vector3(1, 1, 1)
 bones/42/position = Vector3(-0.000187486, 2.81332, 0.000131497)
 bones/42/rotation = Quaternion(0.107196, -0.156159, -0.103579, 0.976419)
 bones/42/scale = Vector3(1, 1, 1)
-bones/43/rotation = Quaternion(0.135865, -1.3812e-09, 2.59358e-09, 0.990727)
+bones/43/rotation = Quaternion(0.148289, -1.38103e-09, 2.59327e-09, 0.988944)
 bones/44/position = Vector3(-4.26326e-14, 9.35612, 0.000141649)
 bones/44/rotation = Quaternion(-0.21385, -5.23804e-10, 1.16017e-09, 0.976867)
-bones/45/rotation = Quaternion(0.940115, 0.202832, -0.268796, -0.0528287)
-bones/46/rotation = Quaternion(0.217504, 0.241651, -0.0390272, 0.944867)
-bones/47/rotation = Quaternion(-0.428182, 0.0826678, 0.142942, 0.888478)
+bones/45/rotation = Quaternion(0.939244, 0.206734, -0.265806, -0.0665471)
+bones/46/rotation = Quaternion(0.194035, 0.234658, -0.0282715, 0.952096)
+bones/47/rotation = Quaternion(-0.417051, 0.0849671, 0.142719, 0.893577)
 bones/47/scale = Vector3(1, 1, 1)
-bones/49/rotation = Quaternion(0.848677, -0.305093, 0.281028, -0.328161)
-bones/50/rotation = Quaternion(0.231525, -0.400266, 0.0687514, 0.884)
+bones/49/rotation = Quaternion(0.847289, -0.306272, 0.279743, -0.331727)
+bones/50/rotation = Quaternion(0.222519, -0.398255, 0.0642582, 0.887552)
 bones/50/scale = Vector3(1, 1, 1)
-bones/51/rotation = Quaternion(-0.714773, 0.0308836, -0.0831796, 0.693705)
+bones/51/rotation = Quaternion(-0.704134, 0.0282866, -0.0844691, 0.704457)
 bones/51/scale = Vector3(1, 1, 1)
 
 [node name="arm_armor" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="0"]
@@ -713,7 +730,7 @@ material_overlay = ExtResource("22_6xa4v")
 material_overlay = ExtResource("22_6xa4v")
 
 [node name="sword" type="BoneAttachment3D" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="9"]
-transform = Transform3D(-0.704347, -0.554157, 0.443628, 0.406157, -0.827158, -0.388388, 0.582179, -0.0933772, 0.807681, -29.2286, 74.3988, -14.5819)
+transform = Transform3D(-0.704347, -0.554157, 0.443629, 0.412732, -0.828164, -0.379205, 0.577536, -0.0839925, 0.812032, -29.2285, 74.293, -14.5008)
 bone_name = "hand_r"
 bone_idx = 27
 

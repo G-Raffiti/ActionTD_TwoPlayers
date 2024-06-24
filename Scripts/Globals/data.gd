@@ -35,5 +35,7 @@ var EMPTY_TILES: Array = [0]
 
 # building types
 const ARROW_TOWER: TowerRes = preload("res://Resources/Towers/arrow_tower.tres")
+const BOMB_TOWER: TowerRes = preload("res://Resources/Towers/bomb_tower.tres")
+const FROST_TOWER: TowerRes = preload("res://Resources/Towers/frost_tower.tres")
 
 const TILE_SIZE: float = 1.0

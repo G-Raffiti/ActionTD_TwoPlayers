@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://d22c0rtgtkmt2"]
+
+[ext_resource type="Script" path="res://Scripts/TD/Towers/tower_frost.gd" id="1_bl54d"]
+[ext_resource type="ArrayMesh" uid="uid://k8io3kmvw5sd" path="res://_ Assets/_ 3D/Models/OBJ format/towerSquare_sampleB.obj" id="2_gih08"]
+[ext_resource type="ArrayMesh" uid="uid://bf4fykyqyjot6" path="res://_ Assets/_ 3D/Models/OBJ format/woodStructure.obj" id="3_bmidl"]
+[ext_resource type="ArrayMesh" uid="uid://bt33sxn502j8f" path="res://_ Assets/_ 3D/Models/OBJ format/woodStructure_high.obj" id="4_1jmo0"]
+[ext_resource type="Script" path="res://Scenes/PackedScenes/towers/hurtbox.gd" id="5_afnhg"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5ou6q"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Mesh:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Mesh/RotationPart:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="Animation" id="Animation_po376"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_iepl1"]
+resource_name = "load"
+length = 0.3
+step = 0.2
+
+[sub_resource type="Animation" id="Animation_utibp"]
+resource_name = "shoot"
+length = 0.35
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_reva5"]
+_data = {
+"RESET": SubResource("Animation_po376"),
+"load": SubResource("Animation_iepl1"),
+"shoot": SubResource("Animation_utibp")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kj1fv"]
+radius = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0s12n"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.380392)
+
+[sub_resource type="SphereMesh" id="SphereMesh_m6xwb"]
+material = SubResource("StandardMaterial3D_0s12n")
+radius = 3.0
+height = 6.0
+radial_segments = 32
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbpyl"]
+size = Vector3(0.9104, 1.03162, 0.891663)
+
+[node name="TowerFrost" type="Node3D"]
+script = ExtResource("1_bl54d")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5ou6q")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -1.9, 0)
+mesh = ExtResource("2_gih08")
+
+[node name="Construction" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = ExtResource("3_bmidl")
+
+[node name="Construction2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = ExtResource("4_1jmo0")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_reva5")
+}
+
+[node name="AttackRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+shape = SubResource("SphereShape3D_kj1fv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_m6xwb")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/towers/projectile.tscn")
+spawn_path = NodePath("..")
+
+[node name="HurtBox" type="Area3D" parent="." node_paths=PackedStringArray("killable")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("5_afnhg")
+killable = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0101318, 0.501648, 0.0122986)
+shape = SubResource("BoxShape3D_lbpyl")

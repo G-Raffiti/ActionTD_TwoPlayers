@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="TowerRes" load_steps=7 format=3 uid="uid://b4bgah8odl5tp"]
+
+[ext_resource type="PackedScene" uid="uid://d22c0rtgtkmt2" path="res://Scenes/PackedScenes/towers/tower_frost.tscn" id="1_8b4yj"]
+[ext_resource type="PackedScene" uid="uid://bbig5ab5l4v3m" path="res://Scenes/PackedScenes/towers/projectile.tscn" id="2_swofa"]
+[ext_resource type="Script" path="res://Scripts/TD/Towers/res_tower.gd" id="3_4xhkq"]
+[ext_resource type="Resource" uid="uid://b85vjxnbinuik" path="res://Resources/Projectiles/projectile_stats_1.tres" id="4_pplik"]
+[ext_resource type="Script" path="res://Scripts/TD/Towers/res_tower_stats.gd" id="5_o5sen"]
+
+[sub_resource type="Resource" id="Resource_tyd2f"]
+script = ExtResource("5_o5sen")
+attack_range = 9
+attack_speed = 1.0
+projectile_count = 2
+spread_angle = 0.0
+projectile_deleay = 0.0
+sequence_total_angle = 15
+projectile_stats = ExtResource("4_pplik")
+hp = 70
+
+[resource]
+script = ExtResource("3_4xhkq")
+packed_scene = ExtResource("1_8b4yj")
+type = 0
+cost = 10
+tower_stats = SubResource("Resource_tyd2f")
+projectile_ps = ExtResource("2_swofa")

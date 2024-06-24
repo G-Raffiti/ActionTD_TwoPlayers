@@ -53,3 +53,9 @@ func _gain_experience(experience_amount: int, _killer_id: int) -> void:
 		
 func _on_arrow_tower_pressed() -> void:
 	SignalBus.on_try_to_select_tower_to_build.emit(Data.ARROW_TOWER)
+	
+func _on_bomb_tower_pressed() -> void:
+	SignalBus.on_try_to_select_tower_to_build.emit(Data.BOMB_TOWER)
+
+func _on_frost_tower_btn_pressed() -> void:
+	SignalBus.on_try_to_select_tower_to_build.emit(Data.FROST_TOWER)

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cacunibc68jpq"]
+
+[ext_resource type="Script" path="res://Scripts/TD/Towers/projectile.gd" id="1_ilr0o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a20l0"]
+radius = 0.665932
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wsgnw"]
+size = Vector3(0.2, 0.2, 0.05)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b1xe8"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wx75l"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qcq2b"]
+
+[node name="Projectile" type="Area3D"]
+top_level = true
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_ilr0o")
+
+[node name="ExplosionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 34
+
+[node name="ExplosionCollisionShape" type="CollisionShape3D" parent="ExplosionArea"]
+shape = SubResource("SphereShape3D_a20l0")
+
+[node name="ProjectileCollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wsgnw")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_b1xe8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_wx75l")
+mesh = SubResource("SphereMesh_qcq2b")
