@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MobRes" load_steps=8 format=3 uid="uid://dic8hwq0xirec"]
+
+[ext_resource type="Texture2D" uid="uid://cqrf55pb4c4wg" path="res://addons/levelmanager/icons/CurveInOut.svg" id="1_8qos2"]
+[ext_resource type="PackedScene" uid="uid://bxi3n7rn6nn7o" path="res://Scenes/PackedScenes/mobs/mob_shooter.tscn" id="2_8hh24"]
+[ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy.gd" id="3_rujnx"]
+[ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy_stats.gd" id="4_4fd5m"]
+[ext_resource type="PackedScene" uid="uid://dyw583s6dfkt4" path="res://Scenes/PackedScenes/towers/projectile_ennemies.tscn" id="4_78i3p"]
+[ext_resource type="Resource" uid="uid://b85vjxnbinuik" path="res://Resources/Projectiles/projectile_stats_1.tres" id="5_83dok"]
+
+[sub_resource type="Resource" id="Resource_r4nnj"]
+script = ExtResource("4_4fd5m")
+max_hp = 3
+damage = 1
+speed = 0.4
+acceleration = 5.0
+detection_radius = 5.0
+max_distance_from_path = 5.0
+attack_radius = 3.0
+attack_damage = 1.0
+attack_speed = 1.0
+gold_value = 1
+experience_value = 1
+projectile_ps = ExtResource("4_78i3p")
+projectile_stats = ExtResource("5_83dok")
+
+[resource]
+script = ExtResource("3_rujnx")
+name = "flying"
+icon = ExtResource("1_8qos2")
+mob_ps = ExtResource("2_8hh24")
+stats = SubResource("Resource_r4nnj")

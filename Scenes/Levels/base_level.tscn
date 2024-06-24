@@ -11,11 +11,11 @@
 [ext_resource type="Script" path="res://Scripts/TD/Services/resource_manager.gd" id="10_ly1rj"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_wave.gd" id="10_w6khm"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_mob_group.gd" id="11_35c8t"]
+[ext_resource type="Resource" uid="uid://dic8hwq0xirec" path="res://Resources/MOBs/mob_type_3.tres" id="11_i14v1"]
 [ext_resource type="PackedScene" uid="uid://p11rsad2ye30" path="res://UserInterface/Nodes/ui_text_box.tscn" id="11_iesvg"]
 [ext_resource type="Script" path="res://Scripts/TD/UI/shop.gd" id="11_u4hqt"]
 [ext_resource type="PackedScene" uid="uid://bebxclus3je58" path="res://UserInterface/Nodes/button.tscn" id="12_mwrmj"]
 [ext_resource type="Resource" uid="uid://bqdxx01mqrid1" path="res://Resources/MOBs/mob_type_1.tres" id="12_rxvy3"]
-[ext_resource type="Resource" uid="uid://dbih7bbhl4m1u" path="res://Resources/MOBs/mob_type_2.tres" id="13_2nhex"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_troop.gd" id="13_8qb4s"]
 [ext_resource type="Texture2D" uid="uid://cr586dnmunb5p" path="res://_ Assets/_ 3D/Side/towerRound_sampleF.png" id="13_llx16"]
 [ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="15_ippra"]
@@ -101,7 +101,7 @@ point_count = 2
 
 [sub_resource type="Resource" id="Resource_ah04i"]
 script = ExtResource("11_35c8t")
-type = ExtResource("12_rxvy3")
+type = ExtResource("11_i14v1")
 amount = 1
 
 [sub_resource type="Resource" id="Resource_j4kvn"]
@@ -110,12 +110,12 @@ groups = Array[ExtResource("11_35c8t")]([SubResource("Resource_ah04i")])
 
 [sub_resource type="Resource" id="Resource_jmm1f"]
 script = ExtResource("11_35c8t")
-type = ExtResource("13_2nhex")
+type = ExtResource("11_i14v1")
 amount = 5
 
 [sub_resource type="Resource" id="Resource_8s1gn"]
 script = ExtResource("11_35c8t")
-type = ExtResource("13_2nhex")
+type = ExtResource("11_i14v1")
 amount = 5
 
 [sub_resource type="Resource" id="Resource_81xkp"]
