@@ -6,6 +6,7 @@ class_name MobStats
 @export var speed: float
 @export var acceleration: float
 @export var detection_radius: float
+@export var max_distance_from_path: float
 @export var attack_radius: float
 @export var attack_damage: float
 @export var attack_speed: float

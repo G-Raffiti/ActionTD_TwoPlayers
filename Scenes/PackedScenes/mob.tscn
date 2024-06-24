@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://750cm2b1mvpo"]
+[gd_scene load_steps=16 format=3 uid="uid://750cm2b1mvpo"]
 
 [ext_resource type="Script" path="res://Scripts/EnemySM/mob_behaviour.gd" id="1_ppov5"]
 [ext_resource type="Material" uid="uid://budc1a0ek1y7a" path="res://Resources/Materials/blink.tres" id="2_pwrra"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/EnemySM/FollowPath.gd" id="3_0mxdn"]
 [ext_resource type="Script" path="res://Scripts/EnemySM/Idle.gd" id="4_ktjrf"]
 [ext_resource type="Script" path="res://Scripts/EnemySM/FollowTarget.gd" id="5_a13vm"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/ReturnToPath.gd" id="7_rx7v5"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6vhoc"]
 properties/0/path = NodePath(".:global_position")
@@ -16,7 +17,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a01db"]
-size = Vector3(0.761536, 1.3577, 0.736862)
+size = Vector3(0.761536, 2.63116, 0.736862)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwkop"]
 albedo_color = Color(1, 0.384314, 0, 1)
@@ -33,7 +34,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/path = NodePath("Node3D/MeshInstance3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +46,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/path = NodePath("Node3D/MeshInstance3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -57,7 +58,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D/MeshInstance3D3:surface_material_override/0:albedo_color")
+tracks/2/path = NodePath("Node3D/MeshInstance3D/MeshInstance3D3:surface_material_override/0:albedo_color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -74,7 +75,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/path = NodePath("Node3D/MeshInstance3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -86,7 +87,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/path = NodePath("Node3D/MeshInstance3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -98,7 +99,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D/MeshInstance3D3:surface_material_override/0:albedo_color")
+tracks/2/path = NodePath("Node3D/MeshInstance3D/MeshInstance3D3:surface_material_override/0:albedo_color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -115,7 +116,7 @@ _data = {
 }
 
 [node name="EnemyBody" type="CharacterBody3D" groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.706684, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 collision_layer = 2
 script = ExtResource("1_ppov5")
 
@@ -123,23 +124,26 @@ script = ExtResource("1_ppov5")
 replication_config = SubResource("SceneReplicationConfig_6vhoc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 1.49012e-08, 0, 1, 0.00656128, 0.0666097, 0.00621795)
+transform = Transform3D(0.5, 0, -7.4506e-09, 0, 0.5, 0, 7.4506e-09, 0, 0.5, 0, -0.13884, 0)
 shape = SubResource("BoxShape3D_a01db")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0.0279273, 0)
 mesh = SubResource("CapsuleMesh_o2dea")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D/MeshInstance3D"]
 transform = Transform3D(0.494, 0, 0, 0, -8.65485e-09, -0.493, -7.36119e-09, 0.198, -2.15497e-08, 0, 0.411999, -0.152843)
 mesh = SubResource("CapsuleMesh_3dr6i")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/MeshInstance3D"]
 transform = Transform3D(1, 0, 1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_o2dea")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 surface_material_override/0 = ExtResource("2_pwrra")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -171,4 +175,8 @@ script = ExtResource("4_ktjrf")
 
 [node name="FollowTarget" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("5_a13vm")
+parent = NodePath("..")
+
+[node name="ReturnToPath" type="Node" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("7_rx7v5")
 parent = NodePath("..")
