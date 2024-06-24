@@ -4,6 +4,10 @@ extends Node
 
 var action_player : Player
 
+func get_action_player() -> Player:
+	if is_instance_valid(action_player):
+		return action_player
+	return null
 
 func erase_data():
 	pass

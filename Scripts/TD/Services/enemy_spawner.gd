@@ -62,7 +62,7 @@ func spawn_next_mob_group() -> void:
 		group.amount, 
 		group_stat_multi,
 		group_gold_value,
-		PlayerData.action_player)
+		PlayerData.get_action_player())
 	mob_spawned += group.amount
 
 func increase_indexes() -> void:
