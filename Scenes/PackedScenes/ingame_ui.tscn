@@ -36,12 +36,15 @@ action_UI = NodePath("PanelContainerAction")
 TD_UI = NodePath("PanelContainerTD")
 
 [node name="PanelContainerAction" type="PanelContainer" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -30.0
-offset_right = 278.0
-grow_vertical = 0
+offset_top = 594.0
+offset_right = -715.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 script = ExtResource("2_tt3os")
 
 [node name="VBoxAction" type="VBoxContainer" parent="PanelContainerAction"]
@@ -52,15 +55,17 @@ layout_mode = 2
 alignment = 1
 
 [node name="Gold" parent="PanelContainerAction/VBoxAction/Resources" instance=ExtResource("3_lql1k")]
-custom_minimum_size = Vector2(96.3, 30.9)
+custom_minimum_size = Vector2(171.6, 61.5)
 layout_mode = 2
 text = "Gold: 0"
+font_size = 150
 scale_minimum = 0.3
 
 [node name="Life" parent="PanelContainerAction/VBoxAction/Resources" instance=ExtResource("3_lql1k")]
-custom_minimum_size = Vector2(165.6, 30.9)
+custom_minimum_size = Vector2(310.5, 61.5)
 layout_mode = 2
 text = "Health: 10/10"
+font_size = 150
 scale_minimum = 0.3
 
 [node name="Levels" type="HBoxContainer" parent="PanelContainerAction/VBoxAction"]
@@ -68,16 +73,18 @@ layout_mode = 2
 alignment = 1
 
 [node name="Level" parent="PanelContainerAction/VBoxAction/Levels" instance=ExtResource("3_lql1k")]
-custom_minimum_size = Vector2(102.3, 30.9)
+custom_minimum_size = Vector2(183.3, 61.5)
 layout_mode = 2
 text = "Level: 1
 "
+font_size = 150
 scale_minimum = 0.3
 
 [node name="Experience" parent="PanelContainerAction/VBoxAction/Levels" instance=ExtResource("3_lql1k")]
-custom_minimum_size = Vector2(199.5, 30.9)
+custom_minimum_size = Vector2(378.3, 61.5)
 layout_mode = 2
 text = "Experience: 0/10"
+font_size = 150
 scale_minimum = 0.3
 
 [node name="PanelContainerTD" type="PanelContainer" parent="."]
@@ -86,8 +93,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -302.0
-offset_top = -137.0
+offset_left = -762.0
+offset_top = -239.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("4_fehnd")
@@ -99,21 +106,24 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Gold" parent="PanelContainerTD/VBoxTD/Resources" instance=ExtResource("3_lql1k")]
-custom_minimum_size = Vector2(109.2, 30.9)
+custom_minimum_size = Vector2(197.4, 61.5)
 layout_mode = 2
 text = "Gold: 10"
+font_size = 150
 scale_minimum = 0.3
 
 [node name="Building" parent="PanelContainerTD/VBoxTD/Resources" instance=ExtResource("3_lql1k")]
-custom_minimum_size = Vector2(168, 30.9)
+custom_minimum_size = Vector2(313.5, 61.5)
 layout_mode = 2
 text = "Buildings: 0/5"
+font_size = 150
 scale_minimum = 0.3
 
 [node name="Life" parent="PanelContainerTD/VBoxTD/Resources" instance=ExtResource("3_lql1k")]
-custom_minimum_size = Vector2(132.9, 30.9)
+custom_minimum_size = Vector2(244.8, 61.5)
 layout_mode = 2
 text = "Life: 10/10"
+font_size = 150
 scale_minimum = 0.3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainerTD/VBoxTD"]
@@ -121,30 +131,30 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="ArrowTowerBtn" parent="PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("5_pi2q8")]
-custom_minimum_size = Vector2(286.2, 54.9)
+custom_minimum_size = Vector2(541.2, 85.5)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
+font_size = 150
 icon = ExtResource("6_pwajp")
 icon_alignment = 2
 
 [node name="Button2" parent="PanelContainerTD/VBoxTD/VBoxContainer" instance=ExtResource("5_pi2q8")]
-custom_minimum_size = Vector2(286.2, 54.9)
+custom_minimum_size = Vector2(541.2, 85.5)
 layout_mode = 2
 text = "Arrow Tower (5 gold) "
+font_size = 150
 icon = ExtResource("6_pwajp")
 icon_alignment = 2
 
 [node name="Lobby" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -123.5
-offset_top = -33.5
-offset_right = 123.5
-offset_bottom = 33.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 194.0
+offset_top = 126.0
+offset_right = -135.0
+offset_bottom = -532.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
