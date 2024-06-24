@@ -59,7 +59,7 @@ func spawn_next_mob_group() -> void:
 	var group: MobGroupRes = level.waves[wave_index].troops[troop_index].groups[group_index]
 	mob_group.spawn_mobs_group(
 		group.type, 
-		group.amount, 
+		group.amount,
 		group_stat_multi,
 		group_gold_value,
 		PlayerData.get_action_player())
