@@ -21,8 +21,8 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("primary_fire"):
 		primary_fire.rpc()
 	
-	movement_direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	movement_direction.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	movement_direction.x = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
+	movement_direction.z = Input.get_action_strength("move_up") - Input.get_action_strength("move_down")
 	
 	if is_movement_ongoing():
 		if Input.is_action_just_pressed("sprint"):
