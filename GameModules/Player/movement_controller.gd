@@ -8,8 +8,8 @@ class_name MovementController
 var jump_gravity : float = fall_gravity
 var direction : Vector3
 var velocity : Vector3
-var acceleration : float
 var speed : float
+var acceleration : float
 var cam_rotation : float = 0
 var player_init_rotation : float
 var dash_timer : Timer
@@ -93,7 +93,7 @@ func _on_set_movement_state(_movement_state : MovementState):
 	if player.is_attacking:
 		return
 	
-	speed = _movement_state.movement_speed
+	speed = player.player_stats.speed * _movement_state.movement_speed
 	acceleration =  _movement_state.acceleration
 
 

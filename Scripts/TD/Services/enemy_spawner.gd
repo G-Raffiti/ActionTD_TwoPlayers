@@ -5,7 +5,8 @@ extends Node
 @export_category('dependencies')
 @export var path: Array[Path3D]
 @export var level: LevelRes
-@export var action_player: Player
+
+var action_player: Player
 
 var interval: float = 1.0
 var time = 0.0

@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_wyuki")
 animation_name = "air_jump"
-jump_height = 2.5
+jump_height = 0.5
 apex_duration = 0.4
