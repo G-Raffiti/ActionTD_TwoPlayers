@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bgr674mp3kaql"]
+[gd_scene load_steps=48 format=3 uid="uid://bgr674mp3kaql"]
 
 [ext_resource type="MeshLibrary" uid="uid://7ta7tlnmxwvb" path="res://Resources/MeshLibraries/BlockoutLibrary.tres" id="1_txan8"]
 [ext_resource type="PackedScene" uid="uid://cycobtcw7dh0w" path="res://Scenes/PackedScenes/base.tscn" id="3_o8rbg"]
@@ -72,6 +72,13 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 12
+
+[sub_resource type="Curve3D" id="Curve3D_2nhpf"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_olp16"]
 min_value = 1.0
@@ -258,6 +265,13 @@ curve = SubResource("Curve3D_iad2c")
 _spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
 spawn_path = NodePath("..")
 
+[node name="Path3D5" type="Path3D" parent="Navigation/Paths"]
+curve = SubResource("Curve3D_2nhpf")
+
+[node name="EnemiesMultiplayerSpawner4" type="MultiplayerSpawner" parent="Navigation/Paths/Path3D5"]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob_group.tscn")
+spawn_path = NodePath("..")
+
 [node name="Base" parent="." instance=ExtResource("3_o8rbg")]
 transform = Transform3D(1.56, 0, 0, 0, 1.56, 0, 0, 0, 1.56, -0.418002, 0.17, -0.371557)
 hp_max = 100
@@ -272,7 +286,7 @@ building_grid = NodePath("../../Navigation/GridMapBuilding")
 
 [node name="EnemySpawner" type="Node" parent="Service" node_paths=PackedStringArray("path")]
 script = ExtResource("9_7d2ws")
-path = [NodePath("../../Navigation/Paths/Path3D"), NodePath("../../Navigation/Paths/Path3D2"), NodePath("../../Navigation/Paths/Path3D3"), NodePath("../../Navigation/Paths/Path3D4")]
+path = [NodePath("../../Navigation/Paths/Path3D"), NodePath("../../Navigation/Paths/Path3D2"), NodePath("../../Navigation/Paths/Path3D3"), NodePath("../../Navigation/Paths/Path3D4"), NodePath("../../Navigation/Paths/Path3D5")]
 level = SubResource("Resource_hc07m")
 
 [node name="ResourceManager" type="Node" parent="Service"]

@@ -4,17 +4,14 @@ extends StateMachineState
 
 # Called when the state machine enters this state.
 func on_enter():
-	print("enter follow path")
-	parent.nav_agent.target_position = parent.target.global_position
+	print("enter straight path")
 
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
 	var direction :Vector3 = Vector3.ZERO
 	
-	parent.nav_agent.target_position = parent.target.global_position
-	
-	direction = parent.nav_agent.get_next_path_position() - parent.global_position
+	direction = parent.target.global_position - parent.global_position
 	direction = direction.normalized()
 	direction.y = 0
 	
