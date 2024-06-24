@@ -33,6 +33,5 @@ func on_input(_event: InputEvent):
 
 # Called when the state machine exits this state.
 func on_exit():
-	parent.last_nav_position = parent.global_position
 	pass
 
