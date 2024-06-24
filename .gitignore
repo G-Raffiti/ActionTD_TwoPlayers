@@ -13,9 +13,3 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
-
-Resources/MeshLibraries/BlockoutLibrary.tres
-
-Resources/MeshLibraries/interactions__mesh_library.tres
-
-Resources/MeshLibraries/towers_library.tres

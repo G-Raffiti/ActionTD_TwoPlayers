@@ -169,3 +169,5 @@ upright={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/ssao/quality=0
+environment/ssil/quality=0
