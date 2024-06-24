@@ -15,6 +15,7 @@ spread_angle = 0.0
 projectile_deleay = 0.0
 sequence_total_angle = 15
 projectile_stats = ExtResource("4_lgkdd")
+hp = 70
 
 [resource]
 script = ExtResource("2_15pt8")

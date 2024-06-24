@@ -21,6 +21,7 @@ var unit_in_range: Array[Node3D] = []
 var target: Node3D
 var target_type: targeting = targeting.FIRST
 var loaded: bool = false
+var is_dying: bool = false
 
 func build_tower(in_tower_res: TowerRes):
 	print(str(multiplayer.get_unique_id(), 'Tower ready'))
@@ -59,6 +60,7 @@ func _on_unit_exit_range(unit: Node3D) -> void:
 
 func shoot():
 	if not multiplayer.is_server(): return
+	if is_dying: return
 	randomize()
 	if target == null:
 		return
@@ -166,7 +168,12 @@ func find_strongest_target() -> Node3D:
 	return new_target
 
 func die(_damage_dealer_id = -1):
+	is_dying = true
+	queue_free()
 	pass
 
-func take_damage(_damage, _damage_dealer_id = -1):
-	pass
+func take_damage(damage, damage_dealer_id = -1):
+	if is_dying: return
+	stats.hp -= damage
+	if stats.hp <= 0:
+		die(damage_dealer_id)

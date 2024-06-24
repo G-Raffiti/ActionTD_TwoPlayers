@@ -9,3 +9,4 @@ class_name TowerStats
 @export var projectile_deleay: float       = 0
 @export var sequence_total_angle: int   = 0
 @export var projectile_stats: ProjectileStats = null
+@export var hp: int

@@ -180,6 +180,7 @@ zoom_-={
 3d_physics/layer_3="Player"
 3d_physics/layer_4="Base"
 3d_physics/layer_5="Tower"
+3d_physics/layer_6="Flying Enemies"
 
 [rendering]
 

@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b51pekfyupiv4" path="res://_ Assets/_ 3D/Models/OBJ format/towerRound_sampleC.obj" id="2_vliqp"]
 [ext_resource type="ArrayMesh" uid="uid://bf4fykyqyjot6" path="res://_ Assets/_ 3D/Models/OBJ format/woodStructure.obj" id="3_07ls6"]
 [ext_resource type="ArrayMesh" uid="uid://bt33sxn502j8f" path="res://_ Assets/_ 3D/Models/OBJ format/woodStructure_high.obj" id="4_ym3wm"]
-[ext_resource type="Script" path="res://Scenes/PackedScenes/towers/hurtbox.gd" id="5_2t8yv"]
+[ext_resource type="Script" path="res://Scenes/PackedScenes/towers/hurtbox.gd" id="5_6m71d"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5ou6q"]
 properties/0/path = NodePath(".:position")
@@ -350,7 +350,7 @@ spawn_path = NodePath("..")
 [node name="HurtBox" type="Area3D" parent="." node_paths=PackedStringArray("killable")]
 collision_layer = 16
 collision_mask = 0
-script = ExtResource("5_2t8yv")
+script = ExtResource("5_6m71d")
 killable = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
