@@ -577,19 +577,19 @@ higher_stances = [NodePath("../upright"), NodePath("../stealth"), NodePath("../c
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="MeshRoot/godot_chan_4/Godot_Chan" index="0"]
-bones/0/position = Vector3(-1.6565e-08, -4.33865, -7.8698)
+bones/0/position = Vector3(3.0914e-09, -4.63507, -7.8698)
 bones/1/rotation = Quaternion(0.652857, 0.271621, 0.652857, -0.271621)
-bones/2/rotation = Quaternion(0.598605, -2.96516e-10, 1.97936e-08, 0.801044)
+bones/2/rotation = Quaternion(0.604657, 2.53585e-11, 1.96883e-08, 0.796486)
 bones/3/position = Vector3(3.48513e-14, 5.69654, -0.000103159)
-bones/3/rotation = Quaternion(-0.114843, -6.02048e-10, 1.68027e-09, 0.993384)
-bones/4/rotation = Quaternion(-0.0417863, 2.42519e-09, -2.66618e-09, 0.999127)
+bones/3/rotation = Quaternion(-0.112445, -5.60254e-10, 1.58404e-09, 0.993658)
+bones/4/rotation = Quaternion(-0.0357411, 2.52435e-09, -2.80028e-09, 0.999361)
 bones/5/rotation = Quaternion(0.0034532, 0.00659531, -0.689901, 0.723865)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/position = Vector3(0.000198333, 10.6318, -7.99242e-05)
-bones/6/rotation = Quaternion(-0.00832844, 0.0596104, -0.577171, 0.814402)
+bones/6/rotation = Quaternion(-0.0149864, 0.0792016, -0.589351, 0.803846)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(-0.000309722, 19.8107, 9.89807e-05)
-bones/7/rotation = Quaternion(0.266356, -0.657357, -0.141624, 0.690565)
+bones/7/rotation = Quaternion(0.273779, -0.658641, -0.14652, 0.685396)
 bones/8/position = Vector3(6.08109e-05, 18.4529, -2.20622e-05)
 bones/8/rotation = Quaternion(0.111513, 0.878494, -0.125152, 0.447382)
 bones/9/position = Vector3(-1.22997, 8.21134, 0.541571)
@@ -630,9 +630,9 @@ bones/23/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(0.00345325, -0.00659526, 0.689901, 0.723865)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/position = Vector3(-0.000198306, 10.6318, -7.98023e-05)
-bones/25/rotation = Quaternion(-0.438774, 0.115482, 0.387707, 0.802386)
+bones/25/rotation = Quaternion(-0.447947, 0.0935223, 0.37587, 0.805803)
 bones/26/position = Vector3(0.000312236, 19.8107, 9.91098e-05)
-bones/26/rotation = Quaternion(0.137364, 0.426387, 0.225104, 0.865247)
+bones/26/rotation = Quaternion(0.143865, 0.438793, 0.261309, 0.847633)
 bones/27/position = Vector3(-6.41432e-05, 18.4529, -2.19748e-05)
 bones/27/rotation = Quaternion(0.101894, -0.868841, 0.0345362, 0.48326)
 bones/27/scale = Vector3(1, 1, 1)
@@ -671,17 +671,17 @@ bones/41/scale = Vector3(1, 1, 1)
 bones/42/position = Vector3(-0.000187486, 2.81332, 0.000131497)
 bones/42/rotation = Quaternion(0.107196, -0.156159, -0.103579, 0.976419)
 bones/42/scale = Vector3(1, 1, 1)
-bones/43/rotation = Quaternion(0.135865, -1.3812e-09, 2.59358e-09, 0.990727)
+bones/43/rotation = Quaternion(0.117245, -1.64906e-09, 3.07211e-09, 0.993103)
 bones/44/position = Vector3(-4.26326e-14, 9.35612, 0.000141649)
 bones/44/rotation = Quaternion(-0.21385, -5.23804e-10, 1.16017e-09, 0.976867)
-bones/45/rotation = Quaternion(0.940115, 0.202832, -0.268796, -0.0528287)
-bones/46/rotation = Quaternion(0.217504, 0.241651, -0.0390272, 0.944867)
-bones/47/rotation = Quaternion(-0.428182, 0.0826678, 0.142942, 0.888478)
+bones/45/rotation = Quaternion(0.940669, 0.199671, -0.271152, -0.0418198)
+bones/46/rotation = Quaternion(0.236143, 0.247108, -0.0476032, 0.938567)
+bones/47/rotation = Quaternion(-0.437181, 0.0807895, 0.143106, 0.884232)
 bones/47/scale = Vector3(1, 1, 1)
-bones/49/rotation = Quaternion(0.848677, -0.305093, 0.281028, -0.328161)
-bones/50/rotation = Quaternion(0.231525, -0.400266, 0.0687514, 0.884)
+bones/49/rotation = Quaternion(0.849744, -0.304173, 0.282023, -0.325387)
+bones/50/rotation = Quaternion(0.238815, -0.401864, 0.072393, 0.88104)
 bones/50/scale = Vector3(1, 1, 1)
-bones/51/rotation = Quaternion(-0.714773, 0.0308836, -0.0831796, 0.693705)
+bones/51/rotation = Quaternion(-0.72323, 0.0329728, -0.0821252, 0.684914)
 bones/51/scale = Vector3(1, 1, 1)
 
 [node name="arm_armor" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="0"]
@@ -713,7 +713,7 @@ material_overlay = ExtResource("22_6xa4v")
 material_overlay = ExtResource("22_6xa4v")
 
 [node name="sword" type="BoneAttachment3D" parent="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D" index="9"]
-transform = Transform3D(-0.704347, -0.554157, 0.443628, 0.406157, -0.827158, -0.388388, 0.582179, -0.0933772, 0.807681, -29.2286, 74.3988, -14.5819)
+transform = Transform3D(-0.704347, -0.554156, 0.443629, 0.405915, -0.82712, -0.388723, 0.582347, -0.0937203, 0.807519, -29.2285, 75.071, -14.6893)
 bone_name = "hand_r"
 bone_idx = 27
 
@@ -921,7 +921,7 @@ spawn_path = NodePath("..")
 [connection signal="pressed_jump" from="." to="AnimationController" method="_jump"]
 [connection signal="pressed_primary_fire" from="." to="ActiveSkillController" method="_on_pressed_primary_fire"]
 [connection signal="pressed_secondary_fire" from="." to="." method="_on_pressed_secondary_fire"]
-[connection signal="body_entered" from="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/sword/sword" to="." method="_on_hit_entered"]
+[connection signal="area_entered" from="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/sword/sword" to="." method="_on_sword_area_entered"]
 [connection signal="tree_entered" from="MeshRoot/godot_chan_4/Godot_Chan/Skeleton3D/sword/SkillsContainer/ActiveSkill_1" to="." method="_on_active_skill_1_tree_entered"]
 [connection signal="set_cam_rotation" from="CamRoot" to="MovementController" method="_on_set_cam_rotation"]
 

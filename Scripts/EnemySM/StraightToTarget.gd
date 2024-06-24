@@ -10,7 +10,7 @@ func _ready():
 
 # Called when the state machine enters this state.
 func on_enter():
-	print("enter straight path")
+	pass
 
 
 # Called every physics frame when this state is active.

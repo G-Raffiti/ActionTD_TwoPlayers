@@ -1,11 +1,9 @@
-[gd_resource type="Resource" script_class="MobRes" load_steps=8 format=3 uid="uid://bqdxx01mqrid1"]
+[gd_resource type="Resource" script_class="MobRes" load_steps=6 format=3 uid="uid://bqdxx01mqrid1"]
 
 [ext_resource type="Texture2D" uid="uid://cqrf55pb4c4wg" path="res://addons/levelmanager/icons/CurveInOut.svg" id="1_483xe"]
 [ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy.gd" id="1_as26w"]
 [ext_resource type="PackedScene" uid="uid://750cm2b1mvpo" path="res://Scenes/PackedScenes/mob.tscn" id="2_u82hf"]
-[ext_resource type="PackedScene" uid="uid://dyw583s6dfkt4" path="res://Scenes/PackedScenes/towers/projectile_ennemies.tscn" id="4_oxjsc"]
 [ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy_stats.gd" id="4_x3lee"]
-[ext_resource type="Resource" uid="uid://b85vjxnbinuik" path="res://Resources/Projectiles/projectile_stats_1.tres" id="5_u8gm6"]
 
 [sub_resource type="Resource" id="Resource_r4nnj"]
 script = ExtResource("4_x3lee")
@@ -20,8 +18,6 @@ attack_damage = 1.0
 attack_speed = 1.0
 gold_value = 1
 experience_value = 1
-projectile_ps = ExtResource("4_oxjsc")
-projectile_stats = ExtResource("5_u8gm6")
 
 [resource]
 script = ExtResource("1_as26w")

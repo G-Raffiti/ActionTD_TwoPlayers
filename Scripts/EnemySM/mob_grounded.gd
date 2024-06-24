@@ -93,3 +93,15 @@ func set_action_player(player : Player):
 
 func _on_velocity_computed(in_velocity: Vector3) -> void:
 	velocity = in_velocity
+
+
+func _on_hit_box_player_area_entered(area):
+	if area.has_method("take_damage"):
+		area.take_damage(stats.attack_damage)
+
+
+func _on_hit_box_base_area_entered(area):
+	if area.has_method("take_damage"):
+		print(area)
+		area.take_damage(stats.attack_damage)
+		die()

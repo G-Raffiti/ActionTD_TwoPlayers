@@ -194,11 +194,7 @@ func take_damage(in_damage: float, _damage_dealer_id = -1) -> void:
 @rpc("call_local")
 func blink():
 	$hit_animation_player.play('hit')
-
-func _on_hit_entered(body):
-	if 'implements' in body and body.implements.has(I.Killable):
-		body.take_damage(player_stats.attack, player_id)
-		
+	
 @rpc("call_local")
 func gain_experience_rpc(experience_amount: int):
 	if not multiplayer.is_server():
@@ -222,3 +218,8 @@ func check_level_up(level_data : PlayerLevelData) :
 @rpc("any_peer", "call_local")
 func on_spawned():
 	PlayerData.action_player = self
+
+
+func _on_sword_area_entered(area):
+	if 'implements' in area and area.implements.has(I.Killable):
+		area.take_damage(player_stats.attack, player_id)

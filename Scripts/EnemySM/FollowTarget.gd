@@ -4,7 +4,6 @@ extends StateMachineState
 
 # Called when the state machine enters this state.
 func on_enter():
-	print("enter follow player")
 	if is_instance_valid(parent.action_player):
 		parent.nav_agent.target_position = parent.action_player.global_position
 

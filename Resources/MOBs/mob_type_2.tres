@@ -11,7 +11,7 @@
 script = ExtResource("4_1fj0g")
 max_hp = 3
 damage = 1
-speed = 0.4
+speed = 1.0
 acceleration = 5.0
 detection_radius = 5.0
 max_distance_from_path = 5.0

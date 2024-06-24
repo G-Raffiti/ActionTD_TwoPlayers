@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/ActionPlayer/res_player_data.gd" id="1_81obb"]
 [ext_resource type="Script" path="res://Scripts/ActionPlayer/res_player_level_data.gd" id="1_q2vbd"]
-[ext_resource type="PackedScene" uid="uid://bbig5ab5l4v3m" path="res://Scenes/PackedScenes/towers/projectile.tscn" id="2_he6er"]
-[ext_resource type="Resource" uid="uid://b85vjxnbinuik" path="res://Resources/Projectiles/projectile_stats_1.tres" id="3_5mlk7"]
+[ext_resource type="PackedScene" uid="uid://bbig5ab5l4v3m" path="res://Scenes/PackedScenes/towers/projectile.tscn" id="2_ash2y"]
+[ext_resource type="Resource" uid="uid://b85vjxnbinuik" path="res://Resources/Projectiles/projectile_stats_1.tres" id="3_flf8p"]
 
 [sub_resource type="Resource" id="Resource_cjjjt"]
 script = ExtResource("1_q2vbd")
@@ -24,7 +24,7 @@ attack = 1.0
 max_air_jump = 1
 levels_data = Array[ExtResource("1_q2vbd")]([SubResource("Resource_cjjjt"), SubResource("Resource_j0002"), SubResource("Resource_05vb6")])
 speed = 0.5
-distance_attack_range = 5.0
+distance_attack_range = 1.0
 distance_attack_cooldown = 1.0
-projectile_ps = ExtResource("2_he6er")
-projectile_stats = ExtResource("3_5mlk7")
+projectile_ps = ExtResource("2_ash2y")
+projectile_stats = ExtResource("3_flf8p")

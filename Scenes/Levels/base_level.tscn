@@ -1,9 +1,9 @@
-[gd_scene load_steps=49 format=3 uid="uid://bgr674mp3kaql"]
+[gd_scene load_steps=57 format=3 uid="uid://bgr674mp3kaql"]
 
 [ext_resource type="MeshLibrary" uid="uid://7ta7tlnmxwvb" path="res://Resources/MeshLibraries/BlockoutLibrary.tres" id="1_txan8"]
 [ext_resource type="PackedScene" uid="uid://cycobtcw7dh0w" path="res://Scenes/PackedScenes/base.tscn" id="3_o8rbg"]
 [ext_resource type="MeshLibrary" uid="uid://bd6ak3ywf46yi" path="res://Resources/MeshLibraries/interactions__mesh_library.tres" id="3_xy8gy"]
-[ext_resource type="MeshLibrary" uid="uid://c874y2peldtpi" path="res://Resources/MeshLibraries/towers_library.tres" id="4_qr3u2"]
+[ext_resource type="MeshLibrary" uid="uid://cvrcvbttp84cm" path="res://Resources/MeshLibraries/towers_library.tres" id="4_qr3u2"]
 [ext_resource type="Script" path="res://Scripts/TD/Grid/grid_building.gd" id="6_7hct5"]
 [ext_resource type="Script" path="res://Scripts/TD/Grid/grid_manager.gd" id="8_sbt7l"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_level.gd" id="9_3xb32"]
@@ -11,16 +11,22 @@
 [ext_resource type="Script" path="res://Scripts/TD/Services/resource_manager.gd" id="10_ly1rj"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_wave.gd" id="10_w6khm"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_mob_group.gd" id="11_35c8t"]
-[ext_resource type="Resource" uid="uid://dic8hwq0xirec" path="res://Resources/MOBs/mob_type_3.tres" id="11_i14v1"]
+[ext_resource type="Resource" uid="uid://bo6mcvkhku8do" path="res://Resources/MOBs/mob_type_3.tres" id="11_i14v1"]
 [ext_resource type="PackedScene" uid="uid://p11rsad2ye30" path="res://UserInterface/Nodes/ui_text_box.tscn" id="11_iesvg"]
 [ext_resource type="Script" path="res://Scripts/TD/UI/shop.gd" id="11_u4hqt"]
 [ext_resource type="PackedScene" uid="uid://bebxclus3je58" path="res://UserInterface/Nodes/button.tscn" id="12_mwrmj"]
 [ext_resource type="Resource" uid="uid://bqdxx01mqrid1" path="res://Resources/MOBs/mob_type_1.tres" id="12_rxvy3"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_troop.gd" id="13_8qb4s"]
+[ext_resource type="Texture2D" uid="uid://cqrf55pb4c4wg" path="res://addons/levelmanager/icons/CurveInOut.svg" id="13_dlrxn"]
 [ext_resource type="Texture2D" uid="uid://cr586dnmunb5p" path="res://_ Assets/_ 3D/Side/towerRound_sampleF.png" id="13_llx16"]
+[ext_resource type="PackedScene" uid="uid://bxi3n7rn6nn7o" path="res://Scenes/PackedScenes/mobs/mob_shooter.tscn" id="14_skrv0"]
 [ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="15_ippra"]
+[ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy.gd" id="15_ssv4p"]
 [ext_resource type="PackedScene" uid="uid://da7u8n160oilo" path="res://Scenes/PackedScenes/multiplayer_manager.tscn" id="15_ulj32"]
+[ext_resource type="PackedScene" uid="uid://dyw583s6dfkt4" path="res://Scenes/PackedScenes/towers/projectile_ennemies.tscn" id="16_i03vt"]
 [ext_resource type="Script" path="res://Scripts/TD/UI/UI_action.gd" id="16_jxghe"]
+[ext_resource type="Resource" uid="uid://b85vjxnbinuik" path="res://Resources/Projectiles/projectile_stats_1.tres" id="17_j6g8a"]
+[ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy_stats.gd" id="18_tcmkc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_owfmx"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -108,19 +114,42 @@ amount = 1
 script = ExtResource("13_8qb4s")
 groups = Array[ExtResource("11_35c8t")]([SubResource("Resource_ah04i")])
 
-[sub_resource type="Resource" id="Resource_jmm1f"]
+[sub_resource type="Resource" id="Resource_u815w"]
 script = ExtResource("11_35c8t")
 type = ExtResource("11_i14v1")
 amount = 5
 
+[sub_resource type="Resource" id="Resource_r4nnj"]
+script = ExtResource("18_tcmkc")
+max_hp = 3
+damage = 1
+speed = 0.4
+acceleration = 5.0
+detection_radius = 5.0
+max_distance_from_path = 5.0
+attack_radius = 3.0
+attack_damage = 1.0
+attack_speed = 1.0
+gold_value = 1
+experience_value = 1
+projectile_ps = ExtResource("16_i03vt")
+projectile_stats = ExtResource("17_j6g8a")
+
+[sub_resource type="Resource" id="Resource_ni7gx"]
+script = ExtResource("15_ssv4p")
+name = "shooter"
+icon = ExtResource("13_dlrxn")
+mob_ps = ExtResource("14_skrv0")
+stats = SubResource("Resource_r4nnj")
+
 [sub_resource type="Resource" id="Resource_8s1gn"]
 script = ExtResource("11_35c8t")
-type = ExtResource("11_i14v1")
+type = SubResource("Resource_ni7gx")
 amount = 5
 
 [sub_resource type="Resource" id="Resource_81xkp"]
 script = ExtResource("13_8qb4s")
-groups = Array[ExtResource("11_35c8t")]([SubResource("Resource_jmm1f"), SubResource("Resource_8s1gn")])
+groups = Array[ExtResource("11_35c8t")]([SubResource("Resource_u815w"), SubResource("Resource_8s1gn")])
 
 [sub_resource type="Resource" id="Resource_2yg1o"]
 script = ExtResource("11_35c8t")

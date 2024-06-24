@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="MobRes" load_steps=8 format=3 uid="uid://dic8hwq0xirec"]
+[gd_resource type="Resource" script_class="MobRes" load_steps=8 format=3 uid="uid://bo6mcvkhku8do"]
 
 [ext_resource type="Texture2D" uid="uid://cqrf55pb4c4wg" path="res://addons/levelmanager/icons/CurveInOut.svg" id="1_8qos2"]
-[ext_resource type="PackedScene" uid="uid://bxi3n7rn6nn7o" path="res://Scenes/PackedScenes/mobs/mob_shooter.tscn" id="2_8hh24"]
+[ext_resource type="PackedScene" uid="uid://dsj7ryxs358yg" path="res://Scenes/PackedScenes/mob_flying.tscn" id="2_bmbba"]
 [ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy.gd" id="3_rujnx"]
 [ext_resource type="Script" path="res://Scripts/TD/Objects/res_enemy_stats.gd" id="4_4fd5m"]
 [ext_resource type="PackedScene" uid="uid://dyw583s6dfkt4" path="res://Scenes/PackedScenes/towers/projectile_ennemies.tscn" id="4_78i3p"]
@@ -27,5 +27,5 @@ projectile_stats = ExtResource("5_83dok")
 script = ExtResource("3_rujnx")
 name = "flying"
 icon = ExtResource("1_8qos2")
-mob_ps = ExtResource("2_8hh24")
+mob_ps = ExtResource("2_bmbba")
 stats = SubResource("Resource_r4nnj")
