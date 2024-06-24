@@ -56,8 +56,8 @@ func _process(_delta: float) -> void:
 	
 	#if Input.is_action_pressed("movement"):
 func _physics_process(_delta: float) -> void:
-	position.x += (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * SPEED
-	position.z += (Input.get_action_strength("move_down") - Input.get_action_strength("move_up")) * SPEED
+	position.x += (Input.get_action_strength("move_left") - Input.get_action_strength("move_right")) * SPEED
+	position.z += (Input.get_action_strength("move_up") - Input.get_action_strength("move_down")) * SPEED
 	if Input.is_action_just_pressed("zoom_+"):
 		size -= ZOOM
 	if Input.is_action_just_pressed("zoom_-"):

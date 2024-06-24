@@ -23,6 +23,7 @@ var last_nav_position :Vector3 = Vector3.ZERO
 func _physics_process(delta: float) -> void:
 	if is_diying: return
 	if target == null: return
+	if action_player == null or action_player.is_dying: return
 	
 	state_machine.current_state.on_physics_process(delta)
 	

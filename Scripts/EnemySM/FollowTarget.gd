@@ -5,7 +5,8 @@ extends StateMachineState
 # Called when the state machine enters this state.
 func on_enter():
 	print("enter follow player")
-	parent.nav_agent.target_position = parent.action_player.global_position
+	if is_instance_valid(parent.action_player):
+		parent.nav_agent.target_position = parent.action_player.global_position
 
 
 # Called every frame when this state is active.
@@ -16,6 +17,8 @@ func on_process(_delta):
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
 	var direction :Vector3 = Vector3.ZERO
+	
+	if parent.action_player == null or parent.action_player.is_dying: return
 	
 	parent.nav_agent.target_position = parent.action_player.global_position
 	
