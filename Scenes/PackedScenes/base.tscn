@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cycobtcw7dh0w"]
+[gd_scene load_steps=5 format=3 uid="uid://cycobtcw7dh0w"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Objects/base.gd" id="1_p1qkq"]
 [ext_resource type="ArrayMesh" uid="uid://cjbnxbi3knyll" path="res://_ Assets/_ 3D/Models/OBJ format/towerRound_crystals.obj" id="2_lbupl"]
@@ -13,6 +13,8 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("UI_HPValue:outline_modulate")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xe7kd"]
 
 [node name="Base" type="Node3D"]
 script = ExtResource("1_p1qkq")
@@ -29,3 +31,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986938, 0)
 billboard = 1
 text = "dsvsdv"
 font_size = 92
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_xe7kd")

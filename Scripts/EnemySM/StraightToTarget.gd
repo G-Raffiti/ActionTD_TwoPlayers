@@ -11,11 +11,11 @@ func on_enter():
 func on_physics_process(delta):
 	var direction :Vector3 = Vector3.ZERO
 	
-	direction = parent.target.global_position - parent.global_position
+	direction = - parent.global_position
 	direction = direction.normalized()
 	direction.y = 0
 	
-	var look_direction = parent.target.position
+	var look_direction = Vector3.ZERO
 	look_direction.y = parent.position.y
 	parent.look_at(look_direction, Vector3.UP, true)
 	

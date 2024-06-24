@@ -1,5 +1,6 @@
 extends Mob
 
+
 @onready var timer: Timer = $Timer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -47,7 +48,7 @@ func get_path_travelled() -> float:
 func get_health() -> float:
 	return stats.hp
 
-func _ready() -> void:	
+func _ready() -> void:
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
 	
 	action_player = PlayerData.action_player

@@ -1,15 +1,17 @@
 extends StateMachineState
 
-@export var parent :CharacterBody3D
+@export var parent :Mob
 
 # Called when the state machine enters this state.
 func on_enter():
 	print("enter follow path")
+	if parent.target == null: return
 	parent.nav_agent.target_position = parent.target.global_position
 
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
+	if parent.target == null: return
 	var direction :Vector3 = Vector3.ZERO
 	
 	parent.nav_agent.target_position = parent.target.global_position

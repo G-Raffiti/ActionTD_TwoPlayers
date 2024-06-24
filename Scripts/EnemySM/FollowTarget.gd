@@ -1,6 +1,6 @@
 extends StateMachineState
 
-@export var parent :CharacterBody3D
+@export var parent :Mob
 
 # Called when the state machine enters this state.
 func on_enter():

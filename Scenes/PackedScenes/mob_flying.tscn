@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dulhya83d00mq"]
+[gd_scene load_steps=14 format=3 uid="uid://dsj7ryxs358yg"]
 
+[ext_resource type="Script" path="res://Scripts/EnemySM/mob_flying.gd" id="1_kbumj"]
 [ext_resource type="Material" uid="uid://budc1a0ek1y7a" path="res://Resources/Materials/blink.tres" id="2_lxof5"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_mfjg6"]
 [ext_resource type="Script" path="res://Scripts/EnemySM/StraightToTarget.gd" id="4_q31vv"]
@@ -116,16 +117,17 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("1_kbumj")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_6vhoc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, -7.4506e-09, 0, 0.5, 0, 7.4506e-09, 0, 0.5, 1.28884e-10, 0.796738, -0.00864924)
+transform = Transform3D(0.5, 0, -7.4506e-09, 0, 0.5, 0, 7.4506e-09, 0, 0.5, 0, 0.5, -0.009)
 shape = SubResource("BoxShape3D_a01db")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.7, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(1, 0, -2.72474e-08, 0, 0.174641, 0, 1.49012e-08, 0, 1.82854, 0, 0.0279273, 0)
@@ -167,8 +169,10 @@ one_shot = true
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("3_mfjg6")
 
-[node name="StraightToTarget" type="Node" parent="."]
+[node name="StraightToTarget" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("4_q31vv")
+parent = NodePath("..")
 
-[node name="Idle" type="Node" parent="."]
+[node name="Idle" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("5_xthlm")
+parent = NodePath("..")

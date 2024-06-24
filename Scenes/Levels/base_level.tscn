@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bgr674mp3kaql"]
+[gd_scene load_steps=49 format=3 uid="uid://bgr674mp3kaql"]
 
 [ext_resource type="MeshLibrary" uid="uid://7ta7tlnmxwvb" path="res://Resources/MeshLibraries/BlockoutLibrary.tres" id="1_txan8"]
 [ext_resource type="PackedScene" uid="uid://cycobtcw7dh0w" path="res://Scenes/PackedScenes/base.tscn" id="3_o8rbg"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/TD/UI/shop.gd" id="11_u4hqt"]
 [ext_resource type="PackedScene" uid="uid://bebxclus3je58" path="res://UserInterface/Nodes/button.tscn" id="12_mwrmj"]
 [ext_resource type="Resource" uid="uid://bqdxx01mqrid1" path="res://Resources/MOBs/mob_type_1.tres" id="12_rxvy3"]
+[ext_resource type="Resource" uid="uid://dbih7bbhl4m1u" path="res://Resources/MOBs/mob_type_2.tres" id="13_2nhex"]
 [ext_resource type="Script" path="res://Scripts/TD/Services/Waves/res_troop.gd" id="13_8qb4s"]
 [ext_resource type="Texture2D" uid="uid://cr586dnmunb5p" path="res://_ Assets/_ 3D/Side/towerRound_sampleF.png" id="13_llx16"]
 [ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="15_ippra"]
@@ -109,12 +110,12 @@ groups = Array[ExtResource("11_35c8t")]([SubResource("Resource_ah04i")])
 
 [sub_resource type="Resource" id="Resource_jmm1f"]
 script = ExtResource("11_35c8t")
-type = ExtResource("12_rxvy3")
+type = ExtResource("13_2nhex")
 amount = 5
 
 [sub_resource type="Resource" id="Resource_8s1gn"]
 script = ExtResource("11_35c8t")
-type = ExtResource("12_rxvy3")
+type = ExtResource("13_2nhex")
 amount = 5
 
 [sub_resource type="Resource" id="Resource_81xkp"]

@@ -31,3 +31,4 @@ func die(_damage_dealer_id = -1) -> void:
 
 	#debug
 	SignalBus.on_reload_scene.emit()
+
