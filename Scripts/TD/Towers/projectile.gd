@@ -69,7 +69,7 @@ func _lifetime_expire():
 func explode():
 	if not multiplayer.is_server(): return
 	if stats.explosion_radius > 0:
-		for node in explosion_area.get_overlapping_bodies():
+		for node in explosion_area.get_overlapping_areas():
 			if 'implements' in node and node.implements.has(I.Killable):
 				node.take_damage(stats.damage, 1)
 	if stats.should_end():

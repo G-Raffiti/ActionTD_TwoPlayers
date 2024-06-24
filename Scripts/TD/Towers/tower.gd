@@ -1,6 +1,8 @@
 extends Node3D
 class_name Tower
 
+var implements = [I.Killable]
+
 enum targeting { FIRST, LAST, CLOSEST, STRONGEST }
 
 @onready var mesh_tower: MeshInstance3D = $Mesh
@@ -162,3 +164,9 @@ func find_strongest_target() -> Node3D:
 			score = unit.get_health()
 			new_target = unit
 	return new_target
+
+func die(_damage_dealer_id = -1):
+	pass
+
+func take_damage(_damage, _damage_dealer_id = -1):
+	pass

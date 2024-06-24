@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://b01re1bn5la41"]
+[gd_scene load_steps=23 format=3 uid="uid://b01re1bn5la41"]
 
 [ext_resource type="Script" path="res://Scripts/TD/Towers/tower.gd" id="1_kfuq4"]
 [ext_resource type="ArrayMesh" uid="uid://b51pekfyupiv4" path="res://_ Assets/_ 3D/Models/OBJ format/towerRound_sampleC.obj" id="2_vliqp"]
 [ext_resource type="ArrayMesh" uid="uid://bf4fykyqyjot6" path="res://_ Assets/_ 3D/Models/OBJ format/woodStructure.obj" id="3_07ls6"]
 [ext_resource type="ArrayMesh" uid="uid://bt33sxn502j8f" path="res://_ Assets/_ 3D/Models/OBJ format/woodStructure_high.obj" id="4_ym3wm"]
+[ext_resource type="Script" path="res://Scenes/PackedScenes/towers/hurtbox.gd" id="5_2t8yv"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5ou6q"]
 properties/0/path = NodePath(".:position")
@@ -283,6 +284,9 @@ radius = 3.0
 height = 6.0
 radial_segments = 32
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbpyl"]
+size = Vector3(0.9104, 1.03162, 0.891663)
+
 [node name="TowerArrow" type="Node3D" node_paths=PackedStringArray("fire_point", "rotating_part")]
 script = ExtResource("1_kfuq4")
 fire_point = NodePath("Mesh/RotationPart/FirePoint")
@@ -342,3 +346,13 @@ mesh = SubResource("SphereMesh_m6xwb")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/towers/projectile.tscn")
 spawn_path = NodePath("..")
+
+[node name="HurtBox" type="Area3D" parent="." node_paths=PackedStringArray("killable")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("5_2t8yv")
+killable = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0101318, 0.501648, 0.0122986)
+shape = SubResource("BoxShape3D_lbpyl")
