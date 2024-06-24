@@ -29,7 +29,7 @@ func spawn_mobs_group(mob_res: MobRes, group_size: int, stats_modifier: float, g
 		mob.action_player = action_player
 		enemies_node.add_child(mob, true)
 		mob.tree_exiting.connect(func(): _child_died(mob))
-		mob.position = global_position + Vector3(-2 * i, 0, 0)
+		mob.position = global_position + Vector3(-2 * i, 1, 0)
 		mobs.append(mob)
 	return mobs
 

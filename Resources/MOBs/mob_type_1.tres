@@ -9,9 +9,10 @@
 script = ExtResource("4_x3lee")
 max_hp = 3
 damage = 1
-speed = 0.3
+speed = 0.4
 acceleration = 5.0
 detection_radius = 5.0
+max_distance_from_path = 5.0
 attack_radius = 1.0
 attack_damage = 1.0
 attack_speed = 1.0

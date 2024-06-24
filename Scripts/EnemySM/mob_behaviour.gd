@@ -18,6 +18,7 @@ var last_nav_position :Vector3 = Vector3.ZERO
 @onready var state_idle: StateMachineState = $Idle
 @onready var state_follow_path: StateMachineState = $FollowPath
 @onready var state_follow_target: StateMachineState = $FollowTarget
+@onready var state_return_to_path: StateMachineState = $ReturnToPath
 
 func _physics_process(delta: float) -> void:
 	if is_diying: return
@@ -25,21 +26,25 @@ func _physics_process(delta: float) -> void:
 	
 	state_machine.current_state.on_physics_process(delta)
 	
-	var distance_to_player = 10000
+	var distance_to_player :float
+	var distance_to_path :float
 	if action_player != null and !action_player.is_dying:
 		distance_to_player = global_position.distance_to(action_player.global_position)
 	
-	var distance_to_last_nav = 10000
-	distance_to_last_nav = global_position.distance_to(last_nav_position)
+	distance_to_path = global_position.distance_to(last_nav_position)
 	
-	if state_follow_path.is_current_state():
-		if distance_to_player < 5 and distance_to_last_nav < 5:
+	if state_return_to_path.is_current_state():
+		if distance_to_path < 0.1:
+			state_machine.set_current_state(state_follow_path)
+		elif distance_to_player < stats.detection_radius:
+			state_machine.set_current_state(state_follow_target)
+	elif state_follow_target.is_current_state():
+		if distance_to_path > stats.max_distance_from_path or distance_to_player > stats.detection_radius:
+			state_machine.set_current_state(state_return_to_path)
+	elif state_follow_path.is_current_state():
+		if distance_to_player < stats.detection_radius:
 			state_machine.set_current_state(state_follow_target)
 	
-	if state_follow_target.is_current_state():
-		if distance_to_last_nav > 3 and distance_to_player < 2:
-			state_machine.set_current_state(state_follow_path)
-		
 	if distance_to_player < stats.detection_radius:
 		if distance_to_player < stats.attack_radius and timer.time_left <= 0:
 			attack(action_player)
