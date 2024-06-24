@@ -1,12 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://750cm2b1mvpo"]
+[gd_scene load_steps=14 format=3 uid="uid://dsj7ryxs358yg"]
 
-[ext_resource type="Script" path="res://Scripts/EnemySM/mob_grounded.gd" id="1_0aod5"]
-[ext_resource type="Material" uid="uid://budc1a0ek1y7a" path="res://Resources/Materials/blink.tres" id="2_pwrra"]
-[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="2_ssvva"]
-[ext_resource type="Script" path="res://Scripts/EnemySM/FollowPath.gd" id="3_0mxdn"]
-[ext_resource type="Script" path="res://Scripts/EnemySM/Idle.gd" id="4_ktjrf"]
-[ext_resource type="Script" path="res://Scripts/EnemySM/FollowTarget.gd" id="5_a13vm"]
-[ext_resource type="Script" path="res://Scripts/EnemySM/ReturnToPath.gd" id="7_rx7v5"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/mob_flying.gd" id="1_kbumj"]
+[ext_resource type="Material" uid="uid://budc1a0ek1y7a" path="res://Resources/Materials/blink.tres" id="2_lxof5"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_mfjg6"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/StraightToTarget.gd" id="4_q31vv"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/Idle.gd" id="5_xthlm"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6vhoc"]
 properties/0/path = NodePath(".:global_position")
@@ -17,7 +15,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a01db"]
-size = Vector3(0.761536, 2.63116, 0.736862)
+size = Vector3(0.761536, 0.396156, 1.74408)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwkop"]
 albedo_color = Color(1, 0.384314, 0, 1)
@@ -118,33 +116,37 @@ _data = {
 [node name="EnemyBody" type="CharacterBody3D" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 collision_layer = 2
-script = ExtResource("1_0aod5")
+script = ExtResource("1_kbumj")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_6vhoc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, -7.4506e-09, 0, 0.5, 0, 7.4506e-09, 0, 0.5, 0, -0.13884, 0)
+transform = Transform3D(0.5, 0, -7.4506e-09, 0, 0.5, 0, 7.4506e-09, 0, 0.5, 0, 0.5, -0.009)
 shape = SubResource("BoxShape3D_a01db")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0.0279273, 0)
+transform = Transform3D(1, 0, -2.72474e-08, 0, 0.174641, 0, 1.49012e-08, 0, 1.82854, 0, 0.0279273, 0)
 mesh = SubResource("CapsuleMesh_o2dea")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D/MeshInstance3D"]
-transform = Transform3D(0.494, 0, 0, 0, -8.65485e-09, -0.493, -7.36119e-09, 0.198, -2.15497e-08, 0, 0.411999, -0.152843)
+transform = Transform3D(0.492897, -1.6036e-09, -0.201582, -0.220845, -4.21619e-09, -0.449904, -9.92083e-09, 0.0751452, -2.95446e-08, -0.298117, 0.609456, -0.00298965)
+mesh = SubResource("CapsuleMesh_3dr6i")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D/MeshInstance3D"]
+transform = Transform3D(-0.493032, -6.28309e-09, 0.201307, -0.220544, -1.34124e-09, -0.450027, 4.51601e-08, -0.0751452, -8.7994e-09, 0.3, 0.6, -1.77636e-15)
 mesh = SubResource("CapsuleMesh_3dr6i")
 skeleton = NodePath("../../../..")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/MeshInstance3D"]
-transform = Transform3D(1, 0, 1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_o2dea")
 skeleton = NodePath("../../../..")
-surface_material_override/0 = ExtResource("2_pwrra")
+surface_material_override/0 = ExtResource("2_lxof5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -164,20 +166,12 @@ debug_enabled = true
 one_shot = true
 
 [node name="FiniteStateMachine" type="Node" parent="."]
-script = ExtResource("2_ssvva")
+script = ExtResource("3_mfjg6")
 
-[node name="FollowPath" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("3_0mxdn")
+[node name="StraightToTarget" type="Node" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("4_q31vv")
 parent = NodePath("..")
 
 [node name="Idle" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("4_ktjrf")
-parent = NodePath("..")
-
-[node name="FollowTarget" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("5_a13vm")
-parent = NodePath("..")
-
-[node name="ReturnToPath" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("7_rx7v5")
+script = ExtResource("5_xthlm")
 parent = NodePath("..")

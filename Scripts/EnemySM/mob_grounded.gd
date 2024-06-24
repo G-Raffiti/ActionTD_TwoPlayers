@@ -1,12 +1,6 @@
-extends CharacterBody3D
-class_name Mob
+extends Mob
 
-var implements = [I.Killable]
 
-var stats: MobStats = null
-var target: PathFollow3D = null
-var is_diying: bool = false
-var action_player : Player
 var last_nav_position :Vector3 = Vector3.ZERO
 
 @onready var timer: Timer = $Timer
@@ -83,11 +77,6 @@ func get_health() -> float:
 	return stats.hp
 
 func _ready() -> void:
-	if not multiplayer.is_server():
-		set_process(false)
-		set_physics_process(false)
-		return
-	
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
 	
 	action_player = PlayerData.action_player
@@ -96,9 +85,6 @@ func _ready() -> void:
 
 func set_action_player(player : Player):
 	action_player = player
-
-func start_move() -> void:
-	pass
 
 func _on_velocity_computed(in_velocity: Vector3) -> void:
 	velocity = in_velocity
