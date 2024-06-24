@@ -1,8 +1,12 @@
 extends Camera3D
 
 @export var grid: GridMap = null
+@export var SPEED: float = 0.5
+@export var ZOOM: float = 0.2
+@export var min_zoom: float = 10.0
+@export var max_zoom: float = 35.0
 
-@export var hovered_index: Vector3i = Vector3i(0, 0, 0)
+var hovered_index: Vector3i = Vector3i(0, 0, 0)
 var click_down: bool = false
 
 @export var player_id := 1:
@@ -20,6 +24,7 @@ func _ready():
 		make_current()
 	grid = get_tree().get_current_scene().get_node("Navigation/GridMapEnvironment")
 	print("I am " + str(multiplayer.get_unique_id()), grid)
+
 
 func _process(_delta: float) -> void:
 	if not multiplayer.is_server(): return
@@ -48,6 +53,16 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed('right_click'):
 		SignalBus.on_tower_to_build_selected.emit(null)
+	
+	#if Input.is_action_pressed("movement"):
+func _physics_process(_delta: float) -> void:
+	position.x += (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * SPEED
+	position.z += (Input.get_action_strength("move_down") - Input.get_action_strength("move_up")) * SPEED
+	if Input.is_action_just_pressed("zoom_+"):
+		size -= ZOOM
+	if Input.is_action_just_pressed("zoom_-"):
+		size += ZOOM
+	size = clampf(size, min_zoom, max_zoom)
 
 func get_tile_type(index: Vector3i) -> int:
 	var tile: int = grid.get_cell_item(index)
