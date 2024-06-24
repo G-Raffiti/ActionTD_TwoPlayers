@@ -21,3 +21,4 @@ max_health = 1000
 attack = 1.0
 max_air_jump = 1
 levels_data = Array[ExtResource("1_q2vbd")]([SubResource("Resource_cjjjt"), SubResource("Resource_j0002"), SubResource("Resource_05vb6")])
+speed = 0.5
