@@ -30,7 +30,7 @@ func start():
 	if not multiplayer.is_server(): return
 	get_tree().create_timer(stats.lifetime).timeout.connect(_lifetime_expire)
 	set_physics_process(true)
-	body_entered.connect(_body_entered)
+	area_entered.connect(_area_entered)
 
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server(): return
@@ -57,11 +57,11 @@ func _on_new_target_found(projectile_name: StringName, new_target: Node3D) -> vo
 	change_target(new_target)
 	direction = global_position.direction_to(target.global_position)
 
-func _body_entered(body: Node3D):
+func _area_entered(area: Node3D):
 	if not multiplayer.is_server(): return
-	if 'implements' in body and body.implements.has(I.Killable):
+	if 'implements' in area and area.implements.has(I.Killable):
 		if stats.explosion_radius <= 0:
-			body.take_damage(stats.damage, 1)
+			area.take_damage(stats.damage, 1)
 		explode()
 
 func _lifetime_expire():
