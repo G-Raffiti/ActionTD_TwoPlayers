@@ -11,6 +11,7 @@ var host_mode_enabled = false
 var multiplayer_mode_enabled = false
 var respawn_point = Vector2(30, 20)
 @export var grid: GridMap = null
+@export var action_player_spawn: Marker3D = null
 
 
 func become_host():
@@ -58,6 +59,10 @@ func _add_player_to_game(id: int):
 	player_to_add.name = str(id)
 	
 	_players_spawn_node.add_child(player_to_add, true)
+	
+	if (id != 1):
+		player_to_add.position = action_player_spawn.position
+		
 	if _players_spawn_node.get_child_count() == 2:
 		SignalBus.on_start_spawning_enemies.emit()
 	

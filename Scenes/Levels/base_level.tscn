@@ -283,8 +283,12 @@ level = SubResource("Resource_hc07m")
 [node name="ResourceManager" type="Node" parent="Service"]
 script = ExtResource("10_ly1rj")
 
-[node name="MultiplayerManager" parent="Service" node_paths=PackedStringArray("grid") instance=ExtResource("15_ulj32")]
+[node name="MultiplayerManager" parent="Service" node_paths=PackedStringArray("grid", "action_player_spawn") instance=ExtResource("15_ulj32")]
 grid = NodePath("../../Navigation/GridMapEnvironment")
+action_player_spawn = NodePath("ActionPlayerSpawn")
+
+[node name="ActionPlayerSpawn" type="Marker3D" parent="Service/MultiplayerManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.666604, 0, 3.64324)
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("action_UI", "TD_UI")]
 script = ExtResource("15_ippra")
