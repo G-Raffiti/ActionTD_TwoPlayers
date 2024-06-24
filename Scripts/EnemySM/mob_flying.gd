@@ -44,6 +44,11 @@ func get_health() -> float:
 	return stats.hp
 
 func _ready() -> void:
+	if not multiplayer.is_server():
+		set_process(false)
+		set_physics_process(false)
+		return
+		
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
 	
 	action_player = PlayerData.action_player
@@ -55,3 +60,14 @@ func set_action_player(player : Player):
 
 func _on_velocity_computed(in_velocity: Vector3) -> void:
 	velocity = in_velocity
+
+
+func _on_hit_box_player_area_entered(area):
+	if area.has_method("take_damage"):
+		area.take_damage(stats.attack_damage)
+
+func _on_hit_box_base_area_entered(area):
+	if area.has_method("take_damage"):
+		print(area)
+		area.take_damage(stats.attack_damage)
+		die()

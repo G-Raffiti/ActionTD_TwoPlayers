@@ -1,13 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://750cm2b1mvpo"]
+[gd_scene load_steps=16 format=3 uid="uid://bxi3n7rn6nn7o"]
 
-[ext_resource type="Script" path="res://Scripts/EnemySM/mob_grounded.gd" id="1_0aod5"]
-[ext_resource type="Script" path="res://Scenes/PackedScenes/towers/hurtbox.gd" id="2_3kdii"]
-[ext_resource type="Material" uid="uid://budc1a0ek1y7a" path="res://Resources/Materials/blink.tres" id="2_pwrra"]
-[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="2_ssvva"]
-[ext_resource type="Script" path="res://Scripts/EnemySM/FollowPath.gd" id="3_0mxdn"]
-[ext_resource type="Script" path="res://Scripts/EnemySM/Idle.gd" id="4_ktjrf"]
-[ext_resource type="Script" path="res://Scripts/EnemySM/FollowTarget.gd" id="5_a13vm"]
-[ext_resource type="Script" path="res://Scripts/EnemySM/ReturnToPath.gd" id="7_rx7v5"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/mob_shooter.gd" id="1_bjied"]
+[ext_resource type="Material" uid="uid://budc1a0ek1y7a" path="res://Resources/Materials/blink.tres" id="2_pwmhg"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_05e67"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/FollowPath.gd" id="4_2c1da"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/Idle.gd" id="5_uyfao"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/FollowTarget.gd" id="6_kj52r"]
+[ext_resource type="Script" path="res://Scripts/EnemySM/ReturnToPath.gd" id="7_awuv1"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6vhoc"]
 properties/0/path = NodePath(".:global_position")
@@ -18,17 +17,10 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a01db"]
-size = Vector3(0.761536, 2.63116, 0.736862)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rr46d"]
-size = Vector3(0.506984, 1.1239, 0.713589)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v84i0"]
-radius = 0.382044
-height = 1.45688
+size = Vector3(0.284351, 0.613576, 0.456676)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwkop"]
-albedo_color = Color(1, 0.384314, 0, 1)
+albedo_color = Color(0.186148, 0.683753, 0.732555, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o2dea"]
 material = SubResource("StandardMaterial3D_dwkop")
@@ -123,59 +115,31 @@ _data = {
 "hit": SubResource("Animation_se2ib")
 }
 
-[node name="EnemyBody" type="CharacterBody3D" groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+[node name="EnemyBody" type="CharacterBody3D" node_paths=PackedStringArray("fire_point") groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 collision_layer = 2
-script = ExtResource("1_0aod5")
+script = ExtResource("1_bjied")
+fire_point = NodePath("Node3D/MeshInstance3D/MeshInstance3D2/FirePoint")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_6vhoc")
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/towers/projectile_ennemies.tscn")
+spawn_path = NodePath("..")
+
+[node name="Hitboxes" type="Node3D" parent="."]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, -7.4506e-09, 0, 0.5, 0, 7.4506e-09, 0, 0.5, 0, -0.13884, 0)
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0.00116162, 0.0166396, 0.00115395)
 shape = SubResource("BoxShape3D_a01db")
 disabled = true
 
-[node name="Hitboxes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
-
-[node name="HitBoxBase" type="Area3D" parent="Hitboxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-collision_layer = 0
-collision_mask = 8
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/HitBoxBase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00179815, 0.0619507, 0.377867)
-shape = SubResource("BoxShape3D_rr46d")
-
-[node name="HitBoxPlayer" type="Area3D" parent="Hitboxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-collision_layer = 0
-collision_mask = 20
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/HitBoxPlayer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00179815, 0.0619507, 0.377867)
-shape = SubResource("BoxShape3D_rr46d")
-
-[node name="HurtBox" type="Area3D" parent="Hitboxes" node_paths=PackedStringArray("killable")]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("2_3kdii")
-killable = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/HurtBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-shape = SubResource("CapsuleShape3D_v84i0")
-
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.0609472, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0.0279273, 0)
+transform = Transform3D(0.3, 0, -4.47036e-09, 0, 0.3, 0, 4.47036e-09, 0, 0.3, 0, 0.0279273, 0)
 mesh = SubResource("CapsuleMesh_o2dea")
 skeleton = NodePath("../../..")
 
@@ -184,11 +148,14 @@ transform = Transform3D(0.494, 0, 0, 0, -8.65485e-09, -0.493, -7.36119e-09, 0.19
 mesh = SubResource("CapsuleMesh_3dr6i")
 skeleton = NodePath("../../../..")
 
+[node name="FirePoint" type="Node3D" parent="Node3D/MeshInstance3D/MeshInstance3D2"]
+transform = Transform3D(0.5, -8.88178e-15, 1.48231e-21, 1.42109e-13, 0.5, -3.55271e-15, -6.14099e-21, 6.21725e-15, 0.5, 1.03047e-07, -1.88911, 0.401124)
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/MeshInstance3D"]
 transform = Transform3D(1, 0, 1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_o2dea")
 skeleton = NodePath("../../../..")
-surface_material_override/0 = ExtResource("2_pwrra")
+surface_material_override/0 = ExtResource("2_pwmhg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -208,23 +175,20 @@ debug_enabled = true
 one_shot = true
 
 [node name="FiniteStateMachine" type="Node" parent="."]
-script = ExtResource("2_ssvva")
+script = ExtResource("3_05e67")
 
 [node name="FollowPath" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("3_0mxdn")
+script = ExtResource("4_2c1da")
 parent = NodePath("..")
 
 [node name="Idle" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("4_ktjrf")
+script = ExtResource("5_uyfao")
 parent = NodePath("..")
 
 [node name="FollowTarget" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("5_a13vm")
+script = ExtResource("6_kj52r")
 parent = NodePath("..")
 
 [node name="ReturnToPath" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("7_rx7v5")
+script = ExtResource("7_awuv1")
 parent = NodePath("..")
-
-[connection signal="area_entered" from="Hitboxes/HitBoxBase" to="." method="_on_hit_box_base_area_entered"]
-[connection signal="area_entered" from="Hitboxes/HitBoxPlayer" to="." method="_on_hit_box_player_area_entered"]

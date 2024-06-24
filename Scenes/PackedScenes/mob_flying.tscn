@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsj7ryxs358yg"]
+[gd_scene load_steps=17 format=3 uid="uid://dsj7ryxs358yg"]
 
 [ext_resource type="Script" path="res://Scripts/EnemySM/mob_flying.gd" id="1_kbumj"]
 [ext_resource type="Material" uid="uid://budc1a0ek1y7a" path="res://Resources/Materials/blink.tres" id="2_lxof5"]
+[ext_resource type="Script" path="res://Scenes/PackedScenes/towers/hurtbox.gd" id="2_tcj4f"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_mfjg6"]
 [ext_resource type="Script" path="res://Scripts/EnemySM/StraightToTarget.gd" id="4_q31vv"]
 [ext_resource type="Script" path="res://Scripts/EnemySM/Idle.gd" id="5_xthlm"]
@@ -16,6 +17,13 @@ properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a01db"]
 size = Vector3(0.761536, 0.396156, 1.74408)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_088r3"]
+height = 1.24337
+radius = 0.362279
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hehto"]
+size = Vector3(0.483337, 0.155029, 0.829102)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwkop"]
 albedo_color = Color(1, 0.384314, 0, 1)
@@ -126,6 +134,40 @@ transform = Transform3D(0.5, 0, -7.4506e-09, 0, 0.5, 0, 7.4506e-09, 0, 0.5, 0, 0
 shape = SubResource("BoxShape3D_a01db")
 disabled = true
 
+[node name="Hitboxes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+
+[node name="HitBoxBase" type="Area3D" parent="Hitboxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783495, 0)
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/HitBoxBase"]
+shape = SubResource("CylinderShape3D_088r3")
+
+[node name="HitBoxPlayer" type="Area3D" parent="Hitboxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783495, 0)
+collision_layer = 0
+collision_mask = 20
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/HitBoxPlayer"]
+shape = SubResource("CylinderShape3D_088r3")
+
+[node name="HurtBox" type="Area3D" parent="Hitboxes" node_paths=PackedStringArray("killable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_tcj4f")
+killable = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011322, 0.0284424, 0.0854492)
+shape = SubResource("BoxShape3D_hehto")
+
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
 
@@ -176,3 +218,6 @@ parent = NodePath("..")
 [node name="Idle" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("5_xthlm")
 parent = NodePath("..")
+
+[connection signal="area_entered" from="Hitboxes/HitBoxBase" to="." method="_on_hit_box_base_area_entered"]
+[connection signal="area_entered" from="Hitboxes/HitBoxPlayer" to="." method="_on_hit_box_player_area_entered"]

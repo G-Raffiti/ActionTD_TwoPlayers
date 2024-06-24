@@ -2,9 +2,15 @@ extends StateMachineState
 
 @export var parent :CharacterBody3D
 
+func _ready():
+	if not multiplayer.is_server():
+		set_process(false)
+		set_physics_process(false)
+		return
+
 # Called when the state machine enters this state.
 func on_enter():
-	print("enter straight path")
+	pass
 
 
 # Called every physics frame when this state is active.

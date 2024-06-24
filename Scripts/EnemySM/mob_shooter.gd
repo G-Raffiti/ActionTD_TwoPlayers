@@ -1,6 +1,5 @@
 extends Mob
 
-
 var last_nav_position :Vector3 = Vector3.ZERO
 
 @onready var timer: Timer = $Timer
@@ -13,6 +12,8 @@ var last_nav_position :Vector3 = Vector3.ZERO
 @onready var state_follow_path: StateMachineState = $FollowPath
 @onready var state_follow_target: StateMachineState = $FollowTarget
 @onready var state_return_to_path: StateMachineState = $ReturnToPath
+
+@export var fire_point: Node3D
 
 func _physics_process(delta: float) -> void:
 	if is_diying: return
@@ -49,9 +50,24 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		
 func attack(player : Player) :
-	player.take_damage(stats.attack_damage)	
+	shoot(player)
 	timer.wait_time = stats.attack_speed
 	timer.start()
+	
+	
+func shoot(player : Player):
+	if not multiplayer.is_server(): return
+	randomize()
+	
+	var projectile: Projectile = stats.projectile_ps.instantiate()
+	projectile.name = "Projectile" + Guid.get_id()
+	var direction = fire_point.global_position.direction_to(player.position)
+	add_child(projectile)
+	projectile.global_position = fire_point.global_position
+	projectile.global_rotation = fire_point.global_rotation
+	projectile.initialize(stats.projectile_stats, stats.attack_radius, player, direction)
+	projectile.start()
+	#animation_player.play('shoot')
 
 func die(_damage_dealer_id = -1) -> void:
 	is_diying = true
@@ -93,15 +109,3 @@ func set_action_player(player : Player):
 
 func _on_velocity_computed(in_velocity: Vector3) -> void:
 	velocity = in_velocity
-
-
-func _on_hit_box_player_area_entered(area):
-	if area.has_method("take_damage"):
-		area.take_damage(stats.attack_damage)
-
-
-func _on_hit_box_base_area_entered(area):
-	if area.has_method("take_damage"):
-		print(area)
-		area.take_damage(stats.attack_damage)
-		die()

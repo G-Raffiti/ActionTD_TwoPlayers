@@ -4,7 +4,6 @@ extends StateMachineState
 
 # Called when the state machine enters this state.
 func on_enter():
-	print("enter follow path")
 	if parent.target == null: return
 	parent.nav_agent.target_position = parent.target.global_position
 

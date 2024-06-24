@@ -20,5 +20,5 @@ mesh = SubResource("CylinderMesh_xs3rh")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/PackedScenes/mob.tscn", "res://Scenes/PackedScenes/mob_flying.tscn", "res://Scenes/PackedScenes/mobs/mob_shooter.tscn")
 spawn_path = NodePath("../Enemies")
