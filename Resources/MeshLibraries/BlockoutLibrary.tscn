@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bpux8ext3ms0t"]
+[gd_scene load_steps=34 format=3 uid="uid://bpux8ext3ms0t"]
 
 [ext_resource type="ArrayMesh" uid="uid://qbuenvues2wl" path="res://_ Assets/_ 3D/Models/OBJ format/tile.obj" id="1_ooref"]
 [ext_resource type="ArrayMesh" uid="uid://ddhefrs4q6jxc" path="res://_ Assets/_ 3D/Models/OBJ format/tile_bump.obj" id="2_fjfya"]
@@ -37,10 +37,6 @@ size = Vector3(1, 0.4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rflq8"]
 size = Vector3(1, 1.22314, 1)
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_ywetu"]
-vertices = PackedVector3Array(0.499995, 0, -0.5, -0.5, 0, 0.5, 0.499995, 0, 0.5, -0.5, 0, -0.5, 0.499995, 0, -0.5, 0.499995, 0.0999985, 0.5, 0.499995, 0.0999985, -0.5, 0.499995, 0, 0.5, -0.5, 0.0999985, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0.0999985, 0.5, -0.375012, 0.0999985, 0.5, 0.374992, 0.2, 0.5, 0.374992, 0.0999985, 0.5, -0.375012, 0.2, 0.5, -0.5, 0.0999985, 0.5, 0.499995, 0.0999985, 0.5, -0.5, 0, 0.5, 0.499995, 0, 0.5, -0.250009, 0.0999985, -0.5, -0.375012, 0.2, -0.5, -0.375012, 0.0999985, -0.5, -0.250009, 0.149999, -0.5, -0.250009, 0.2, -0.5, 0.499995, 0.0999985, -0.5, -0.5, 0.0999985, -0.5, 0.499995, 0, -0.5, -0.5, 0, -0.5, 0.249988, 0.0999985, -0.5, 0.374992, 0.0999985, -0.5, 0.249988, 0.149999, -0.5, 0.374992, 0.2, -0.5, 0.249988, 0.2, -0.5, -0.250009, 0.149999, -0.5, -0.250009, 0.2, 0.374998, -0.250009, 0.2, -0.5, -0.250009, 0.149999, -0.250011, 0.249988, 0.2, -0.5, 0.249988, 0.149999, -0.250011, 0.249988, 0.149999, -0.5, 0.249988, 0.2, 0.374998, 0.249988, 0.2, 0.374998, -0.250009, 0.149999, -0.250011, 0.249988, 0.149999, -0.250011, -0.250009, 0.2, 0.374998, 0.374992, 0.2, 0.5, 0.249988, 0.2, -0.5, 0.374992, 0.2, -0.5, 0.249988, 0.2, 0.374998, -0.375012, 0.2, 0.5, -0.250009, 0.2, 0.374998, -0.250009, 0.2, -0.5, -0.375012, 0.2, -0.5, 0.499995, 0.1, -0.5, 0.499995, 0.2, 0.5, 0.499995, 0.2, -0.5, 0.499995, 0.1, 0.5, -0.5, 0.2, -0.5, -0.5, 0.1, 0.5, -0.5, 0.1, -0.5, -0.5, 0.2, 0.5, 0.499995, 0.2, 0.5, 0.374992, 0.2, -0.5, 0.499995, 0.2, -0.5, 0.374992, 0.2, 0.5, 0.374992, 0.1, 0.5, 0.499995, 0.2, 0.5, 0.499995, 0.1, 0.5, 0.374992, 0.2, 0.5, -0.375012, 0.1, -0.5, -0.5, 0.2, -0.5, -0.5, 0.1, -0.5, -0.375012, 0.2, -0.5, -0.375012, 0.2, 0.5, -0.5, 0.2, -0.5, -0.375012, 0.2, -0.5, -0.5, 0.2, 0.5, 0.499995, 0.1, -0.5, 0.374992, 0.2, -0.5, 0.374992, 0.1, -0.5, 0.499995, 0.2, -0.5, -0.5, 0.1, 0.5, -0.375012, 0.2, 0.5, -0.375012, 0.1, 0.5, -0.5, 0.2, 0.5, 0.249995, 0.149999, -0.250001, -0.25, 0.149999, -0.5, 0.249995, 0.149999, -0.5, -0.25, 0.149999, -0.250001, 0.249995, 0.1, -0.5, -0.25, 0.149999, -0.5, -0.25, 0.1, -0.5, 0.249995, 0.149999, -0.5)
-polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 0, 3), PackedInt32Array(4, 5, 6), PackedInt32Array(5, 4, 7), PackedInt32Array(8, 9, 10), PackedInt32Array(9, 8, 11), PackedInt32Array(12, 13, 14), PackedInt32Array(13, 12, 15), PackedInt32Array(14, 16, 12), PackedInt32Array(17, 16, 14), PackedInt32Array(17, 18, 16), PackedInt32Array(18, 17, 19), PackedInt32Array(20, 21, 22), PackedInt32Array(21, 20, 23), PackedInt32Array(21, 23, 24), PackedInt32Array(22, 25, 20), PackedInt32Array(26, 25, 22), PackedInt32Array(26, 27, 25), PackedInt32Array(27, 26, 28), PackedInt32Array(20, 25, 29), PackedInt32Array(29, 25, 30), PackedInt32Array(30, 31, 29), PackedInt32Array(31, 30, 32), PackedInt32Array(31, 32, 33), PackedInt32Array(34, 35, 36), PackedInt32Array(35, 34, 37), PackedInt32Array(38, 39, 40), PackedInt32Array(39, 38, 41), PackedInt32Array(42, 43, 44), PackedInt32Array(43, 42, 45), PackedInt32Array(46, 47, 48), PackedInt32Array(47, 46, 49), PackedInt32Array(49, 46, 50), PackedInt32Array(49, 50, 51), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(54, 55, 56), PackedInt32Array(55, 54, 57), PackedInt32Array(58, 59, 60), PackedInt32Array(59, 58, 61), PackedInt32Array(62, 63, 64), PackedInt32Array(63, 62, 65), PackedInt32Array(66, 67, 68), PackedInt32Array(67, 66, 69), PackedInt32Array(70, 71, 72), PackedInt32Array(71, 70, 73), PackedInt32Array(74, 75, 76), PackedInt32Array(75, 74, 77), PackedInt32Array(78, 79, 80), PackedInt32Array(79, 78, 81), PackedInt32Array(82, 83, 84), PackedInt32Array(83, 82, 85), PackedInt32Array(86, 87, 88), PackedInt32Array(87, 86, 89), PackedInt32Array(90, 91, 92), PackedInt32Array(91, 90, 93)]
 
 [node name="BlockoutLibrary" type="Node3D"]
 
@@ -213,96 +209,83 @@ mesh = ExtResource("31_xk7cp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111572, 0)
 shape = SubResource("BoxShape3D_rflq8")
 
+[node name="TileDirtHigh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02492, 0, 0)
+mesh = ExtResource("10_6rnwx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TileDirtHigh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileDirtHigh/StaticBody3D"]
+shape = SubResource("BoxShape3D_d771y")
+
 [node name="TileEndRoundSpawn" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-visible = false
 mesh = ExtResource("13_8h0o2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileEndRoundSpawn"]
 
 [node name="TileEndSpawn" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
-visible = false
 mesh = ExtResource("14_i4u2t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileEndSpawn"]
 
 [node name="TileSpawn" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
-visible = false
 mesh = ExtResource("24_0syck")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileSpawn"]
 
 [node name="TileSpawnRound" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
-visible = false
 mesh = ExtResource("25_nig08")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileSpawnRound"]
 
 [node name="TileStraightHill" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
-visible = false
 mesh = ExtResource("28_2hkh7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileStraightHill"]
 
 [node name="TileCornerInner" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-visible = false
 mesh = ExtResource("3_vogeb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileCornerInner"]
 
 [node name="TileCornerOuter" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-visible = false
 mesh = ExtResource("4_chwyg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileCornerOuter"]
 
 [node name="TileDirt" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-visible = false
 mesh = ExtResource("9_wjcbv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileDirt"]
 
-[node name="TileDirtHigh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-visible = false
-mesh = ExtResource("10_6rnwx")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TileDirtHigh"]
-
 [node name="TileRiverFall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
-visible = false
 mesh = ExtResource("18_ge2qb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileRiverFall"]
 
 [node name="TileRiverSlope" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
-visible = false
 mesh = ExtResource("19_uado2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileRiverSlope"]
 
 [node name="TileRiverTransition" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
-visible = false
 mesh = ExtResource("21_ai4us")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileRiverTransition"]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="TileRiverTransition"]
-navigation_mesh = SubResource("NavigationMesh_ywetu")
-
 [node name="TileSlope" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-visible = false
 mesh = ExtResource("23_qmq8a")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TileSlope"]

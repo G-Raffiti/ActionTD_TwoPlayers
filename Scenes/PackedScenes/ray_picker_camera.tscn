@@ -15,9 +15,9 @@ properties/0/replication_mode = 1
 [node name="RayPickerCamera" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.389, 7.656)
 projection = 1
-size = 19.195
+size = 20.0
 near = 0.001
-far = 3999.9
+far = 50.0
 script = ExtResource("1_ebh20")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
