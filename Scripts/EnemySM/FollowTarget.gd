@@ -15,19 +15,22 @@ func on_process(_delta):
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
-	var direction: Vector3
+	var direction :Vector3 = Vector3.ZERO
 	
-	if parent.nav_agent.is_navigation_finished() || parent.nav_agent.avoidance_enabled == true:
-		parent.nav_agent.target_position = parent.target.global_position
-
-	direction = parent.global_position.direction_to(parent.nav_agent.get_next_path_position())
+	parent.nav_agent.target_position = parent.action_player.global_position
+	
+	direction = parent.nav_agent.get_next_path_position() - parent.global_position
+	direction = direction.normalized()
+	direction.y = 0
+	
+	var look_direction = parent.action_player.position
+	look_direction.y = parent.position.y
+	parent.look_at(look_direction, Vector3.UP, true)
+	
 	var new_velocity = parent.velocity.lerp(direction * parent.stats.speed, delta * parent.stats.acceleration)
-
-	if parent.nav_agent.avoidance_enabled:
-		parent.nav_agent.set_velocity_forced(new_velocity)
-	else:
-		parent.velocity = new_velocity
-
+	
+	parent.velocity = new_velocity
+	
 	parent.move_and_slide()
 
 

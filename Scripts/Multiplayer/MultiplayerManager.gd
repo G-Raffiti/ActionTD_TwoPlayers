@@ -1,7 +1,7 @@
 extends Node
 
 const SERVER_PORT = 8080
-const SERVER_IP = "192.168.45.91"
+const SERVER_IP = "192.168.43.235"
 
 var player_rts_ps = preload("res://Scenes/PackedScenes/ray_picker_camera.tscn")
 var player_action_ps = preload("res://Scenes/PackedScenes/player.tscn")
